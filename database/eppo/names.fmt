@@ -1,0 +1,12 @@
+14.0
+10
+1       SQLCHAR             0       12      ","   1     nameid                                       ""
+2       SQLCHAR             0       12      ","   2     codeid                                       ""
+3       SQLCHAR             0       12      ","   7     idauth                                       ""
+4       SQLCHAR             0       250     ","   3     fullname                                     SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0       12      ","   6     preferred                                    ""
+6       SQLCHAR             0       2       ","   4     codelang                                     SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR             0       2       ","   5     isocountry                                   SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR             0       1       ","   8     status                                       SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR             0       24      ","   9     c_date                                       ""
+10      SQLCHAR             0       24      "\n"   10    m_date                                       ""

@@ -37,3 +37,8 @@ hs_err_pid*
 local.settings.json
 bin/
 obj/
+
+database/kainos-chain.pem
+Taxon.tsv
+VernacularName.tsv
+node_modules

@@ -1,6 +1,8 @@
 # Reference Data Orchestration
 
-This project holds the Azure Functions for Reference Data Orchestration.
+This project holds the Reference Data Orchestration.
+
+## Azure Functions
 
 A `local.settings.json` must be created in the root to run the functions locally:
 
@@ -15,19 +17,40 @@ A `local.settings.json` must be created in the root to run the functions locally
 }
 ```
 
-## Run via CLI
+### Run via CLI
 
 ```shell
 mvn package azure-functions:run
 ```
 
-## Run via IntelliJ
+### Run via IntelliJ
 
-Add new configuration "Azure Functions > Run Functions" and fill required fields. Make sure the 
+Add new configuration "Azure Functions > Run Functions" and fill required fields. Make sure the
 "App Settings" mirror what is in `local.settings.json`.
 
-## Deploy
+### Deploy
 
 ```shell
 mvn package azure-functions:deploy
+```
+
+## Database
+
+The `database` directory contains a MSSQL Docker container and scripts to create tables and load
+data.
+
+Start the container:
+
+```shell
+./run.sh
+```
+
+Download
+the [GBIF backbone](https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip) and
+copy the `Taxon.tsv` and `VernacularName.tsv` files into `database/gbif`.
+
+Create the tables and load data:
+
+```shell
+./load_data.sh
 ```

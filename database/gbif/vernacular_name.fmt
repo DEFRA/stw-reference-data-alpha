@@ -1,0 +1,10 @@
+14.0
+8
+1       SQLCHAR             0       12      "\t"   1     taxon_id                                                         ""
+2       SQLCHAR             0       0       "\t"   2     vernacular_name                                                  SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR             0       0       "\t"   3     language                                                         SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0       0       "\t"   4     country                                                          SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0       0       "\t"   5     country_code                                                     SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0       0       "\t"   6     sex                                                              SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR             0       0       "\t"   7     life_stage                                                       SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR             0       0       "\n"   8     source                                                           SQL_Latin1_General_CP1_CI_AS

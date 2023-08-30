@@ -53,6 +53,38 @@
           }
         }
       }
+    },
+    {
+      "type": "commodity",
+      "id": "4",
+      "relationships": {
+        "commodity_code": {
+          "type": "commodity_code",
+          "id": "81147"
+        },
+        "species": {
+          "data": {
+            "type": "species",
+            "id": "5166"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity",
+      "id": "5",
+      "relationships": {
+        "commodity_code": {
+          "type": "commodity_code",
+          "id": "81147"
+        },
+        "species": {
+          "data": {
+            "type": "species",
+            "id": "11750"
+          }
+        }
+      }
     }
   ],
   "included": [
@@ -212,6 +244,25 @@
       }
     },
     {
+      "type": "commodity_code",
+      "id": "81147",
+      "attributes": {
+        "code": "0808108090",
+        "suffix": "80",
+        "description": "Other",
+        "source_name": "DIT",
+        "source_id": "81147"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "81145"
+          }
+        }
+      }
+    },
+    {
       "type": "species",
       "id": "79",
       "attributes": {
@@ -239,6 +290,36 @@
         "species": "Bos taurus",
         "source_name": "GBIF",
         "source_id": "2441022"
+      }
+    },
+    {
+      "type": "species",
+      "id": "5166",
+      "attributes": {
+        "eppo": "MABAN",
+        "simple_name": "southern crab apple",
+        "rank": "species",
+        "class": "Angiospermae",
+        "family": "Rosaceae",
+        "genus": "Malus",
+        "species": "Malus angustifolia",
+        "source_name": "EPPO",
+        "source_id": "36983"
+      }
+    },
+    {
+      "type": "species",
+      "id": "11750",
+      "attributes": {
+        "eppo": "MABSD ",
+        "simple_name": "apple",
+        "rank": "species",
+        "class": "Angiospermae",
+        "family": "Rosaceae",
+        "genus": "Malus",
+        "species": "Malus domestica",
+        "source_name": "EPPO",
+        "source_id": "37021"
       }
     }
   ]

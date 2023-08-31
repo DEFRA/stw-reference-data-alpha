@@ -28,10 +28,10 @@ COPY __files /home/wiremock/__files
 ## Build and test locally
 
 1. Build the docker image using 
-`docker build --tag stwalphaacr.azurecr.io/ref-data-stub .`
+`docker build --tag stwalphaacr.azurecr.io/ref-data-stub:v1 .`
 
 2. Test the docker container using 
-`docker run -p 8080:8080 stwalphaacr.azurecr.io/ref-data-stub`
+`docker run -p 8080:8080 stwalphaacr.azurecr.io/ref-data-stub:v1`
 
 ## Deploy the stub to the azure container registry
 
@@ -40,17 +40,26 @@ See more detail [Azure App service with custom container tutorial](https://learn
 3. Login to azure
 `az acr login --name stwalphaacr.azurecr.io`
 4. Run the following command to deploy it to azure
-`docker push stwalphaacr.azurecr.io/ref-data-stub`
+`docker push stwalphaacr.azurecr.io/ref-data-stub:v1`
 
 ## Create the azure web app
 
 1. Click on `create a resource` from the dashboard. 
 2. Select the `Web app`.
 3. Complete the following 2 tabs(Basic and docker) as shown. Leaving all other tabs set to the default.
-![Build Id as image tag](screenshots/create-web-app-basics.png)
-![Update App service image](screenshots/create-web-app-docker.png)
+![web_app_basics](screenshots/create-web-app-basics.png)
+![web_app_docker](screenshots/create-web-app-docker.png)
 4. Click the `Review and create button`
 
 ## Update and redeploy
 
+Change the docker tag from its current version to the next incremental value.  Then redeploy as per the following
 
+`az acr login --name stwalphaacr.azurecr.io`
+`docker push stwalphaacr.azurecr.io/ref-data-stub:{version}`
+
+Change the tag version to the current one as per following screenshot
+
+![web_app_update_tag](screenshots/create-web-app-update-tag.png)
+
+Maybe have to restart the web app.  It seems to take an age before the change propagates through!

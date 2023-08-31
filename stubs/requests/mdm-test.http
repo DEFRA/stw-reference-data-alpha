@@ -1,2 +1,11 @@
-### Check tulips response
-GET {{wiremockUrl}}/rd/notify?since=2023-01-01T00:00:01.000Z&filter=SQL(tulipssad)
+### Get commodity response
+GET {{mdmStubUrl}}/mdm/api?filter=commodity&effectiveFrom=2012-10-01T09:45:00Z&effectiveTo=2012-10-02T09:45:00Z
+Ocp-Apim-Subscription-Key: {{apiManagementSubScriptionKey}}
+
+### Get commodity code response
+GET {{mdmStubUrl}}/mdm/api?filter=commodity_code&effectiveFrom=2012-10-01T09:45:00Z&effectiveTo=2012-10-02T09:45:00Z
+Ocp-Apim-Subscription-Key: {{apiManagementSubScriptionKey}}
+
+### Get species response
+GET {{mdmStubUrl}}/mdm/api?filter=tulips&effectiveFrom=2012-10-01T09:45:00Z&effectiveTo=2012-10-02T09:45:00Z
+Ocp-Apim-Subscription-Key: {{apiManagementSubScriptionKey}}

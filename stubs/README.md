@@ -2,29 +2,12 @@
 
 ## Wiremock
 
-Wiremock stub
-for [IPAFFS Trade API](https://tst-developer-portal.trade.azure.defra.cloud/explore-apis/ipaffs-api/api).
-
-Run with `./run.sh`.
+The wiremock stub can be run with `./run.sh`.
 
 ## HTTP requests
 
 The `requests` folder contains `.http` files which can be used to send requests via the IntelliJ
 [HTTP Client plugin](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html).
-
-## Deploy wiremock to azure app service as container
-
-Wiremock has an official [docker image](https://wiremock.org/docs/docker/).
-
-See more
-detail [Azure App service with custom container tutorial](https://learn.microsoft.com/en-us/azure/app-service/tutorial-custom-container?tabs=azure-portal&pivots=container-linux).
-
-TL;DR:
-
-1. Create Azure Container Registry, Azure app service with an app service plan
-2. Use Dockerfile to embed stub mapping files into image
-3. Push custom image into Azure container registry (See wiremock-stub-ci.yml)
-4. Run custom image in Azure app service
 
 ### Stub folders
 
@@ -32,7 +15,9 @@ Inside the container, the WireMock uses /home/wiremock as the root from which it
 the `mappings` and `__files` directories. This means you can mount a directory containing these from
 your host machine into Docker and WireMock will load the stub mappings.
 
-See example of Dockerfile
+## Docker
+
+Wiremock has an official [docker image](https://wiremock.org/docs/docker/).
 
 ```dockerfile
 FROM wiremock/wiremock:2.35.0
@@ -40,22 +25,32 @@ COPY mappings /home/wiremock/mappings
 COPY __files /home/wiremock/__files
 ```
 
-## Build and push custom image
+## Build and test locally
 
-ADO pipeline: [wiremock-stub-ci](https://dev.azure.com/defragovuk/STW%20Orchestration%20Alpha/_build?definitionId=3611)
+1. Build the docker image using 
+`docker build --tag stwalphaacr.azurecr.io/ref-data-stub .`
 
-Option 1. Merge new code into main branch, new image tagged and pushed automatically by pipeline
+2. Test the docker container using 
+`docker run -p 8080:8080 stwalphaacr.azurecr.io/ref-data-stub`
 
-Option 2. Manually run pipeline for your test branch can be done if you specify it.
+## Deploy the stub to the azure container registry
 
-![Manual select branch](Pipeline_branch.png)
+See more detail [Azure App service with custom container tutorial](https://learn.microsoft.com/en-us/azure/app-service/tutorial-custom-container?tabs=azure-portal&pivots=container-linux).
 
-### Updating container images
+3. Login to azure
+`az acr login --name stwalphaacr.azurecr.io`
+4. Run the following command to deploy it to azure
+`docker push stwalphaacr.azurecr.io/ref-data-stub`
 
-A new image version tagged with the pipeline build id can be found after pipeline run.
+## Create the azure web app
 
-![Build Id as image tag](Appserviceimage_tag.png)
+1. Click on `create a resource` from the dashboard. 
+2. Select the `Web app`.
+3. Complete the following 2 tabs(Basic and docker) as shown. Leaving all other tabs set to the default.
+![Build Id as image tag](screenshots/create-web-app-basics.png)
+![Update App service image](screenshots/create-web-app-docker.png)
+4. Click the `Review and create button`
 
-You just need to update the app service to use new image tag.
+## Update and redeploy
 
-![Update App service image](Appserviceimage_update.png)
+

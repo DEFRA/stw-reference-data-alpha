@@ -1,0 +1,2 @@
+### Check tulips response
+GET {{wiremockUrl}}/rd/notify?since=2023-01-01T00:00:01.000Z&filter=SQL(tulipssad)

@@ -1,0 +1,25 @@
+resources: 
+  repositories: 
+  - repository: stw-pipelines 
+    name: STW Orchestration Alpha/stw-pipelines 
+    type: git 
+    ref: main #branch name
+
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - mappings/*
+    - __files/*
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - template: build-push-docker-image.yml@stw-pipelines
+    parameters:
+      docker_image_name: 'wiremock-stub'
+      ACR_USERNAME: $(ACR_USERNAME)
+      ACR_PASSWORD: $(ACR_PASSWORD)

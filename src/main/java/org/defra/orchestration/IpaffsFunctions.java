@@ -11,6 +11,7 @@ import com.microsoft.azure.functions.annotation.HttpTrigger;
 import java.util.Optional;
 import java.util.function.Function;
 import lombok.extern.slf4j.Slf4j;
+import org.defra.orchestration.apiclient.MdmApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,10 +20,12 @@ import org.springframework.stereotype.Component;
 public class IpaffsFunctions {
 
   private final Function<String, String> greeter;
+  private final MdmApiClient mdmApiClient;
 
   @Autowired
-  public IpaffsFunctions(Function<String, String> greeter) {
+  public IpaffsFunctions(Function<String, String> greeter, MdmApiClient mdmApiClient) {
     this.greeter = greeter;
+    this.mdmApiClient = mdmApiClient;
   }
 
   @FunctionName("certificates")
@@ -35,7 +38,7 @@ public class IpaffsFunctions {
       final ExecutionContext context) {
     log.info("certificates HTTP trigger starting");
     return request.createResponseBuilder(HttpStatus.OK)
-        .body(greeter.apply("certificates"))
+        .body(mdmApiClient.getCommodities())
         .build();
   }
 

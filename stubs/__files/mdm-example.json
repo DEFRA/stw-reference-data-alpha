@@ -1,0 +1,326 @@
+{
+  "data": [
+    {
+      "type": "commodity",
+      "id": "1",
+      "relationships": {
+        "commodity_code": {
+          "data": {
+            "type": "commodity_code",
+            "id": "94051"
+          }
+        },
+        "species": {
+          "data": {
+            "type": "species",
+            "id": "79"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity",
+      "id": "2",
+      "relationships": {
+        "commodity_code": {
+          "data": {
+            "type": "commodity_code",
+            "id": "94051"
+          }
+        },
+        "species": {
+          "data": {
+            "type": "species",
+            "id": "96"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity",
+      "id": "3",
+      "relationships": {
+        "commodity_code": {
+          "data": {
+            "type": "commodity_code",
+            "id": "104254"
+          }
+        },
+        "species": {
+          "data": {
+            "type": "species",
+            "id": "79"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity",
+      "id": "4",
+      "relationships": {
+        "commodity_code": {
+          "type": "commodity_code",
+          "id": "81147"
+        },
+        "species": {
+          "data": {
+            "type": "species",
+            "id": "5166"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity",
+      "id": "5",
+      "relationships": {
+        "commodity_code": {
+          "type": "commodity_code",
+          "id": "81147"
+        },
+        "species": {
+          "data": {
+            "type": "species",
+            "id": "11750"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "commodity_code",
+      "id": "94051",
+      "attributes": {
+        "code": "0102310000",
+        "suffix": "80",
+        "description": "Pure-bred breeding animals",
+        "source_name": "DIT",
+        "source_id": "94051"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "94054"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "94054",
+      "attributes": {
+        "code": "0102310000",
+        "suffix": "10",
+        "description": "Buffalo",
+        "source_name": "DIT",
+        "source_id": "94054"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "27633"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "27633",
+      "attributes": {
+        "code": "0102000000",
+        "suffix": "80",
+        "description": "Live bovine animals",
+        "source_name": "DIT",
+        "source_id": "27633"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "27623"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "27623",
+      "attributes": {
+        "code": "0100000000",
+        "suffix": "80",
+        "description": "LIVE ANIMALS",
+        "source_name": "DIT",
+        "source_id": "27623"
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "104254",
+      "attributes": {
+        "code": "0201100021",
+        "suffix": "80",
+        "description": "Of bison",
+        "source_name": "DIT",
+        "source_id": "104254"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "104276"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "104276",
+      "attributes": {
+        "code": "0201100021",
+        "suffix": "10",
+        "description": "High quality beef and veal",
+        "source_name": "DIT",
+        "source_id": "104276"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "27811"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "27811",
+      "attributes": {
+        "code": "0201100000",
+        "suffix": "80",
+        "description": "Carcases and half-carcases",
+        "source_name": "DIT",
+        "source_id": "27811"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "27810"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "27810",
+      "attributes": {
+        "code": "0201000000",
+        "suffix": "80",
+        "description": "Meat of bovine animals, fresh or chilled",
+        "source_name": "DIT",
+        "source_id": "27810"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "27809"
+          }
+        }
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "27809",
+      "attributes": {
+        "code": "0200000000",
+        "suffix": "80",
+        "description": "MEAT AND EDIBLE MEAT OFFAL",
+        "source_name": "DIT",
+        "source_id": "27809"
+      }
+    },
+    {
+      "type": "commodity_code",
+      "id": "81147",
+      "attributes": {
+        "code": "0808108090",
+        "suffix": "80",
+        "description": "Other",
+        "source_name": "DIT",
+        "source_id": "81147"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "type": "commodity_code",
+            "id": "81145"
+          }
+        }
+      }
+    },
+    {
+      "type": "species",
+      "id": "79",
+      "attributes": {
+        "eppo": "",
+        "simple_name": "",
+        "rank": "species",
+        "class": "Mammalia",
+        "family": "Bovidae",
+        "genus": "Bison",
+        "species": "Bison bison",
+        "source_name": "GBIF",
+        "source_id": "2441176"
+      }
+    },
+    {
+      "type": "species",
+      "id": "96",
+      "attributes": {
+        "eppo": "",
+        "simple_name": "",
+        "rank": "species",
+        "class": "Mammalia",
+        "family": "Bovidae",
+        "genus": "Bos",
+        "species": "Bos taurus",
+        "source_name": "GBIF",
+        "source_id": "2441022"
+      }
+    },
+    {
+      "type": "species",
+      "id": "5166",
+      "attributes": {
+        "eppo": "MABAN",
+        "simple_name": "southern crab apple",
+        "rank": "species",
+        "class": "Angiospermae",
+        "family": "Rosaceae",
+        "genus": "Malus",
+        "species": "Malus angustifolia",
+        "source_name": "EPPO",
+        "source_id": "36983"
+      }
+    },
+    {
+      "type": "species",
+      "id": "11750",
+      "attributes": {
+        "eppo": "MABSD ",
+        "simple_name": "apple",
+        "rank": "species",
+        "class": "Angiospermae",
+        "family": "Rosaceae",
+        "genus": "Malus",
+        "species": "Malus domestica",
+        "source_name": "EPPO",
+        "source_id": "37021"
+      }
+    }
+  ]
+}

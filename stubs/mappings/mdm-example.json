@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/mdm/api?([a-z]*)",
+    "queryParameters": {
+      "filter": {
+        "matches": "([A-Za-z_]+)"
+      },
+      "effectiveFrom": {
+        "matches": "([A-Za-z0-9:-]+)"
+      },
+      "effectiveTo": {
+        "matches": "([A-Za-z0-9:-]+)"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyFileName": "mdm-example.json"
+  }
+}

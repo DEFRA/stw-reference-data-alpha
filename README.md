@@ -12,7 +12,8 @@ A `local.settings.json` must be created in the root to run the functions locally
   "Values": {
     "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "java",
-    "JAVA_HOME": "<Path to Java 17>"
+    "JAVA_HOME": "<Path to Java 17>",
+    "MAIN_CLASS": "org.defra.orchestration.ReferenceDataOrchestrationApplication"
   }
 }
 ```

@@ -5,33 +5,31 @@ import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import lombok.extern.slf4j.Slf4j;
+import org.defra.orchestration.apiclient.MdmApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 @Component
 @Slf4j
 public class MdmFunctions {
 
-  private final Function<String, String> greeter;
+  private final MdmApiClient mdmApiClient;
 
   @Autowired
-  public MdmFunctions(Function<String, String> greeter) {
-    this.greeter = greeter;
+  public MdmFunctions(MdmApiClient mdmApiClient) {
+    this.mdmApiClient = mdmApiClient;
   }
 
-  @FunctionName("test")
-  public HttpResponseMessage certificates(
+  @FunctionName("notify")
+  public HttpResponseMessage notify(
       @HttpTrigger(
           name = "req",
-          methods = HttpMethod.GET,
+          methods = HttpMethod.POST,
           authLevel = AuthorizationLevel.FUNCTION
-      ) HttpRequestMessage<Optional<String>> request,
-      final ExecutionContext context) {
-    log.info("certificates HTTP trigger starting");
-    return request.createResponseBuilder(HttpStatus.OK).body("test this").build();
+      ) HttpRequestMessage<Optional<String>> request) {
+    log.info("notify HTTP trigger starting");
+    return request.createResponseBuilder(HttpStatus.valueOf(mdmApiClient.syncCommodityCodes().value())).build();
   }
-
 }

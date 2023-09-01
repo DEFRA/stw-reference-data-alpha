@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
@@ -38,5 +40,12 @@ public class MdmApiClient {
     } else {
       return List.of();
     }
+  }
+
+  public HttpStatusCode syncCommodityCodes() {
+    return webClient.post()
+            .uri("/commodity-codes/sync")
+            .exchangeToMono(response -> Mono.just(response.statusCode()))
+            .block();
   }
 }

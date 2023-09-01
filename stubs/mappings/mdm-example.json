@@ -17,7 +17,7 @@
   "response": {
     "status": 200,
     "headers": {
-      "Content-Type": "application/json"
+      "Content-Type": "application/vnd.api+json"
     },
     "bodyFileName": "mdm-example.json"
   }

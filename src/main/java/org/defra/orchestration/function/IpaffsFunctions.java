@@ -1,5 +1,7 @@
-package org.defra.orchestration;
+package org.defra.orchestration.function;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.azure.functions.ExecutionContext;
 import com.microsoft.azure.functions.HttpMethod;
 import com.microsoft.azure.functions.HttpRequestMessage;
@@ -9,9 +11,8 @@ import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import java.util.Optional;
-import java.util.function.Function;
 import lombok.extern.slf4j.Slf4j;
-import org.defra.orchestration.apiclient.MdmApiClient;
+import org.defra.orchestration.service.MdmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,13 +20,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class IpaffsFunctions {
 
-  private final Function<String, String> greeter;
-  private final MdmApiClient mdmApiClient;
+  private final MdmService mdmService;
+  private final ObjectMapper objectMapper;
 
   @Autowired
-  public IpaffsFunctions(Function<String, String> greeter, MdmApiClient mdmApiClient) {
-    this.greeter = greeter;
-    this.mdmApiClient = mdmApiClient;
+  public IpaffsFunctions(MdmService mdmService, ObjectMapper objectMapper) {
+    this.mdmService = mdmService;
+    this.objectMapper = objectMapper;
   }
 
   @FunctionName("certificates")
@@ -38,7 +39,7 @@ public class IpaffsFunctions {
       final ExecutionContext context) {
     log.info("certificates HTTP trigger starting");
     return request.createResponseBuilder(HttpStatus.OK)
-        .body(mdmApiClient.getCommodities())
+        .body("certificates")
         .build();
   }
 
@@ -49,9 +50,12 @@ public class IpaffsFunctions {
           methods = HttpMethod.GET,
           authLevel = AuthorizationLevel.FUNCTION
       ) HttpRequestMessage<Optional<String>> request,
-      final ExecutionContext context) {
+      final ExecutionContext context) throws JsonProcessingException {
     log.info("commodity-nomenclature HTTP trigger starting");
-    return request.createResponseBuilder(HttpStatus.OK).body("commodity-nomenclature").build();
+    return request.createResponseBuilder(HttpStatus.OK)
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getCommodityNomenclature()))
+        .build();
   }
 
   @FunctionName("certification-requirement")

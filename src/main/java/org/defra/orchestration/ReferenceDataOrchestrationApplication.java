@@ -1,5 +1,6 @@
 package org.defra.orchestration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +20,11 @@ public class ReferenceDataOrchestrationApplication {
     return WebClient.builder()
         .baseUrl(mdmBaseUrl)
         .build();
+  }
+
+  @Bean
+  public ObjectMapper objectMapper() {
+    return new ObjectMapper();
   }
 
   public static void main(String[] args) {

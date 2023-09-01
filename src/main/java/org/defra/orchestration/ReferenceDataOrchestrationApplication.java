@@ -14,11 +14,21 @@ public class ReferenceDataOrchestrationApplication {
   @Value("${mdm.baseUrl}")
   private String mdmBaseUrl;
 
-  @Bean
+  @Value("${ipaffs.baseUrl}")
+  private String ipaffsBaseUrl;
+
+  @Bean(name = "mdmWebClient")
   public WebClient mdmClient() {
     return WebClient.builder()
         .baseUrl(mdmBaseUrl)
         .build();
+  }
+
+  @Bean(name = "ipaffsWebClient")
+  public WebClient ipaffsClient() {
+    return WebClient.builder()
+            .baseUrl(ipaffsBaseUrl)
+            .build();
   }
 
   public static void main(String[] args) {

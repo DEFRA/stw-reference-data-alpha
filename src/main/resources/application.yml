@@ -1,2 +1,4 @@
 mdm:
   baseUrl: http://localhost:8080
+ipaffs:
+  baseUrl: http://localhost:8080

@@ -9,13 +9,13 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class MdmApiClient {
+public class IpaffsApiClient {
 
   private final WebClient webClient;
 
   @Autowired
-  public MdmApiClient(WebClient mdmWebClient) {
-    this.webClient = mdmWebClient;
+  public IpaffsApiClient(WebClient ipaffsWebClient) {
+    this.webClient = ipaffsWebClient;
   }
 
   public HttpStatusCode syncCommodityCodes() {

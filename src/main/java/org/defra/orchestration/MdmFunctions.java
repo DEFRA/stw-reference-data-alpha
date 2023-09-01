@@ -5,7 +5,7 @@ import com.microsoft.azure.functions.annotation.AuthorizationLevel;
 import com.microsoft.azure.functions.annotation.FunctionName;
 import com.microsoft.azure.functions.annotation.HttpTrigger;
 import lombok.extern.slf4j.Slf4j;
-import org.defra.orchestration.apiclient.MdmApiClient;
+import org.defra.orchestration.apiclient.IpaffsApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +15,11 @@ import java.util.Optional;
 @Slf4j
 public class MdmFunctions {
 
-  private final MdmApiClient mdmApiClient;
+  private final IpaffsApiClient ipaffsApiClient;
 
   @Autowired
-  public MdmFunctions(MdmApiClient mdmApiClient) {
-    this.mdmApiClient = mdmApiClient;
+  public MdmFunctions(IpaffsApiClient ipaffsApiClient) {
+    this.ipaffsApiClient = ipaffsApiClient;
   }
 
   @FunctionName("notify")
@@ -30,6 +30,6 @@ public class MdmFunctions {
           authLevel = AuthorizationLevel.FUNCTION
       ) HttpRequestMessage<Optional<String>> request) {
     log.info("notify HTTP trigger starting");
-    return request.createResponseBuilder(HttpStatus.valueOf(mdmApiClient.syncCommodityCodes().value())).build();
+    return request.createResponseBuilder(HttpStatus.valueOf(ipaffsApiClient.syncCommodityCodes().value())).build();
   }
 }

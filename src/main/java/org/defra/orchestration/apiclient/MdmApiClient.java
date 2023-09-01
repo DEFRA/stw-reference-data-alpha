@@ -25,7 +25,12 @@ public class MdmApiClient {
 
   public List<Commodity> getCommodities() {
     CollectionModel<EntityModel<Commodity>> commodities = webClient.get()
-        .uri("/example")
+        .uri(uriBuilder -> uriBuilder
+            .path("/mdm/api")
+            .queryParam("filter", "commodity_code")
+            .queryParam("effectiveFrom", "2023-01-01T00:00:00Z")
+            .queryParam("effectiveTo", "2023-12-01T00:00:00Z")
+            .build())
         .accept(JSON_API)
         .retrieve()
         .bodyToMono(new ParameterizedTypeReference<CollectionModel<EntityModel<Commodity>>>() {

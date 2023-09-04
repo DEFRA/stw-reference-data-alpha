@@ -1,10 +1,7 @@
-CREATE TABLE reference_data.dbo.commodity
+CREATE TABLE reference_data.dbo.certificate
 (
-    id             int primary key not null,
-    commodity_code int,
-    species        int,
-    foreign key (species) references species (id),
-    foreign key (commodity_code) references commodity_code (id)
+    id   int primary key not null,
+    name nvarchar(10)    not null
 );
 
 CREATE TABLE reference_data.dbo.commodity_code
@@ -21,7 +18,7 @@ CREATE TABLE reference_data.dbo.commodity_code
 
 CREATE TABLE reference_data.dbo.species
 (
-    id          int primary key not null,
+    id          int primary key identity,
     eppo        nchar(6),
     simple_name nvarchar(50),
     rank        nvarchar(50),
@@ -33,6 +30,18 @@ CREATE TABLE reference_data.dbo.species
     source_id   nvarchar(50)    not null
 );
 
+CREATE TABLE reference_data.dbo.commodity
+(
+    id             int primary key identity,
+    certificate    int,
+    commodity_code int,
+    species        int,
+    foreign key (certificate) references certificate (id),
+    foreign key (species) references species (id),
+    foreign key (commodity_code) references commodity_code (id)
+);
+
+-- Tables for GBIF import
 CREATE TABLE reference_data.dbo.taxon
 (
     taxon_id                   int,

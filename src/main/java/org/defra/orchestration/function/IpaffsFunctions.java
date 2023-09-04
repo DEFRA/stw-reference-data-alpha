@@ -36,10 +36,11 @@ public class IpaffsFunctions {
           methods = HttpMethod.GET,
           authLevel = AuthorizationLevel.FUNCTION
       ) HttpRequestMessage<Optional<String>> request,
-      final ExecutionContext context) {
+      final ExecutionContext context) throws JsonProcessingException {
     log.info("certificates HTTP trigger starting");
     return request.createResponseBuilder(HttpStatus.OK)
-        .body("certificates")
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getCertificates()))
         .build();
   }
 

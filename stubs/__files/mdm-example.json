@@ -770,6 +770,41 @@
           }
         }
       }
+    },
+    {
+      "type": "certificate",
+      "id": "-90",
+      "attributes": {
+        "name": "EUIA"
+      }
+    },
+    {
+      "type": "certificate",
+      "id": "640",
+      "attributes": {
+        "name": "CVEDA"
+      }
+    },
+    {
+      "type": "certificate",
+      "id": "678",
+      "attributes": {
+        "name": "CED"
+      }
+    },
+    {
+      "type": "certificate",
+      "id": "851",
+      "attributes": {
+        "name": "CHED-P}P"
+      }
+    },
+    {
+      "type": "certificate",
+      "id": "853",
+      "attributes": {
+        "name": "CVEDP"
+      }
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "GET",
-    "urlPathPattern": "/mdm/api?([a-z]*)",
+    "urlPath": "/mdm/api",
     "queryParameters": {
       "filter": {
         "matches": "([A-Za-z_]+)"

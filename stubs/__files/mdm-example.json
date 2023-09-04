@@ -59,8 +59,10 @@
       "id": "4",
       "relationships": {
         "commodity_code": {
-          "type": "commodity_code",
-          "id": "81147"
+          "data": {
+            "type": "commodity_code",
+            "id": "81147"
+          }
         },
         "species": {
           "data": {
@@ -75,8 +77,10 @@
       "id": "5",
       "relationships": {
         "commodity_code": {
-          "type": "commodity_code",
-          "id": "81147"
+          "data": {
+            "type": "commodity_code",
+            "id": "81147"
+          }
         },
         "species": {
           "data": {
@@ -252,14 +256,6 @@
         "description": "Other",
         "source_name": "DIT",
         "source_id": "81147"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "81145"
-          }
-        }
       }
     },
     {

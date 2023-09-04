@@ -1,4 +1,4 @@
-package org.defra.orchestration;
+package org.defra.orchestration.function;
 
 import com.microsoft.azure.functions.*;
 import com.microsoft.azure.functions.annotation.AuthorizationLevel;

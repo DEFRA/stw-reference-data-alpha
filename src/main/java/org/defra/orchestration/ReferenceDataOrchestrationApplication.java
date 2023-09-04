@@ -1,12 +1,15 @@
 package org.defra.orchestration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
+@EnableHypermediaSupport(type = {})
 public class ReferenceDataOrchestrationApplication {
 
   @Value("${mdm.baseUrl}")
@@ -15,15 +18,20 @@ public class ReferenceDataOrchestrationApplication {
   @Value("${ipaffs.baseUrl}")
   private String ipaffsBaseUrl;
 
-  @Bean(name = "mdmWebClient")
-  public WebClient mdmClient() {
+  @Bean
+  public ObjectMapper objectMapper() {
+    return new ObjectMapper();
+  }
+
+  @Bean
+  public WebClient mdmWebClient() {
     return WebClient.builder()
         .baseUrl(mdmBaseUrl)
         .build();
   }
 
-  @Bean(name = "ipaffsWebClient")
-  public WebClient ipaffsClient() {
+  @Bean
+  public WebClient ipaffsWebClient() {
     return WebClient.builder()
             .baseUrl(ipaffsBaseUrl)
             .build();

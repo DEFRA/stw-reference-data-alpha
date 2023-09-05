@@ -34,7 +34,7 @@ public class IpaffsFunctions {
       @HttpTrigger(
           name = "req",
           methods = HttpMethod.GET,
-          authLevel = AuthorizationLevel.FUNCTION
+          authLevel = AuthorizationLevel.ANONYMOUS
       ) HttpRequestMessage<Optional<String>> request,
       final ExecutionContext context) throws JsonProcessingException {
     log.info("certificates HTTP trigger starting");
@@ -49,7 +49,7 @@ public class IpaffsFunctions {
       @HttpTrigger(
           name = "req",
           methods = HttpMethod.GET,
-          authLevel = AuthorizationLevel.FUNCTION
+          authLevel = AuthorizationLevel.ANONYMOUS
       ) HttpRequestMessage<Optional<String>> request,
       final ExecutionContext context) throws JsonProcessingException {
     log.info("commodity-nomenclature HTTP trigger starting");
@@ -64,7 +64,7 @@ public class IpaffsFunctions {
       @HttpTrigger(
           name = "req",
           methods = HttpMethod.GET,
-          authLevel = AuthorizationLevel.FUNCTION
+          authLevel = AuthorizationLevel.ANONYMOUS
       ) HttpRequestMessage<Optional<String>> request,
       final ExecutionContext context) throws JsonProcessingException {
     log.info("certification-requirement HTTP trigger starting");
@@ -79,7 +79,7 @@ public class IpaffsFunctions {
       @HttpTrigger(
           name = "req",
           methods = HttpMethod.GET,
-          authLevel = AuthorizationLevel.FUNCTION
+          authLevel = AuthorizationLevel.ANONYMOUS
       ) HttpRequestMessage<Optional<String>> request,
       final ExecutionContext context) throws JsonProcessingException {
     log.info("species HTTP trigger starting");
@@ -94,7 +94,7 @@ public class IpaffsFunctions {
       @HttpTrigger(
           name = "req",
           methods = HttpMethod.GET,
-          authLevel = AuthorizationLevel.FUNCTION
+          authLevel = AuthorizationLevel.ANONYMOUS
       ) HttpRequestMessage<Optional<String>> request,
       final ExecutionContext context) throws JsonProcessingException {
     log.info("certification-nomenclature HTTP trigger starting");

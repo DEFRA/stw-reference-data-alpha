@@ -10,7 +10,7 @@ import org.mapstruct.Named;
 public interface CommodityNomenclatureMapper {
 
   @Mapping(target = "code", source = "id")
-  @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.now())")
+  @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
   @Mapping(target = "effectiveTo", ignore = true)
   @Mapping(target = "commodityNomenclatureParentCode", source = "parent.id")
   @Mapping(target = "sortingKey", source = ".", qualifiedByName = "getSortingKey")

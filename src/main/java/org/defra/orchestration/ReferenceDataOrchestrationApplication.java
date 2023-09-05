@@ -22,7 +22,8 @@ public class ReferenceDataOrchestrationApplication {
   @Bean
   public ObjectMapper objectMapper() {
     return new ObjectMapper()
-        .setSerializationInclusion(Include.NON_NULL);
+        .setSerializationInclusion(Include.NON_NULL)
+        .findAndRegisterModules();
   }
 
   @Bean

@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 public interface CertificationRequirementMapper {
 
   @Mapping(target = "code", source = "id")
-  @Mapping(target = "effectiveFrom", ignore = true)
+  @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.now())")
   @Mapping(target = "effectiveTo", ignore = true)
   @Mapping(target = "certificationRequirementCode", source = "certificate.id")
   @Mapping(target = "commodityNomenclatureIdCode", source = "commodityCode.id")

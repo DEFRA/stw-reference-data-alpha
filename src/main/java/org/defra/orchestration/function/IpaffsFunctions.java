@@ -77,9 +77,12 @@ public class IpaffsFunctions {
           methods = HttpMethod.GET,
           authLevel = AuthorizationLevel.FUNCTION
       ) HttpRequestMessage<Optional<String>> request,
-      final ExecutionContext context) {
+      final ExecutionContext context) throws JsonProcessingException {
     log.info("species HTTP trigger starting");
-    return request.createResponseBuilder(HttpStatus.OK).body("species").build();
+    return request.createResponseBuilder(HttpStatus.OK)
+            .header("Content-Type", "application/json")
+            .body(objectMapper.writeValueAsString(mdmService.getSpecies()))
+            .build();
   }
 
   @FunctionName("certification-nomenclature")

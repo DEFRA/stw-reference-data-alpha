@@ -27,10 +27,16 @@ echo 'Loading EPPO langs data...'
 sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -i eppo/langs.sql
 echo 'Loading EPPO links data...'
 docker cp eppo/links.csv mssql:/tmp
-sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -i "BULK INSERT reference_data.dbo.t_links FROM '/tmp/links.csv' WITH (FORMAT = 'CSV');"
+sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -Q "BULK INSERT reference_data.dbo.t_links FROM '/tmp/links.csv' WITH (FORMAT = 'CSV');"
 echo 'Loading EPPO names data...'
 docker cp eppo/names.csv mssql:/tmp
 docker cp eppo/names.fmt mssql:/tmp
-sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -i "BULK INSERT reference_data.dbo.t_names FROM '/tmp/names.csv' WITH (FORMAT = 'CSV', FORMATFILE = '/tmp/names.fmt');"
+sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -Q "BULK INSERT reference_data.dbo.t_names FROM '/tmp/names.csv' WITH (FORMAT = 'CSV', FORMATFILE = '/tmp/names.fmt');"
 echo 'Copying EPPO to species table...'
 sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -i eppo/copy_to_species.sql
+
+echo 'Loading certificate data...'
+sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -i certificate.sql
+
+echo 'Loading commodity data...'
+sqlcmd -S "tcp:127.0.0.1,1433" -U SA -P Password1 -i commodity.sql

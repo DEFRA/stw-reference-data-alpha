@@ -10,6 +10,9 @@ public class Commodity {
 
   private String id;
 
+  @JsonApiRelationships("certificate")
+  private Certificate certificate;
+
   @JsonApiRelationships("commodity_code")
   private CommodityCode commodityCode;
 

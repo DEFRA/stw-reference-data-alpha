@@ -1,0 +1,10 @@
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (640, 94051, 79);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (640, 94049, 96);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (853, 104254, 79);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (853, 104255, 96);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, 81147, 5166);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, 81147, 11750);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, 99427, 5166);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, 99427, 11750);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, 30242, 6396);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (678, 30242, 6396);

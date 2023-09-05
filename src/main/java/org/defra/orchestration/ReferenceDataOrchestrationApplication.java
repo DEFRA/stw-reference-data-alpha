@@ -1,5 +1,6 @@
 package org.defra.orchestration;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +21,9 @@ public class ReferenceDataOrchestrationApplication {
 
   @Bean
   public ObjectMapper objectMapper() {
-    return new ObjectMapper();
+    return new ObjectMapper()
+        .setSerializationInclusion(Include.NON_NULL)
+        .findAndRegisterModules();
   }
 
   @Bean

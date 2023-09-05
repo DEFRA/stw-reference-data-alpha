@@ -27,8 +27,8 @@ COPY __files /home/wiremock/__files
 
 ## Build and test locally
 
-1. Build the docker image using 
-`docker build --tag stwalphaacr.azurecr.io/ref-data-stub:v1 .`
+1. Build the docker image using (make sure to specify amd platform if deploying to Azure and on an M1 Mac!)
+`docker build --tag stwalphaacr.azurecr.io/ref-data-stub:v1 --platform linux/amd64 .`
 
 2. Test the docker container using 
 `docker run -p 8080:8080 stwalphaacr.azurecr.io/ref-data-stub:v1`

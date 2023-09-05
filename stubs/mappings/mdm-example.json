@@ -1,23 +1,13 @@
 {
   "request": {
     "method": "GET",
-    "urlPath": "/mdm/api",
-    "queryParameters": {
-      "filter": {
-        "matches": "([A-Za-z_]+)"
-      },
-      "effectiveFrom": {
-        "matches": "([A-Za-z0-9:-]+)"
-      },
-      "effectiveTo": {
-        "matches": "([A-Za-z0-9:-]+)"
-      }
-    }
+    "urlPath": "/mdm/api"
   },
   "response": {
     "status": 200,
     "headers": {
-      "Content-Type": "application/vnd.api+json"
+      "Content-Type": "application/vnd.api+json",
+      "Access-Control-Allow-Origin": "*"
     },
     "bodyFileName": "mdm-example.json"
   }

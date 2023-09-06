@@ -1,4 +1,5 @@
 mdm:
-  baseUrl: http://localhost:8080
+  baseUrl: ${MDM_BASE_URL}
+
 ipaffs:
-  baseUrl: http://localhost:8080
+  baseUrl: ${IPAFFS_BASE_URL}

@@ -13,5 +13,5 @@ import lombok.extern.jackson.Jacksonized;
 public class Species extends DataEntity {
 
   boolean invasiveSpeciesIndicator;
-  String eppoCode;
+  String speciesCode;
 }

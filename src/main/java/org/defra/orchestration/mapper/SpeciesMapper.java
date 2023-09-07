@@ -10,6 +10,7 @@ public interface SpeciesMapper {
   @Mapping(target = "code", source = "id")
   @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
   @Mapping(target = "effectiveTo", ignore = true)
-  @Mapping(target = "eppoCode", source = "eppo")
+  @Mapping(target = "invasiveSpeciesIndicator", ignore = true)
+  @Mapping(target = "speciesCode", source = "eppo")
   org.defra.orchestration.dto.Species map(Species species);
 }

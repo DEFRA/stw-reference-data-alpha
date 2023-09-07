@@ -12,5 +12,5 @@ public class CommodityNomenclature extends DataEntity {
   String sortingKey;
   String commodityNomenclatureParentCode;
   String tracesCommodityCode;
-  String tracesCommodityCodeDescription;
+  String tracesCommodityDescription;
 }

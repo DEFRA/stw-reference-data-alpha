@@ -15,7 +15,7 @@ public interface CommodityNomenclatureMapper {
   @Mapping(target = "commodityNomenclatureParentCode", source = "parent.id")
   @Mapping(target = "sortingKey", source = ".", qualifiedByName = "getSortingKey")
   @Mapping(target = "tracesCommodityCode", source = "code", qualifiedByName = "trimCommodityCode")
-  @Mapping(target = "tracesCommodityCodeDescription", source = "description")
+  @Mapping(target = "tracesCommodityDescription", source = "description")
   CommodityNomenclature map(CommodityCode commodityCode);
 
   @Named("getSortingKey")

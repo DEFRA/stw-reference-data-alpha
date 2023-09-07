@@ -1,241 +1,289 @@
 {
   "data": [
     {
-      "type": "commodity",
       "id": "1",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "640"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "94051"
+            "id": "94051",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "79"
+            "id": "79",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "640",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "2",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "640"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "94049"
+            "id": "94049",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "96"
+            "id": "96",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "640",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "3",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "853"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "104254"
+            "id": "104254",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "79"
+            "id": "79",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "853",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "4",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "853"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "104255"
+            "id": "104255",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "96"
+            "id": "96",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "853",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "5",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "851"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "81147"
+            "id": "81147",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "5166"
+            "id": "5166",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "851",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "6",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "851"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "81147"
+            "id": "81147",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "11750"
+            "id": "11750",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "851",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "7",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "851"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "99427"
+            "id": "99427",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "5166"
+            "id": "5166",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "851",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "8",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "851"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "99427"
+            "id": "99427",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "11750"
+            "id": "11750",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "851",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "9",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "851"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "30242"
+            "id": "30242",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "6396"
+            "id": "6396",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "851",
+            "type": "certificate"
           }
         }
       }
     },
     {
-      "type": "commodity",
       "id": "10",
+      "type": "commodity",
       "relationships": {
-        "certificate": {
-          "data": {
-            "type": "certificate",
-            "id": "678"
-          }
-        },
         "commodity_code": {
           "data": {
-            "type": "commodity_code",
-            "id": "30242"
+            "id": "30242",
+            "type": "commodity_code"
           }
         },
         "species": {
           "data": {
-            "type": "species",
-            "id": "6396"
+            "id": "6396",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "678",
+            "type": "certificate"
+          }
+        }
+      }
+    },
+    {
+      "id": "11",
+      "type": "commodity",
+      "relationships": {
+        "commodity_code": {
+          "data": {
+            "id": "27624",
+            "type": "commodity_code"
+          }
+        },
+        "species": {
+          "data": {
+            "id": "58972",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "640",
+            "type": "certificate"
+          }
+        }
+      }
+    },
+    {
+      "id": "12",
+      "type": "commodity",
+      "relationships": {
+        "commodity_code": {
+          "data": {
+            "id": "81147",
+            "type": "commodity_code"
+          }
+        },
+        "species": {
+          "data": {
+            "id": "58973",
+            "type": "species"
+          }
+        },
+        "certificate": {
+          "data": {
+            "id": "851",
+            "type": "certificate"
           }
         }
       }
@@ -243,567 +291,609 @@
   ],
   "included": [
     {
-      "type": "species",
-      "id": "79",
-      "attributes": {
-        "eppo": "",
-        "simple_name": "",
-        "rank": "species",
-        "class": "Mammalia",
-        "family": "Bovidae",
-        "genus": "Bison",
-        "species": "Bison bison",
-        "source_name": "GBIF",
-        "source_id": "2441176"
-      }
-    },
-    {
-      "type": "species",
-      "id": "96",
-      "attributes": {
-        "eppo": "",
-        "simple_name": "",
-        "rank": "species",
-        "class": "Mammalia",
-        "family": "Bovidae",
-        "genus": "Bos",
-        "species": "Bos taurus",
-        "source_name": "GBIF",
-        "source_id": "2441022"
-      }
-    },
-    {
-      "type": "species",
-      "id": "5166",
-      "attributes": {
-        "eppo": "MABAN",
-        "simple_name": "southern crab apple",
-        "rank": "species",
-        "class": "Angiospermae",
-        "family": "Rosaceae",
-        "genus": "Malus",
-        "species": "Malus angustifolia",
-        "source_name": "EPPO",
-        "source_id": "36983"
-      }
-    },
-    {
-      "type": "species",
-      "id": "11750",
-      "attributes": {
-        "eppo": "MABSD ",
-        "simple_name": "apple",
-        "rank": "species",
-        "class": "Angiospermae",
-        "family": "Rosaceae",
-        "genus": "Malus",
-        "species": "Malus domestica",
-        "source_name": "EPPO",
-        "source_id": "37021"
-      }
-    },
-    {
-      "type": "species",
-      "id": "6396",
-      "attributes": {
-        "eppo": "SOLTU ",
-        "simple_name": "potato",
-        "rank": "species",
-        "class": "Angiospermae",
-        "family": "Solanaceae",
-        "genus": "Solanum",
-        "species": "Solanum tuberosum",
-        "source_name": "EPPO",
-        "source_id": "45504"
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "27623",
-      "attributes": {
-        "code": "0100000000",
-        "suffix": "80",
-        "description": "LIVE ANIMALS",
-        "source_name": "DIT",
-        "source_id": "27623"
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "27633",
-      "attributes": {
-        "code": "0102000000",
-        "suffix": "80",
-        "description": "Live bovine animals",
-        "source_name": "DIT",
-        "source_id": "27633"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "27623"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "27809",
-      "attributes": {
-        "code": "0200000000",
-        "suffix": "80",
-        "description": "MEAT AND EDIBLE MEAT OFFAL",
-        "source_name": "DIT",
-        "source_id": "27809"
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "27810",
-      "attributes": {
-        "code": "0201000000",
-        "suffix": "80",
-        "description": "Meat of bovine animals, fresh or chilled",
-        "source_name": "DIT",
-        "source_id": "27810"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "27809"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "27811",
-      "attributes": {
-        "code": "0201100000",
-        "suffix": "80",
-        "description": "Carcases and half-carcases",
-        "source_name": "DIT",
-        "source_id": "27811"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "27810"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "30055",
-      "attributes": {
-        "code": "0600000000",
-        "suffix": "80",
-        "description": "LIVE TREES AND OTHER PLANTS; BULBS, ROOTS AND THE LIKE; CUT FLOWERS AND ORNAMENTAL FOLIAGE",
-        "source_name": "DIT",
-        "source_id": "30055"
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "30069",
-      "attributes": {
-        "code": "0602000000",
-        "suffix": "80",
-        "description": "Other live plants (including their roots), cuttings and slips; mushroom spawn",
-        "source_name": "DIT",
-        "source_id": "30069"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "30055"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "30073",
-      "attributes": {
-        "code": "0602200000",
-        "suffix": "80",
-        "description": "Trees, shrubs and bushes, grafted or not, of kinds which bear edible fruit or nuts",
-        "source_name": "DIT",
-        "source_id": "30073"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "30069"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "30240",
-      "attributes": {
-        "code": "0700000000",
-        "suffix": "80",
-        "description": "EDIBLE VEGETABLES AND CERTAIN ROOTS AND TUBERS",
-        "source_name": "DIT",
-        "source_id": "30240"
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "30241",
-      "attributes": {
-        "code": "0701000000",
-        "suffix": "80",
-        "description": "Potatoes, fresh or chilled",
-        "source_name": "DIT",
-        "source_id": "30241"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "30240"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "30242",
-      "attributes": {
-        "code": "0701100000",
-        "suffix": "80",
-        "description": "Seed",
-        "source_name": "DIT",
-        "source_id": "30242"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "30241"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "30808",
-      "attributes": {
-        "code": "0800000000",
-        "suffix": "80",
-        "description": "EDIBLE FRUIT AND NUTS; PEEL OF CITRUS FRUIT OR MELONS",
-        "source_name": "DIT",
-        "source_id": "30808"
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "31254",
-      "attributes": {
-        "code": "0808000000",
-        "suffix": "80",
-        "description": "Apples, pears and quinces, fresh",
-        "source_name": "DIT",
-        "source_id": "31254"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "30808"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "31255",
-      "attributes": {
-        "code": "0808100000",
-        "suffix": "80",
-        "description": "Apples",
-        "source_name": "DIT",
-        "source_id": "31255"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "31254"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "81145",
-      "attributes": {
-        "code": "0808108000",
-        "suffix": "80",
-        "description": "Other",
-        "source_name": "DIT",
-        "source_id": "81145"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "31255"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
       "id": "81147",
+      "type": "commodity_code",
       "attributes": {
         "code": "0808108090",
         "suffix": "80",
         "description": "Other",
-        "source_name": "DIT",
-        "source_id": "81147"
+        "sourceName": "DIT",
+        "sourceId": "81147"
       },
       "relationships": {
         "parent": {
           "data": {
-            "type": "commodity_code",
-            "id": "81145"
+            "id": "81145",
+            "type": "commodity_code"
           }
         }
       }
     },
     {
-      "type": "commodity_code",
-      "id": "94047",
-      "attributes": {
-        "code": "0102210000",
-        "suffix": "80",
-        "description": "Pure-bred breeding animals",
-        "source_name": "DIT",
-        "source_id": "94047"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "94053"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "94049",
-      "attributes": {
-        "code": "0102213000",
-        "suffix": "80",
-        "description": "Cows",
-        "source_name": "DIT",
-        "source_id": "94049"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "94047"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "94051",
-      "attributes": {
-        "code": "0102310000",
-        "suffix": "80",
-        "description": "Pure-bred breeding animals",
-        "source_name": "DIT",
-        "source_id": "94051"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "94054"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "94053",
-      "attributes": {
-        "code": "0102210000",
-        "suffix": "10",
-        "description": "Cattle",
-        "source_name": "DIT",
-        "source_id": "94053"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "27633"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "94054",
-      "attributes": {
-        "code": "0102310000",
-        "suffix": "10",
-        "description": "Buffalo",
-        "source_name": "DIT",
-        "source_id": "94054"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "27633"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "99427",
-      "attributes": {
-        "code": "0602202000",
-        "suffix": "80",
-        "description": "With bare roots",
-        "source_name": "DIT",
-        "source_id": "99427"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "99826"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
-      "id": "99826",
-      "attributes": {
-        "code": "0602202000",
-        "suffix": "10",
-        "description": "Other",
-        "source_name": "DIT",
-        "source_id": "99826"
-      },
-      "relationships": {
-        "parent": {
-          "data": {
-            "type": "commodity_code",
-            "id": "30073"
-          }
-        }
-      }
-    },
-    {
-      "type": "commodity_code",
       "id": "104254",
+      "type": "commodity_code",
       "attributes": {
         "code": "0201100021",
         "suffix": "80",
         "description": "Of bison",
-        "source_name": "DIT",
-        "source_id": "104254"
+        "sourceName": "DIT",
+        "sourceId": "104254"
       },
       "relationships": {
         "parent": {
           "data": {
-            "type": "commodity_code",
-            "id": "104276"
+            "id": "104276",
+            "type": "commodity_code"
           }
         }
       }
     },
     {
+      "id": "30808",
       "type": "commodity_code",
+      "attributes": {
+        "code": "0800000000",
+        "suffix": "80",
+        "description": "EDIBLE FRUIT AND NUTS; PEEL OF CITRUS FRUIT OR MELONS",
+        "sourceName": "DIT",
+        "sourceId": "30808"
+      }
+    },
+    {
+      "id": "30242",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0701100000",
+        "suffix": "80",
+        "description": "Seed",
+        "sourceName": "DIT",
+        "sourceId": "30242"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "30241",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "27809",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0200000000",
+        "suffix": "80",
+        "description": "MEAT AND EDIBLE MEAT OFFAL",
+        "sourceName": "DIT",
+        "sourceId": "27809"
+      }
+    },
+    {
+      "id": "27624",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0101000000",
+        "suffix": "80",
+        "description": "Live horses, asses, mules and hinnies",
+        "sourceName": "DIT",
+        "sourceId": "27624"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "27623",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "5166",
+      "type": "species",
+      "attributes": {
+        "eppo": "MABAN ",
+        "simpleName": "southern crab apple",
+        "rank": "species",
+        "family": "Rosaceae",
+        "genus": "Malus",
+        "species": "Malus angustifolia",
+        "sourceName": "EPPO",
+        "sourceId": "36983",
+        "class": "Angiospermae"
+      }
+    },
+    {
+      "id": "27633",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0102000000",
+        "suffix": "80",
+        "description": "Live bovine animals",
+        "sourceName": "DIT",
+        "sourceId": "27633"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "27623",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
       "id": "104255",
+      "type": "commodity_code",
       "attributes": {
         "code": "0201100029",
         "suffix": "80",
         "description": "Other",
-        "source_name": "DIT",
-        "source_id": "104255"
+        "sourceName": "DIT",
+        "sourceId": "104255"
       },
       "relationships": {
         "parent": {
           "data": {
-            "type": "commodity_code",
-            "id": "104276"
+            "id": "104276",
+            "type": "commodity_code"
           }
         }
       }
     },
     {
+      "id": "27810",
       "type": "commodity_code",
+      "attributes": {
+        "code": "0201000000",
+        "suffix": "80",
+        "description": "Meat of bovine animals, fresh or chilled",
+        "sourceName": "DIT",
+        "sourceId": "27810"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "27809",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "58972",
+      "type": "species",
+      "attributes": {
+        "eppo": "SPEC1 ",
+        "simpleName": "New species 1",
+        "rank": "species",
+        "family": "NewFamily1",
+        "genus": "NewGenus1",
+        "species": "New Species 1",
+        "sourceName": "CUSTOM",
+        "sourceId": "1",
+        "class": "NewClass1"
+      }
+    },
+    {
+      "id": "31254",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0808000000",
+        "suffix": "80",
+        "description": "Apples, pears and quinces, fresh",
+        "sourceName": "DIT",
+        "sourceId": "31254"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "30808",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "94049",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0102213000",
+        "suffix": "80",
+        "description": "Cows",
+        "sourceName": "DIT",
+        "sourceId": "94049"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "94047",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
       "id": "104276",
+      "type": "commodity_code",
       "attributes": {
         "code": "0201100021",
         "suffix": "10",
         "description": "High quality beef and veal",
-        "source_name": "DIT",
-        "source_id": "104276"
+        "sourceName": "DIT",
+        "sourceId": "104276"
       },
       "relationships": {
         "parent": {
           "data": {
-            "type": "commodity_code",
-            "id": "27811"
+            "id": "27811",
+            "type": "commodity_code"
           }
         }
       }
     },
     {
-      "type": "certificate",
-      "id": "-90",
+      "id": "31255",
+      "type": "commodity_code",
       "attributes": {
-        "name": "EUIA"
+        "code": "0808100000",
+        "suffix": "80",
+        "description": "Apples",
+        "sourceName": "DIT",
+        "sourceId": "31255"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "31254",
+            "type": "commodity_code"
+          }
+        }
       }
     },
     {
-      "type": "certificate",
-      "id": "640",
+      "id": "94053",
+      "type": "commodity_code",
       "attributes": {
-        "name": "CVEDA"
+        "code": "0102210000",
+        "suffix": "10",
+        "description": "Cattle",
+        "sourceName": "DIT",
+        "sourceId": "94053"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "27633",
+            "type": "commodity_code"
+          }
+        }
       }
     },
     {
-      "type": "certificate",
+      "id": "27811",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0201100000",
+        "suffix": "80",
+        "description": "Carcases and half-carcases",
+        "sourceName": "DIT",
+        "sourceId": "27811"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "27810",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
       "id": "678",
+      "type": "certificate",
       "attributes": {
         "name": "CED"
       }
     },
     {
+      "id": "96",
+      "type": "species",
+      "attributes": {
+        "eppo": "      ",
+        "simpleName": "",
+        "rank": "species",
+        "family": "Bovidae",
+        "genus": "Bos",
+        "species": "Bos taurus",
+        "sourceName": "GBIF",
+        "sourceId": "2441022",
+        "class": "Mammalia"
+      }
+    },
+    {
+      "id": "30055",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0600000000",
+        "suffix": "80",
+        "description": "LIVE TREES AND OTHER PLANTS; BULBS, ROOTS AND THE LIKE; CUT FLOWERS AND ORNAMENTAL FOLIAGE",
+        "sourceName": "DIT",
+        "sourceId": "30055"
+      }
+    },
+    {
+      "id": "640",
       "type": "certificate",
+      "attributes": {
+        "name": "CVEDA"
+      }
+    },
+    {
+      "id": "94054",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0102310000",
+        "suffix": "10",
+        "description": "Buffalo",
+        "sourceName": "DIT",
+        "sourceId": "94054"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "27633",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "30240",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0700000000",
+        "suffix": "80",
+        "description": "EDIBLE VEGETABLES AND CERTAIN ROOTS AND TUBERS",
+        "sourceName": "DIT",
+        "sourceId": "30240"
+      }
+    },
+    {
+      "id": "99826",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0602202000",
+        "suffix": "10",
+        "description": "Other",
+        "sourceName": "DIT",
+        "sourceId": "99826"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "30073",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "853",
+      "type": "certificate",
+      "attributes": {
+        "name": "CVEDP"
+      }
+    },
+    {
+      "id": "58973",
+      "type": "species",
+      "attributes": {
+        "eppo": "SPEC2 ",
+        "simpleName": "New species 2",
+        "rank": "species",
+        "family": "NewFamily2",
+        "genus": "NewGenus2",
+        "species": "New Species 2",
+        "sourceName": "CUSTOM",
+        "sourceId": "2",
+        "class": "NewClass2"
+      }
+    },
+    {
+      "id": "30069",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0602000000",
+        "suffix": "80",
+        "description": "Other live plants (including their roots), cuttings and slips; mushroom spawn",
+        "sourceName": "DIT",
+        "sourceId": "30069"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "30055",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "79",
+      "type": "species",
+      "attributes": {
+        "eppo": "      ",
+        "simpleName": "",
+        "rank": "species",
+        "family": "Bovidae",
+        "genus": "Bison",
+        "species": "Bison bison",
+        "sourceName": "GBIF",
+        "sourceId": "2441176",
+        "class": "Mammalia"
+      }
+    },
+    {
       "id": "851",
+      "type": "certificate",
       "attributes": {
         "name": "CHED-PP"
       }
     },
     {
-      "type": "certificate",
-      "id": "853",
+      "id": "94047",
+      "type": "commodity_code",
       "attributes": {
-        "name": "CVEDP"
+        "code": "0102210000",
+        "suffix": "80",
+        "description": "Pure-bred breeding animals",
+        "sourceName": "DIT",
+        "sourceId": "94047"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "94053",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "27623",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0100000000",
+        "suffix": "80",
+        "description": "LIVE ANIMALS",
+        "sourceName": "DIT",
+        "sourceId": "27623"
+      }
+    },
+    {
+      "id": "6396",
+      "type": "species",
+      "attributes": {
+        "eppo": "SOLTU ",
+        "simpleName": "potato",
+        "rank": "species",
+        "family": "Solanaceae",
+        "genus": "Solanum",
+        "species": "Solanum tuberosum",
+        "sourceName": "EPPO",
+        "sourceId": "45504",
+        "class": "Angiospermae"
+      }
+    },
+    {
+      "id": "81145",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0808108000",
+        "suffix": "80",
+        "description": "Other",
+        "sourceName": "DIT",
+        "sourceId": "81145"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "31255",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "94051",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0102310000",
+        "suffix": "80",
+        "description": "Pure-bred breeding animals",
+        "sourceName": "DIT",
+        "sourceId": "94051"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "94054",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "30073",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0602200000",
+        "suffix": "80",
+        "description": "Trees, shrubs and bushes, grafted or not, of kinds which bear edible fruit or nuts",
+        "sourceName": "DIT",
+        "sourceId": "30073"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "30069",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "99427",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0602202000",
+        "suffix": "80",
+        "description": "With bare roots",
+        "sourceName": "DIT",
+        "sourceId": "99427"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "99826",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "30241",
+      "type": "commodity_code",
+      "attributes": {
+        "code": "0701000000",
+        "suffix": "80",
+        "description": "Potatoes, fresh or chilled",
+        "sourceName": "DIT",
+        "sourceId": "30241"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "30240",
+            "type": "commodity_code"
+          }
+        }
+      }
+    },
+    {
+      "id": "11750",
+      "type": "species",
+      "attributes": {
+        "eppo": "MABSD ",
+        "simpleName": "apple",
+        "rank": "species",
+        "family": "Rosaceae",
+        "genus": "Malus",
+        "species": "Malus domestica",
+        "sourceName": "EPPO",
+        "sourceId": "37021",
+        "class": "Angiospermae"
       }
     }
   ]

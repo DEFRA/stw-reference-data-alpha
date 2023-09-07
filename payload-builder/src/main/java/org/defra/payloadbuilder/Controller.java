@@ -56,11 +56,9 @@ public class Controller {
         .map(CommodityCode::getId)
         .distinct()
         .toList();
-    List<?> ccModels = commodityCodeRepository.findAllByIdIn(commodityCodeIds).stream()
+    List<?> commodityCodeModels = commodityCodeRepository.findAllByIdIn(commodityCodeIds).stream()
         .map(this::getCommodityCodeRepresentation)
         .toList();
-    CollectionModel<?> commodityCodeModels = CollectionModel.of(
-        ccModels);
     List<String> speciesIds = commodities.stream()
         .map(Commodity::getSpecies)
         .map(Species::getId)
@@ -69,7 +67,7 @@ public class Controller {
     return jsonApiModel()
         .model(commodityModels)
         .included(certificateRepository.findAllByIdIn(certificateIds))
-        .included(ccModels)
+        .included(commodityCodeModels)
         .included(speciesRepository.findAllByIdIn(speciesIds))
         .build();
   }

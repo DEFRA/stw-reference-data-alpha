@@ -2,7 +2,7 @@ server:
   port: 9001
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1433;database=reference_data;trustServerCertificate=true
+    url: jdbc:sqlserver://localhost:1434;database=reference_data;trustServerCertificate=true
     username: SA
     password: Password1
   jpa:

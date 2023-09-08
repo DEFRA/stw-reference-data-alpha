@@ -1,48 +1,45 @@
-CREATE TABLE reference_data.dbo.certificate
+CREATE TABLE certificate
 (
     id   int primary key not null,
     name nvarchar(10)    not null
 );
 
-CREATE TABLE reference_data.dbo.commodity_code
+CREATE TABLE commodity_code
 (
-    id          int primary key not null,
-    code        nchar(10)       not null,
-    suffix      nchar(2)        not null,
-    description nvarchar(max)   not null,
-    parent_id   int,
-    source_name nvarchar(50)    not null,
-    source_id   nvarchar(50)    not null,
+    id          nvarchar(50) primary key not null,
+    code        nchar(10)                not null,
+    suffix      nchar(2)                 not null,
+    description nvarchar(max)            not null,
+    parent_id   nvarchar(50),
+    source_name nvarchar(50)             not null,
+    source_id   nvarchar(50)             not null,
     foreign key (parent_id) references commodity_code (id)
 );
 
-CREATE TABLE reference_data.dbo.species
+CREATE TABLE species
 (
     id          int primary key identity,
     eppo        nchar(6),
-    simple_name nvarchar(50),
-    rank        nvarchar(50),
-    class       nvarchar(50),
-    family      nvarchar(50),
-    genus       nvarchar(50),
-    species     nvarchar(50),
-    source_name nvarchar(50)    not null,
-    source_id   nvarchar(50)    not null
+    simple_name nvarchar(100),
+    rank        nvarchar(100),
+    class       nvarchar(100),
+    family      nvarchar(100),
+    genus       nvarchar(100),
+    species     nvarchar(100),
+    source_name nvarchar(50) not null,
+    source_id   nvarchar(50) not null
 );
 
-CREATE TABLE reference_data.dbo.commodity
+CREATE TABLE commodity
 (
     id             int primary key identity,
     certificate    int,
-    commodity_code int,
-    species        int,
-    foreign key (certificate) references certificate (id),
-    foreign key (species) references species (id),
-    foreign key (commodity_code) references commodity_code (id)
+    commodity_code nvarchar(50),
+    species        int
 );
 
 -- Tables for GBIF import
-CREATE TABLE reference_data.dbo.taxon
+CREATE TABLE taxon
 (
     taxon_id                   int,
     dataset_id                 nvarchar(36),
@@ -69,7 +66,7 @@ CREATE TABLE reference_data.dbo.taxon
     genus                      nvarchar(max)
 );
 
-CREATE TABLE reference_data.dbo.vernacular_name
+CREATE TABLE vernacular_name
 (
     taxon_id        int,
     vernacular_name nvarchar(max),

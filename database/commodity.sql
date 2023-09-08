@@ -8,3 +8,4 @@ INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) 
 INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, 99427, 11750);
 INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, 30242, 6396);
 INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (678, 30242, 6396);
+INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species) VALUES (851, N'3BE489B7-9094-EED1-3DB4-FDFDD06D8802', 56982);

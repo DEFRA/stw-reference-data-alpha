@@ -6,7 +6,6 @@ import lombok.extern.jackson.Jacksonized;
 
 @Value
 @SuperBuilder
-@Jacksonized
 public class CommodityNomenclature extends DataEntity {
 
   String sortingKey;

@@ -13,8 +13,8 @@ public interface CertificationRequirementMapper {
   @Mapping(target = "effectiveTo", ignore = true)
   @Mapping(target = "certificationRequirementCode", source = "certificate.id")
   @Mapping(target = "commodityNomenclatureIdCode", source = "commodityCode.id")
-  @Mapping(target = "isSelectable", ignore = true)
-  @Mapping(target = "isTracesVisible", ignore = true)
+  @Mapping(target = "isSelectable", constant = "true")
+  @Mapping(target = "tracesIsVisible", constant = "true")
   @Mapping(target = "tracesParentCommodityCode", source = "commodityCode.parent.code")
   CertificationRequirement map(Commodity commodityCode);
 }

@@ -9,8 +9,6 @@ import lombok.extern.jackson.Jacksonized;
 
 @Value
 @SuperBuilder
-@Jacksonized
-@JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class CertificationRequirement extends DataEntity {
 
   @JsonProperty("CertificationRequirement_Code")
@@ -21,7 +19,7 @@ public class CertificationRequirement extends DataEntity {
 
   Boolean isSelectable;
 
-  Boolean isTracesVisible;
+  Boolean tracesIsVisible;
 
   String tracesParentCommodityCode;
 }

@@ -26,7 +26,7 @@ public interface CertificationNomenclatureMapper {
   @Mapping(target = "isDefaultFamily", ignore = true)
   @Mapping(target = "isDefaultSpecies", ignore = true)
   @Mapping(target = "speciesCode", source = "species.id")
-  @Mapping(target = "speciesId", ignore = true)
+  @Mapping(target = "speciesId", source = "species.id")
   @Mapping(target = "speciesName", source = "species.species")
   CertificationNomenclature map(Commodity commodity);
 }

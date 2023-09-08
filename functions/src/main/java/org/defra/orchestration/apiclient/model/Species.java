@@ -12,7 +12,6 @@ public class Species {
 
   private String eppo;
 
-  @JsonProperty("simple_name")
   private String simpleName;
 
   private String rank;
@@ -26,9 +25,7 @@ public class Species {
 
   private String species;
 
-  @JsonProperty("source_name")
   private String sourceName;
 
-  @JsonProperty("source_id")
   private String sourceId;
 }

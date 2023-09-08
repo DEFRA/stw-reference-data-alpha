@@ -8,8 +8,6 @@ import lombok.extern.jackson.Jacksonized;
 
 @Value
 @SuperBuilder
-@Jacksonized
-@JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class Species extends DataEntity {
 
   boolean invasiveSpeciesIndicator;

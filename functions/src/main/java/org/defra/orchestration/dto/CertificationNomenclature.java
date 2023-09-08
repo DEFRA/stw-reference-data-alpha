@@ -7,7 +7,6 @@ import lombok.extern.jackson.Jacksonized;
 
 @Value
 @SuperBuilder
-@Jacksonized
 public class CertificationNomenclature extends DataEntity {
 
   @JsonProperty("CertificationRequirement_Code")

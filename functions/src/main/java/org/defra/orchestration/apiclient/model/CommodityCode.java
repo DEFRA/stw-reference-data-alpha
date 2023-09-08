@@ -17,10 +17,8 @@ public class CommodityCode {
 
   private String description;
 
-  @JsonProperty("source_name")
   private String sourceName;
 
-  @JsonProperty("source_id")
   private String sourceId;
 
   @JsonApiRelationships("parent")

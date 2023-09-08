@@ -8,8 +8,6 @@ import lombok.extern.jackson.Jacksonized;
 
 @Value
 @SuperBuilder
-@Jacksonized
-@JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class Certificate extends DataEntity {
 
   String shortDescription;

@@ -73,6 +73,9 @@ public class Controller {
   }
 
   private List<CommodityCode> getParents(CommodityCode commodityCode) {
+    if (commodityCode == null) {
+      return List.of();
+    }
     List<CommodityCode> commodityCodes = new java.util.ArrayList<>();
     commodityCodes.add(commodityCode);
     if (commodityCode.getParent() != null) {

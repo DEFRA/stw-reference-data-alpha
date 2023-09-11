@@ -15,7 +15,7 @@ A `local.settings.json` must be created in the root to run the functions locally
     "JAVA_HOME": "<Path to Java 17>",
     "MAIN_CLASS": "org.defra.orchestration.ReferenceDataOrchestrationApplication",
     "JAVA_TOOL_OPTIONS": "--add-opens=java.base/java.time=ALL-UNNAMED",
-    "MDM_BASE_URL": "http://localhost:8080",
+    "MDM_BASE_URL": "http://localhost:9001",
     "IPAFFS_BASE_URL": "http://localhost:8080"
   }
 }

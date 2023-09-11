@@ -13,18 +13,21 @@ public interface CommodityNomenclatureMapper {
   @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
   @Mapping(target = "effectiveTo", ignore = true)
   @Mapping(target = "commodityNomenclatureParentCode", source = "parent.id")
-  @Mapping(target = "sortingKey", source = ".", qualifiedByName = "getSortingKey")
-  @Mapping(target = "tracesCommodityCode", source = "code", qualifiedByName = "trimCommodityCode")
+  @Mapping(target = "sortingKey", source = ".", qualifiedByName = "sortingKey")
+  @Mapping(target = "tracesCommodityCode", source = ".", qualifiedByName = "commodityCode")
   @Mapping(target = "tracesCommodityDescription", source = "description")
   CommodityNomenclature map(CommodityCode commodityCode);
 
-  @Named("getSortingKey")
-  default String getSortingKey(CommodityCode commodityCode) {
+  @Named("sortingKey")
+  default String sortingKey(CommodityCode commodityCode) {
     return commodityCode.getCode() + commodityCode.getSuffix();
   }
 
-  @Named("trimCommodityCode")
-  default String trimCommodityCode(String code) {
-    return code.replaceAll("(00)*$", "");
+  @Named("commodityCode")
+  default String commodityCode(CommodityCode commodityCode) {
+    String trimmed = commodityCode.getCode().replaceAll("(00)*$", "");
+    return commodityCode.getSuffix().equals("80")
+        ? trimmed
+        : trimmed.substring(0, trimmed.length() - 1);
   }
 }

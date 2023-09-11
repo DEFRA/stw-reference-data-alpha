@@ -97,7 +97,7 @@ public class MdmService {
       List<CommodityCode> parents = getParents(commodity.getCommodityCode());
       parentCommodities.addAll(parents.stream()
           .map(commodityCode -> Commodity.builder()
-              .id(commodity.getSpecies().getId() + commodityCode.getId())
+              .id(commodity.getCertificate().getId() + commodityCode.getId())
               .certificate(commodity.getCertificate())
               .commodityCode(commodityCode)
               .build())

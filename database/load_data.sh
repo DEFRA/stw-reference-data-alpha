@@ -52,5 +52,8 @@ sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i certificate.sql
 echo 'Loading species data...'
 sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i species.sql
 
+echo 'Loading commodity type data...'
+sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity_type.sql
+
 echo 'Loading commodity data...'
 sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity.sql

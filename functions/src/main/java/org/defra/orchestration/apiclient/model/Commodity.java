@@ -27,4 +27,7 @@ public class Commodity {
 
   @JsonApiRelationships("species")
   private Species species;
+
+  @JsonApiRelationships("commodity_type")
+  private CommodityType commodityType;
 }

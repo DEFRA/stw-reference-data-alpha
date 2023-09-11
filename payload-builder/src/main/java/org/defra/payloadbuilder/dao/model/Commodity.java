@@ -30,4 +30,9 @@ public class Commodity {
   @JoinColumn(name = "species")
   @JsonIgnore
   private Species species;
+
+  @ManyToOne
+  @JoinColumn(name = "commodity_type")
+  @JsonIgnore
+  private CommodityType commodityType;
 }

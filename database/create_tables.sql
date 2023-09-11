@@ -6,13 +6,13 @@ CREATE TABLE certificate
 
 CREATE TABLE commodity_code
 (
-    id          nvarchar(50) primary key not null,
-    code        nchar(10)                not null,
-    suffix      nchar(2)                 not null,
-    description nvarchar(max)            not null,
-    parent_id   nvarchar(50),
-    source_name nvarchar(50)             not null,
-    source_id   nvarchar(50)             not null,
+    id          int primary key not null,
+    code        nchar(10)       not null,
+    suffix      nchar(2)        not null,
+    description nvarchar(max)   not null,
+    parent_id   int,
+    source_name nvarchar(50)    not null,
+    source_id   nvarchar(50)    not null,
     foreign key (parent_id) references commodity_code (id)
 );
 
@@ -30,12 +30,19 @@ CREATE TABLE species
     source_id   nvarchar(50) not null
 );
 
+CREATE TABLE commodity_type
+(
+    id   int primary key identity,
+    name nvarchar(100) not null
+);
+
 CREATE TABLE commodity
 (
     id             int primary key identity,
     certificate    int,
-    commodity_code nvarchar(50),
-    species        int
+    commodity_code int,
+    species        int,
+    commodity_type int
 );
 
 -- Tables for GBIF import

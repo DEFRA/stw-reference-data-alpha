@@ -1,6 +1,6 @@
 INSERT INTO species
-SELECT ''             as eppo,
-       ''             as simple_name,
+SELECT NULL           as eppo,
+       NULL           as simple_name,
        taxon_rank     as rank,
        class,
        family,

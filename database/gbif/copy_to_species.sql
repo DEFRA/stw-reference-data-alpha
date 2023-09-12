@@ -9,5 +9,6 @@ SELECT NULL           as eppo,
        'GBIF'            source_name,
        taxon_id       as source_id
 FROM taxon
-WHERE genus IN ('Bison', 'Bos')
-  AND taxon.canonical_name IS NOT NULL
+WHERE kingdom = 'Animalia'
+  AND canonical_name IS NOT NULL
+  AND taxon_rank = 'species'

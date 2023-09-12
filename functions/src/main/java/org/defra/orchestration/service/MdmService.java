@@ -104,9 +104,12 @@ public class MdmService {
           .toList());
     });
     List<Commodity> outputs = new ArrayList<>();
+    commodities.forEach(commodity ->
+        commodity.setId(commodity.getCertificate().getId() + commodity.getCommodityCode().getId()));
     outputs.addAll(commodities);
-    outputs.addAll(parentCommodities.stream().filter(distinctByKey(Commodity::getId)).toList());
+    outputs.addAll(parentCommodities);
     List<CertificationRequirement> data = outputs.stream()
+        .filter(distinctByKey(Commodity::getId))
         .map(certificationRequirementMapper::map)
         .toList();
     return buildResponse(data);

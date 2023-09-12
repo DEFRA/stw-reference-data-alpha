@@ -22,7 +22,7 @@ public interface CertificationRequirementMapper {
 
   @Named("code")
   default String code(Commodity commodity) {
-    return commodity.getCommodityCode().getId() + commodity.getCertificate().getId();
+    return commodity.getCertificate().getId() + "-" + commodity.getCommodityCode().getId();
   }
 
   @Named("commodityCode")

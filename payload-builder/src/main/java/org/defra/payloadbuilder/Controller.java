@@ -67,6 +67,7 @@ public class Controller {
         .toList();
     List<String> speciesIds = commodities.stream()
         .map(Commodity::getSpecies)
+        .filter(Objects::nonNull)
         .map(Species::getId)
         .distinct()
         .toList();

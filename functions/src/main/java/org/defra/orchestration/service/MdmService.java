@@ -2,6 +2,7 @@ package org.defra.orchestration.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -127,6 +128,7 @@ public class MdmService {
     List<Commodity> commodities = apiClient.getCommodities();
     List<Species> data = commodities.stream()
             .map(Commodity::getSpecies)
+            .filter(Objects::nonNull)
             .distinct()
             .map(speciesMapper::map)
             .toList();

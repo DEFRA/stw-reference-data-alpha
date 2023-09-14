@@ -15,10 +15,15 @@ public interface CertificationRequirementMapper {
   @Mapping(target = "effectiveTo", ignore = true)
   @Mapping(target = "certificationRequirementCode", source = "certificate.id")
   @Mapping(target = "commodityNomenclatureIdCode", source = "commodityCode.id")
-  @Mapping(target = "isSelectable", constant = "true")
+  @Mapping(target = "isSelectable", source = ".", qualifiedByName = "selectable")
   @Mapping(target = "tracesIsVisible", constant = "true")
   @Mapping(target = "tracesParentCommodityCode", source = "commodityCode.parent", qualifiedByName = "commodityCode")
   CertificationRequirement map(Commodity commodity);
+
+  @Named("selectable")
+  default Boolean selectable(Commodity commodity) {
+    return commodity.getSpecies() != null;
+  }
 
   @Named("requirementCode")
   default String requirementCode(Commodity commodity) {

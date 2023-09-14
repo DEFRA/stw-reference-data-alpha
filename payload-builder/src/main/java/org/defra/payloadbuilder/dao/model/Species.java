@@ -17,6 +17,14 @@ public class Species {
 
   private String eppo;
 
+  public String getEppo() {
+    if (eppo == null) {
+      return null;
+    } else {
+      return eppo.trim();
+    }
+  }
+
   private String simpleName;
 
   private String rank;

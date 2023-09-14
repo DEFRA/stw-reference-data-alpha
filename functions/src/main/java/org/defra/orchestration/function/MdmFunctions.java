@@ -7,6 +7,7 @@ import com.microsoft.azure.functions.annotation.HttpTrigger;
 import lombok.extern.slf4j.Slf4j;
 import org.defra.orchestration.apiclient.IpaffsApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -27,9 +28,11 @@ public class MdmFunctions {
       @HttpTrigger(
           name = "req",
           methods = HttpMethod.POST,
-          authLevel = AuthorizationLevel.FUNCTION
+          authLevel = AuthorizationLevel.ANONYMOUS
       ) HttpRequestMessage<Optional<String>> request) {
     log.info("notify HTTP trigger starting");
-    return request.createResponseBuilder(HttpStatus.valueOf(ipaffsApiClient.syncCommodityCodes().value())).build();
+    String authToken = request.getHeaders().get("authorization");
+    HttpStatusCode statusCode = ipaffsApiClient.syncCommodityCodes(authToken);
+    return request.createResponseBuilder(HttpStatus.valueOf(statusCode.value())).build();
   }
 }

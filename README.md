@@ -50,8 +50,8 @@ Start the container:
 ```
 
 Download
-the [GBIF backbone](https://hosted-datasets.gbif.org/datasets/backbone/current/backbone.zip) and
-copy the `Taxon.tsv` and `VernacularName.tsv` files into `database/gbif`.
+the [2023 GBIF backbone](https://hosted-datasets.gbif.org/datasets/backbone/2023-08-28/backbone.zip)
+and copy the `Taxon.tsv` and `VernacularName.tsv` files into `database/gbif`.
 
 Create the tables and load data:
 

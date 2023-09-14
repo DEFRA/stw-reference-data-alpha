@@ -12,3 +12,4 @@ FROM taxon
 WHERE kingdom = 'Animalia'
   AND canonical_name IS NOT NULL
   AND taxon_rank = 'species'
+ORDER BY taxon_id

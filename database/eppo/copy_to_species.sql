@@ -71,4 +71,5 @@ FROM hierachy h
      LEFT JOIN t_names genus_name on h.genus = genus_name.codeid AND genus_name.codelang = 'la' AND genus_name.preferred = 1
      LEFT JOIN t_names species_name on h.species = species_name.codeid AND species_name.codelang = 'la' AND species_name.preferred = 1
      LEFT JOIN simple_name on h.species = simple_name.codeid
-WHERE h.dtcode = 'PFL';
+WHERE h.dtcode = 'PFL'
+ORDER BY h.codeid;

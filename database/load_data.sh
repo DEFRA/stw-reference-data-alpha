@@ -57,3 +57,6 @@ sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity_type.sql
 
 echo 'Loading commodity data...'
 sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity.sql
+
+echo 'Creating view...'
+sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i create_view.sql

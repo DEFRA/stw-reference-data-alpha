@@ -10,7 +10,7 @@ import org.mapstruct.Named;
 @Mapper
 public interface CertificationRequirementMapper {
 
-  @Mapping(target = "code", source = ".", qualifiedByName = "code")
+  @Mapping(target = "code", source = ".", qualifiedByName = "requirementCode")
   @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
   @Mapping(target = "effectiveTo", ignore = true)
   @Mapping(target = "certificationRequirementCode", source = "certificate.id")
@@ -20,8 +20,8 @@ public interface CertificationRequirementMapper {
   @Mapping(target = "tracesParentCommodityCode", source = "commodityCode.parent", qualifiedByName = "commodityCode")
   CertificationRequirement map(Commodity commodity);
 
-  @Named("code")
-  default String code(Commodity commodity) {
+  @Named("requirementCode")
+  default String requirementCode(Commodity commodity) {
     return commodity.getCertificate().getId() + "-" + commodity.getCommodityCode().getId();
   }
 

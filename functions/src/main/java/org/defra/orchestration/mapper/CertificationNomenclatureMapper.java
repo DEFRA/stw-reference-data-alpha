@@ -12,7 +12,7 @@ public interface CertificationNomenclatureMapper {
   @Mapping(target = "code", source = "id")
   @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
   @Mapping(target = "effectiveTo", ignore = true)
-  @Mapping(target = "certificationRequirementCode", source = ".", qualifiedByName = "getId")
+  @Mapping(target = "certificationRequirementCode", source = ".", qualifiedByName = "requirementCode")
   @Mapping(target = "classCode", ignore = true)
   @Mapping(target = "classId", ignore = true)
   @Mapping(target = "className", source = "species.clazz")
@@ -31,8 +31,8 @@ public interface CertificationNomenclatureMapper {
   @Mapping(target = "speciesName", source = "species.species")
   CertificationNomenclature map(Commodity commodity);
 
-  @Named("getId")
-  default String getId(Commodity commodity) {
-    return commodity.getCommodityCode().getId() + commodity.getCertificate().getId();
+  @Named("requirementCode")
+  default String requirementCode(Commodity commodity) {
+    return commodity.getCertificate().getId() + "-" + commodity.getCommodityCode().getId();
   }
 }

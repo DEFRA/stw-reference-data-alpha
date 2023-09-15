@@ -1,6 +1,5 @@
 package org.defra.orchestration.mapper;
 
-import org.defra.orchestration.apiclient.model.Commodity;
 import org.defra.orchestration.dto.Certificate;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -8,9 +7,9 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface CertificateMapper {
 
-  @Mapping(target = "code", source = "certificate.id")
-  @Mapping(target = "effectiveFrom", source = "commodity.effectiveFrom")
-  @Mapping(target = "effectiveTo", source = "commodity.effectiveTo")
-  @Mapping(target = "shortDescription", source = "certificate.name")
-  Certificate map(org.defra.orchestration.apiclient.model.Certificate certificate, Commodity commodity);
+  @Mapping(target = "code", source = "id")
+  @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(1970,1,1,0,0))")
+  @Mapping(target = "effectiveTo", ignore = true)
+  @Mapping(target = "shortDescription", source = "name")
+  Certificate map(org.defra.orchestration.apiclient.model.Certificate certificate);
 }

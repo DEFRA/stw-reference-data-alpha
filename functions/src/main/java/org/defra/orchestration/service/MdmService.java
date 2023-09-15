@@ -64,9 +64,7 @@ public class MdmService {
           Commodity parent = commodities.stream()
                   .filter(commodity -> commodity.getCommodityCode() == commodityCode)
                   .findFirst()
-                  .orElse(Commodity.builder()
-                          .effectiveFrom(LocalDateTime.of(1970,1,1,0,0))
-                          .build());
+                  .orElse(createEffectiveFromThe70s());
           return commodityNomenclatureMapper.map(commodityCode, parent);
         })
         .toList();
@@ -90,13 +88,7 @@ public class MdmService {
     List<Certificate> data = commodities.stream()
         .map(Commodity::getCertificate)
         .distinct()
-        .map(certificate -> {
-          Commodity parent = commodities.stream()
-                  .filter(commodity -> commodity.getCertificate() == certificate)
-                  .findFirst()
-                  .orElseThrow();
-          return certificateMapper.map(certificate, parent);
-        })
+        .map(certificateMapper::map)
         .toList();
     return buildResponse(data);
   }
@@ -165,5 +157,11 @@ public class MdmService {
             .build())
         .data(data)
         .build();
+  }
+
+  private Commodity createEffectiveFromThe70s() {
+    return Commodity.builder()
+            .effectiveFrom(LocalDateTime.of(1970, 1, 1, 0, 0))
+            .build();
   }
 }

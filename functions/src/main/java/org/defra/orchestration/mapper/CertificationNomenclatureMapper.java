@@ -10,8 +10,8 @@ import org.mapstruct.Named;
 public interface CertificationNomenclatureMapper {
 
   @Mapping(target = "code", source = "id")
-  @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
-  @Mapping(target = "effectiveTo", ignore = true)
+  @Mapping(target = "effectiveFrom", source = "effectiveFrom")
+  @Mapping(target = "effectiveTo", source = "effectiveTo")
   @Mapping(target = "certificationRequirementCode", source = ".", qualifiedByName = "requirementCode")
   @Mapping(target = "classCode", ignore = true)
   @Mapping(target = "classId", ignore = true)

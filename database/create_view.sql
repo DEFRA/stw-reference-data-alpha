@@ -8,7 +8,9 @@ SELECT c.id,
        c.species        AS speciesId,
        s.species,
        c.commodity_type AS typeId,
-       ct.name          AS commodityType
+       ct.name          AS commodityType,
+       c.effective_from,
+       c.effective_to
 FROM commodity c
 LEFT JOIN certificate cert ON c.certificate = cert.id
 LEFT JOIN commodity_code cc ON c.commodity_code = cc.id

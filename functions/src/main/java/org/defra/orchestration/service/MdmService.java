@@ -1,5 +1,6 @@
 package org.defra.orchestration.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -59,7 +60,15 @@ public class MdmService {
         .map(Commodity::getCommodityCode)
         .flatMap(commodityCode -> getParents(commodityCode).stream())
         .distinct()
-        .map(commodityNomenclatureMapper::map)
+        .map(commodityCode -> {
+          Commodity parent = commodities.stream()
+                  .filter(commodity -> commodity.getCommodityCode() == commodityCode)
+                  .findFirst()
+                  .orElse(Commodity.builder()
+                          .effectiveFrom(LocalDateTime.of(1970,1,1,0,0))
+                          .build());
+          return commodityNomenclatureMapper.map(commodityCode, parent);
+        })
         .toList();
     return buildResponse(data);
   }
@@ -81,7 +90,13 @@ public class MdmService {
     List<Certificate> data = commodities.stream()
         .map(Commodity::getCertificate)
         .distinct()
-        .map(certificateMapper::map)
+        .map(certificate -> {
+          Commodity parent = commodities.stream()
+                  .filter(commodity -> commodity.getCertificate() == certificate)
+                  .findFirst()
+                  .orElseThrow();
+          return certificateMapper.map(certificate, parent);
+        })
         .toList();
     return buildResponse(data);
   }
@@ -130,7 +145,13 @@ public class MdmService {
             .map(Commodity::getSpecies)
             .filter(Objects::nonNull)
             .distinct()
-            .map(speciesMapper::map)
+            .map(species -> {
+              Commodity parent = commodities.stream()
+                      .filter(commodity -> commodity.getSpecies() == species)
+                      .findFirst()
+                      .orElseThrow();
+              return speciesMapper.map(species, parent);
+            })
             .toList();
     return buildResponse(data);
   }

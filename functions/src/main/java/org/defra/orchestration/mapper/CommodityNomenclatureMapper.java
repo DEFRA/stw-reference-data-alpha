@@ -1,5 +1,6 @@
 package org.defra.orchestration.mapper;
 
+import org.defra.orchestration.apiclient.model.Commodity;
 import org.defra.orchestration.apiclient.model.CommodityCode;
 import org.defra.orchestration.dto.CommodityNomenclature;
 import org.mapstruct.Mapper;
@@ -9,14 +10,14 @@ import org.mapstruct.Named;
 @Mapper
 public interface CommodityNomenclatureMapper {
 
-  @Mapping(target = "code", source = "id")
-  @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
-  @Mapping(target = "effectiveTo", ignore = true)
-  @Mapping(target = "commodityNomenclatureParentCode", source = "parent.id")
-  @Mapping(target = "sortingKey", source = ".", qualifiedByName = "sortingKey")
-  @Mapping(target = "tracesCommodityCode", source = ".", qualifiedByName = "commodityCode")
-  @Mapping(target = "tracesCommodityDescription", source = "description")
-  CommodityNomenclature map(CommodityCode commodityCode);
+  @Mapping(target = "code", source = "commodityCode.id")
+  @Mapping(target = "effectiveFrom", source = "commodity.effectiveFrom")
+  @Mapping(target = "effectiveTo", source = "commodity.effectiveTo")
+  @Mapping(target = "commodityNomenclatureParentCode", source = "commodityCode.parent.id")
+  @Mapping(target = "sortingKey", source = "commodityCode", qualifiedByName = "sortingKey")
+  @Mapping(target = "tracesCommodityCode", source = "commodityCode", qualifiedByName = "commodityCode")
+  @Mapping(target = "tracesCommodityDescription", source = "commodityCode.description")
+  CommodityNomenclature map(CommodityCode commodityCode, Commodity commodity);
 
   @Named("sortingKey")
   default String sortingKey(CommodityCode commodityCode) {

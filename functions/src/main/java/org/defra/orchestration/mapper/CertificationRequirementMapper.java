@@ -11,8 +11,8 @@ import org.mapstruct.Named;
 public interface CertificationRequirementMapper {
 
   @Mapping(target = "code", source = ".", qualifiedByName = "requirementCode")
-  @Mapping(target = "effectiveFrom", expression = "java(java.time.LocalDateTime.of(2023, 1, 1, 0, 0))")
-  @Mapping(target = "effectiveTo", ignore = true)
+  @Mapping(target = "effectiveFrom", source = "effectiveFrom")
+  @Mapping(target = "effectiveTo", source = "effectiveTo")
   @Mapping(target = "certificationRequirementCode", source = "certificate.id")
   @Mapping(target = "commodityNomenclatureIdCode", source = "commodityCode.id")
   @Mapping(target = "isSelectable", source = ".", qualifiedByName = "selectable")

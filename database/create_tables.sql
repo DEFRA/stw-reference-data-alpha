@@ -42,7 +42,9 @@ CREATE TABLE commodity
     certificate    int,
     commodity_code int,
     species        int,
-    commodity_type int
+    commodity_type int,
+    effective_from datetime,
+    effective_to   datetime,
 );
 
 -- Tables for GBIF import

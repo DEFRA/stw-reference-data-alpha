@@ -13,6 +13,8 @@ records = records.map(record => ({
   suffix: replaceNa(record.commodity__suffix),
   description: replaceNa(record.commodity__description),
   parent_id: replaceNa(record.parent__sid),
+  effective_from: replaceNa(record.commodity__validity_start),
+  effective_to: replaceNa(record.commodity__validity_end),
   source_name: 'DIT',
   source_id: replaceNa(record.commodity__sid)
 }));

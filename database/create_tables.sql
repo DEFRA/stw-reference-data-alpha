@@ -1,24 +1,26 @@
 CREATE TABLE certificate
 (
-    id   int primary key not null,
-    name nvarchar(10)    not null
+    id   int PRIMARY KEY NOT NULL,
+    name nvarchar(10)    NOT NULL
 );
 
 CREATE TABLE commodity_code
 (
-    id          int primary key not null,
-    code        nchar(10)       not null,
-    suffix      nchar(2)        not null,
-    description nvarchar(max)   not null,
-    parent_id   int,
-    source_name nvarchar(50)    not null,
-    source_id   nvarchar(50)    not null,
-    foreign key (parent_id) references commodity_code (id)
+    id             int PRIMARY KEY NOT NULL,
+    code           nchar(10)       NOT NULL,
+    suffix         nchar(2)        NOT NULL,
+    description    nvarchar(max)   NOT NULL,
+    parent_id      int,
+    effective_from datetime        NOT NULL,
+    effective_to   datetime,
+    source_name    nvarchar(50)    NOT NULL,
+    source_id      nvarchar(50)    NOT NULL,
+    FOREIGN KEY (parent_id) REFERENCES commodity_code (id)
 );
 
 CREATE TABLE species
 (
-    id          int primary key identity,
+    id          int PRIMARY KEY IDENTITY,
     eppo        nchar(6),
     simple_name nvarchar(100),
     rank        nvarchar(100),
@@ -26,19 +28,19 @@ CREATE TABLE species
     family      nvarchar(100),
     genus       nvarchar(100),
     species     nvarchar(100),
-    source_name nvarchar(50) not null,
-    source_id   nvarchar(50) not null
+    source_name nvarchar(50) NOT NULL,
+    source_id   nvarchar(50) NOT NULL
 );
 
 CREATE TABLE commodity_type
 (
-    id   int primary key identity,
-    name nvarchar(100) not null
+    id   int PRIMARY KEY IDENTITY,
+    name nvarchar(100) NOT NULL
 );
 
 CREATE TABLE commodity
 (
-    id             int primary key identity,
+    id             int PRIMARY KEY IDENTITY,
     certificate    int,
     commodity_code int,
     species        int,

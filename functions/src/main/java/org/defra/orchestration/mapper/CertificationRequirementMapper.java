@@ -7,13 +7,11 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-import java.time.LocalDateTime;
-
 @Mapper
 public interface CertificationRequirementMapper {
 
   @Mapping(target = "code", source = ".", qualifiedByName = "requirementCode")
-  @Mapping(target = "effectiveFrom", source = "effectiveFrom", qualifiedByName = "effectiveFrom")
+  @Mapping(target = "effectiveFrom", source = "effectiveFrom", defaultValue = "1970-01-01T00:00:00")
   @Mapping(target = "effectiveTo", source = "effectiveTo")
   @Mapping(target = "certificationRequirementCode", source = "certificate.id")
   @Mapping(target = "commodityNomenclatureIdCode", source = "commodityCode.id")
@@ -21,11 +19,6 @@ public interface CertificationRequirementMapper {
   @Mapping(target = "tracesIsVisible", constant = "true")
   @Mapping(target = "tracesParentCommodityCode", source = "commodityCode.parent", qualifiedByName = "commodityCode")
   CertificationRequirement map(Commodity commodity);
-
-  @Named("effectiveFrom")
-  default LocalDateTime effectiveFrom(LocalDateTime effectiveFrom) {
-    return effectiveFrom != null ? effectiveFrom : LocalDateTime.of(1970,1,1,0,0);
-  }
 
   @Named("selectable")
   default Boolean selectable(Commodity commodity) {

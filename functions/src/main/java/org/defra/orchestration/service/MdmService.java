@@ -31,6 +31,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class MdmService {
 
+  private static final Commodity DEFAULT_COMMODITY = Commodity.builder()
+      .effectiveFrom(LocalDateTime.of(1970, 1, 1, 0, 0))
+      .build();
+
   private final MdmApiClient apiClient;
   private final CommodityNomenclatureMapper commodityNomenclatureMapper;
   private final SpeciesMapper speciesMapper;
@@ -64,7 +68,7 @@ public class MdmService {
           Commodity parent = commodities.stream()
                   .filter(commodity -> commodity.getCommodityCode() == commodityCode)
                   .findFirst()
-                  .orElse(createEffectiveFromThe70s());
+                  .orElse(DEFAULT_COMMODITY);
           return commodityNomenclatureMapper.map(commodityCode, parent);
         })
         .toList();
@@ -157,11 +161,5 @@ public class MdmService {
             .build())
         .data(data)
         .build();
-  }
-
-  private Commodity createEffectiveFromThe70s() {
-    return Commodity.builder()
-            .effectiveFrom(LocalDateTime.of(1970, 1, 1, 0, 0))
-            .build();
   }
 }

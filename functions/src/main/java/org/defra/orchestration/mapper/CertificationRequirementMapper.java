@@ -11,7 +11,7 @@ import org.mapstruct.Named;
 public interface CertificationRequirementMapper {
 
   @Mapping(target = "code", source = ".", qualifiedByName = "requirementCode")
-  @Mapping(target = "effectiveFrom", source = "effectiveFrom", defaultValue = "1970-01-01T00:00:00")
+  @Mapping(target = "effectiveFrom", source = "effectiveFrom")
   @Mapping(target = "effectiveTo", source = "effectiveTo")
   @Mapping(target = "certificationRequirementCode", source = "certificate.id")
   @Mapping(target = "commodityNomenclatureIdCode", source = "commodityCode.id")

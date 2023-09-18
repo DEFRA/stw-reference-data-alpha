@@ -16,10 +16,10 @@ import org.defra.orchestration.dto.CertificationNomenclature;
 import org.defra.orchestration.dto.CertificationRequirement;
 import org.defra.orchestration.dto.CommodityNomenclature;
 import org.defra.orchestration.dto.DataEntity;
-import org.defra.orchestration.dto.Species;
 import org.defra.orchestration.dto.Meta;
 import org.defra.orchestration.dto.Pages;
 import org.defra.orchestration.dto.RdsResponse;
+import org.defra.orchestration.dto.Species;
 import org.defra.orchestration.mapper.CertificateMapper;
 import org.defra.orchestration.mapper.CertificationNomenclatureMapper;
 import org.defra.orchestration.mapper.CertificationRequirementMapper;
@@ -64,13 +64,7 @@ public class MdmService {
         .map(Commodity::getCommodityCode)
         .flatMap(commodityCode -> getParents(commodityCode).stream())
         .distinct()
-        .map(commodityCode -> {
-          Commodity parent = commodities.stream()
-                  .filter(commodity -> commodity.getCommodityCode() == commodityCode)
-                  .findFirst()
-                  .orElse(DEFAULT_COMMODITY);
-          return commodityNomenclatureMapper.map(commodityCode, parent);
-        })
+        .map(commodityNomenclatureMapper::map)
         .toList();
     return buildResponse(data);
   }
@@ -102,26 +96,56 @@ public class MdmService {
     return t -> seen.add(keyExtractor.apply(t));
   }
 
+  private Predicate<Commodity> matches(
+      CommodityCode commodityCode,
+      org.defra.orchestration.apiclient.model.Certificate certificate) {
+    return x -> x.getCommodityCode().equals(commodityCode)
+        && x.getCertificate().equals(certificate);
+  }
+
   public RdsResponse<CertificationRequirement> getCertificationRequirement() {
     List<Commodity> commodities = apiClient.getCommodities();
-    List<Commodity> parentCommodities = new ArrayList<>();
-    commodities.forEach(commodity -> {
-      List<CommodityCode> parents = getParents(commodity.getCommodityCode());
-      parentCommodities.addAll(parents.stream()
-          .map(commodityCode -> Commodity.builder()
-              .id(commodity.getCertificate().getId() + commodityCode.getId())
-              .certificate(commodity.getCertificate())
-              .commodityCode(commodityCode)
-              .build())
-          .toList());
-    });
+
+    // Find the distinct commodity code and certificate combinations
     List<Commodity> outputs = new ArrayList<>();
-    commodities.forEach(commodity ->
-        commodity.setId(commodity.getCertificate().getId() + commodity.getCommodityCode().getId()));
-    outputs.addAll(commodities);
-    outputs.addAll(parentCommodities);
+    commodities.forEach(commodity -> outputs.stream()
+        .filter(matches(commodity.getCommodityCode(), commodity.getCertificate()))
+        .findFirst()
+        .ifPresentOrElse(commodityCodeAndCertificate -> {
+          // Take the earliest effective from
+          if (commodity.getEffectiveFrom().isBefore(
+              commodityCodeAndCertificate.getEffectiveFrom())) {
+            commodityCodeAndCertificate.setEffectiveFrom(commodity.getEffectiveFrom());
+          }
+          // Take the latest effective to (null is latest)
+          if (commodity.getEffectiveTo() == null) {
+            commodityCodeAndCertificate.setEffectiveTo(null);
+          } else if (commodity.getEffectiveTo()
+              .isAfter(commodityCodeAndCertificate.getEffectiveTo())) {
+            commodityCodeAndCertificate.setEffectiveTo(commodity.getEffectiveTo());
+          }
+        }, () -> outputs.add(Commodity.builder()
+            .certificate(commodity.getCertificate())
+            .commodityCode(commodity.getCommodityCode())
+            .effectiveFrom(commodity.getEffectiveFrom())
+            .effectiveTo(commodity.getEffectiveTo())
+            .build())));
+
+    // Loop through and add the parent commodity code and certificate combinations
+    for (int i = 0; i < outputs.size(); i++) {
+      CommodityCode parent = outputs.get(i).getCommodityCode().getParent();
+      if (parent != null &&
+          outputs.stream().noneMatch(matches(parent, outputs.get(i).getCertificate()))) {
+        outputs.add(Commodity.builder()
+            .certificate(outputs.get(i).getCertificate())
+            .commodityCode(parent)
+            .effectiveFrom(parent.getEffectiveFrom())
+            .effectiveTo(parent.getEffectiveTo())
+            .build());
+      }
+    }
+
     List<CertificationRequirement> data = outputs.stream()
-        .filter(distinctByKey(Commodity::getId))
         .map(certificationRequirementMapper::map)
         .toList();
     return buildResponse(data);
@@ -138,17 +162,17 @@ public class MdmService {
   public RdsResponse<Species> getSpecies() {
     List<Commodity> commodities = apiClient.getCommodities();
     List<Species> data = commodities.stream()
-            .map(Commodity::getSpecies)
-            .filter(Objects::nonNull)
-            .distinct()
-            .map(species -> {
-              Commodity parent = commodities.stream()
-                      .filter(commodity -> commodity.getSpecies() == species)
-                      .findFirst()
-                      .orElseThrow();
-              return speciesMapper.map(species, parent);
-            })
-            .toList();
+        .map(Commodity::getSpecies)
+        .filter(Objects::nonNull)
+        .distinct()
+        .map(species -> {
+          Commodity parent = commodities.stream()
+              .filter(commodity -> commodity.getSpecies() == species)
+              .findFirst()
+              .orElseThrow();
+          return speciesMapper.map(species, parent);
+        })
+        .toList();
     return buildResponse(data);
   }
 

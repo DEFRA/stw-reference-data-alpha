@@ -10,14 +10,14 @@ import org.mapstruct.Named;
 @Mapper
 public interface CommodityNomenclatureMapper {
 
-  @Mapping(target = "code", source = "commodityCode.id")
-  @Mapping(target = "effectiveFrom", source = "commodity.effectiveFrom")
-  @Mapping(target = "effectiveTo", source = "commodity.effectiveTo")
-  @Mapping(target = "commodityNomenclatureParentCode", source = "commodityCode.parent.id")
-  @Mapping(target = "sortingKey", source = "commodityCode", qualifiedByName = "sortingKey")
-  @Mapping(target = "tracesCommodityCode", source = "commodityCode", qualifiedByName = "commodityCode")
-  @Mapping(target = "tracesCommodityDescription", source = "commodityCode.description")
-  CommodityNomenclature map(CommodityCode commodityCode, Commodity commodity);
+  @Mapping(target = "code", source = "id")
+  @Mapping(target = "effectiveFrom", source = "effectiveFrom")
+  @Mapping(target = "effectiveTo", source = "effectiveTo")
+  @Mapping(target = "commodityNomenclatureParentCode", source = "parent.id")
+  @Mapping(target = "sortingKey", source = ".", qualifiedByName = "sortingKey")
+  @Mapping(target = "tracesCommodityCode", source = ".", qualifiedByName = "commodityCode")
+  @Mapping(target = "tracesCommodityDescription", source = "description")
+  CommodityNomenclature map(CommodityCode commodityCode);
 
   @Named("sortingKey")
   default String sortingKey(CommodityCode commodityCode) {

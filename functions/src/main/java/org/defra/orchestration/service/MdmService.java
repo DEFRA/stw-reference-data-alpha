@@ -125,6 +125,7 @@ public class MdmService {
             commodityCodeAndCertificate.setEffectiveTo(commodity.getEffectiveTo());
           }
         }, () -> outputs.add(Commodity.builder()
+            .id(commodity.getId())
             .certificate(commodity.getCertificate())
             .commodityCode(commodity.getCommodityCode())
             .effectiveFrom(commodity.getEffectiveFrom())

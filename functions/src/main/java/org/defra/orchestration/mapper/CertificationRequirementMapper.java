@@ -22,7 +22,7 @@ public interface CertificationRequirementMapper {
 
   @Named("selectable")
   default Boolean selectable(Commodity commodity) {
-    return commodity.getSpecies() != null;
+    return commodity.getId() != null;
   }
 
   @Named("requirementCode")

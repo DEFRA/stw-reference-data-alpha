@@ -16,6 +16,8 @@ public class Species {
 
   private String rank;
 
+  private String kingdom;
+
   @JsonProperty("class")
   private String clazz;
 

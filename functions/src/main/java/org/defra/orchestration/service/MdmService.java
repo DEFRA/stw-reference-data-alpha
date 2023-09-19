@@ -184,6 +184,7 @@ public class MdmService {
     return apiClient.getCommodities().stream()
         .map(Commodity::getSpecies)
         .distinct()
+        .filter(species -> species.getKingdom().equals("Plantae"))
         .map(genusAndSpeciesMapper::map)
         .toList();
   }

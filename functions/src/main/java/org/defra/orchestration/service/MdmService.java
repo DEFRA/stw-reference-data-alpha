@@ -1,12 +1,8 @@
 package org.defra.orchestration.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import org.defra.orchestration.apiclient.MdmApiClient;
 import org.defra.orchestration.apiclient.model.Commodity;
@@ -16,6 +12,7 @@ import org.defra.orchestration.dto.CertificationNomenclature;
 import org.defra.orchestration.dto.CertificationRequirement;
 import org.defra.orchestration.dto.CommodityNomenclature;
 import org.defra.orchestration.dto.DataEntity;
+import org.defra.orchestration.dto.GenusAndSpecies;
 import org.defra.orchestration.dto.Meta;
 import org.defra.orchestration.dto.Pages;
 import org.defra.orchestration.dto.RdsResponse;
@@ -24,6 +21,7 @@ import org.defra.orchestration.mapper.CertificateMapper;
 import org.defra.orchestration.mapper.CertificationNomenclatureMapper;
 import org.defra.orchestration.mapper.CertificationRequirementMapper;
 import org.defra.orchestration.mapper.CommodityNomenclatureMapper;
+import org.defra.orchestration.mapper.GenusAndSpeciesMapper;
 import org.defra.orchestration.mapper.SpeciesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,16 +29,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class MdmService {
 
-  private static final Commodity DEFAULT_COMMODITY = Commodity.builder()
-      .effectiveFrom(LocalDateTime.of(1970, 1, 1, 0, 0))
-      .build();
-
   private final MdmApiClient apiClient;
   private final CommodityNomenclatureMapper commodityNomenclatureMapper;
   private final SpeciesMapper speciesMapper;
   private final CertificateMapper certificateMapper;
   private final CertificationRequirementMapper certificationRequirementMapper;
   private final CertificationNomenclatureMapper certificationNomenclatureMapper;
+  private final GenusAndSpeciesMapper genusAndSpeciesMapper;
 
   @Autowired
   public MdmService(
@@ -49,13 +44,15 @@ public class MdmService {
       CertificateMapper certificateMapper,
       CertificationRequirementMapper certificationRequirementMapper,
       CertificationNomenclatureMapper certificationNomenclatureMapper,
-      SpeciesMapper speciesMapper) {
+      SpeciesMapper speciesMapper,
+      GenusAndSpeciesMapper genusAndSpeciesMapper) {
     this.apiClient = apiClient;
     this.commodityNomenclatureMapper = commodityNomenclatureMapper;
     this.certificateMapper = certificateMapper;
     this.certificationRequirementMapper = certificationRequirementMapper;
     this.certificationNomenclatureMapper = certificationNomenclatureMapper;
     this.speciesMapper = speciesMapper;
+    this.genusAndSpeciesMapper = genusAndSpeciesMapper;
   }
 
   public RdsResponse<CommodityNomenclature> getCommodityNomenclature() {
@@ -89,11 +86,6 @@ public class MdmService {
         .map(certificateMapper::map)
         .toList();
     return buildResponse(data);
-  }
-
-  private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
-    Set<Object> seen = ConcurrentHashMap.newKeySet();
-    return t -> seen.add(keyExtractor.apply(t));
   }
 
   private Predicate<Commodity> matches(
@@ -186,5 +178,13 @@ public class MdmService {
             .build())
         .data(data)
         .build();
+  }
+
+  public List<GenusAndSpecies> getGenusAndSpecies() {
+    return apiClient.getCommodities().stream()
+        .map(Commodity::getSpecies)
+        .distinct()
+        .map(genusAndSpeciesMapper::map)
+        .toList();
   }
 }

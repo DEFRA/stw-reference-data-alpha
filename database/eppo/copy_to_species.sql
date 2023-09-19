@@ -8,6 +8,7 @@ WITH hierachy AS (
          c.m_date,
          l.codeid_parent,
          CAST('kingdom' AS nvarchar(50)) AS rank,
+         c.codeid AS kingdom,
          NULL AS class,
          NULL AS family,
          NULL AS genus,
@@ -42,6 +43,7 @@ WITH hierachy AS (
              WHEN 'K' THEN 'kingdom'
              END
            ), 'species') AS nvarchar(50)) AS rank,
+         h.kingdom as kingdom,
          IIF(LEFT(c.eppocode, 1) = '1' AND RIGHT(c.eppocode, 1) = 'C', c.codeid, h.class) as class,
          IIF(LEFT(c.eppocode, 1) = '1' AND RIGHT(c.eppocode, 1) = 'F', c.codeid, h.family) as family,
          IIF(LEFT(c.eppocode, 1) = '1' AND RIGHT(c.eppocode, 1) = 'G', c.codeid, h.genus) as genus,
@@ -59,6 +61,7 @@ INSERT INTO species
 SELECT h.eppocode as eppo,
        simple_name.fullname as simple_name,
        h.rank as rank,
+       kingdom_name.fullname as kingdom,
        class_name.fullname as class,
        family_name.fullname as family,
        genus_name.fullname as genus,
@@ -66,6 +69,7 @@ SELECT h.eppocode as eppo,
        'EPPO'            source_name,
        h.codeid       as source_id
 FROM hierachy h
+     LEFT JOIN t_names kingdom_name on h.kingdom = kingdom_name.codeid AND kingdom_name.codelang = 'la' AND kingdom_name.preferred = 1
      LEFT JOIN t_names class_name on h.class = class_name.codeid AND class_name.codelang = 'la' AND class_name.preferred = 1
      LEFT JOIN t_names family_name on h.family = family_name.codeid AND family_name.codelang = 'la' AND family_name.preferred = 1
      LEFT JOIN t_names genus_name on h.genus = genus_name.codeid AND genus_name.codelang = 'la' AND genus_name.preferred = 1

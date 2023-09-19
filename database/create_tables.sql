@@ -24,6 +24,7 @@ CREATE TABLE species
     eppo        nchar(6),
     simple_name nvarchar(100),
     rank        nvarchar(100),
+    kingdom     nvarchar(100),
     class       nvarchar(100),
     family      nvarchar(100),
     genus       nvarchar(100),

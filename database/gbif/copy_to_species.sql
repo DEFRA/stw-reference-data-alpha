@@ -2,6 +2,7 @@ INSERT INTO species
 SELECT NULL           as eppo,
        NULL           as simple_name,
        taxon_rank     as rank,
+       kingdom,
        class,
        family,
        genus,

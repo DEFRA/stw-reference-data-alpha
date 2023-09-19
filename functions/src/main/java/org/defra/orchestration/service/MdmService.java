@@ -15,6 +15,7 @@ import org.defra.orchestration.dto.DataEntity;
 import org.defra.orchestration.dto.GenusAndSpecies;
 import org.defra.orchestration.dto.Meta;
 import org.defra.orchestration.dto.Pages;
+import org.defra.orchestration.dto.PhesResponse;
 import org.defra.orchestration.dto.RdsResponse;
 import org.defra.orchestration.dto.Species;
 import org.defra.orchestration.mapper.CertificateMapper;
@@ -180,12 +181,20 @@ public class MdmService {
         .build();
   }
 
-  public List<GenusAndSpecies> getGenusAndSpecies() {
-    return apiClient.getCommodities().stream()
+  public PhesResponse getGenusAndSpecies() {
+    List<GenusAndSpecies> data = apiClient.getCommodities().stream()
         .map(Commodity::getSpecies)
         .distinct()
         .filter(species -> species.getKingdom().equals("Plantae"))
         .map(genusAndSpeciesMapper::map)
         .toList();
+    return PhesResponse.builder()
+        .data(data)
+        .records(data.size())
+        .pageNumber(1)
+        .pageSize(data.size())
+        .totalRecords(data.size())
+        .totalPages(1)
+        .build();
   }
 }

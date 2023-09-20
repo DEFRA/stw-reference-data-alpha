@@ -1,4 +1,4 @@
-package org.defra.payloadbuilder.dao.model;
+package org.defra.mdm.dao.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toedter.spring.hateoas.jsonapi.JsonApiTypeForClass;

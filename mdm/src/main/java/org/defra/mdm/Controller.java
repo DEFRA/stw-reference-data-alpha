@@ -1,20 +1,20 @@
-package org.defra.payloadbuilder;
+package org.defra.mdm;
 
 import static com.toedter.spring.hateoas.jsonapi.JsonApiModelBuilder.jsonApiModel;
 
 import com.toedter.spring.hateoas.jsonapi.JsonApiModelBuilder;
 import java.util.List;
 import java.util.Objects;
-import org.defra.payloadbuilder.dao.CertificateRepository;
-import org.defra.payloadbuilder.dao.CommodityCodeRepository;
-import org.defra.payloadbuilder.dao.CommodityRepository;
-import org.defra.payloadbuilder.dao.CommodityTypeRepository;
-import org.defra.payloadbuilder.dao.SpeciesRepository;
-import org.defra.payloadbuilder.dao.model.Certificate;
-import org.defra.payloadbuilder.dao.model.Commodity;
-import org.defra.payloadbuilder.dao.model.CommodityCode;
-import org.defra.payloadbuilder.dao.model.CommodityType;
-import org.defra.payloadbuilder.dao.model.Species;
+import org.defra.mdm.dao.CertificateRepository;
+import org.defra.mdm.dao.CommodityCodeRepository;
+import org.defra.mdm.dao.CommodityRepository;
+import org.defra.mdm.dao.CommodityTypeRepository;
+import org.defra.mdm.dao.SpeciesRepository;
+import org.defra.mdm.dao.model.Certificate;
+import org.defra.mdm.dao.model.Commodity;
+import org.defra.mdm.dao.model.CommodityCode;
+import org.defra.mdm.dao.model.CommodityType;
+import org.defra.mdm.dao.model.Species;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;

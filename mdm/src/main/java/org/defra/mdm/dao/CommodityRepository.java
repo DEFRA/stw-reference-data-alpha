@@ -1,7 +1,7 @@
-package org.defra.payloadbuilder.dao;
+package org.defra.mdm.dao;
 
 import java.util.List;
-import org.defra.payloadbuilder.dao.model.Commodity;
+import org.defra.mdm.dao.model.Commodity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

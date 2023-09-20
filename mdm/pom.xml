@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.defra</groupId>
-  <artifactId>payload-builder</artifactId>
+  <artifactId>mdm</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
   <parent>
@@ -15,7 +15,7 @@
     <relativePath/>
   </parent>
 
-  <name>JSON:API payload builder</name>
+  <name>Stub MDM</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

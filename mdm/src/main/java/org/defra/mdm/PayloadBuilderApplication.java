@@ -1,4 +1,4 @@
-package org.defra.payloadbuilder;
+package org.defra.mdm;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.toedter.spring.hateoas.jsonapi.JsonApiConfiguration;

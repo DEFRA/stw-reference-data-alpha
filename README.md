@@ -63,11 +63,6 @@ Add new configuration "Azure Functions > Run Functions" and fill required fields
 mvn package azure-functions:deploy
 ```
 
-## Requests
-
-The `requests` directory contains `.http` files which can be used to send requests via the IntelliJ
-[HTTP Client plugin](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html).
-
 ## Viewer
 
 The `viewer` directory contains a browser application to view the structure returned by the stub

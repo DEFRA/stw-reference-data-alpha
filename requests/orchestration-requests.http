@@ -1,2 +1,0 @@
-### Send notificcation that anything has changed
-POST {{orchestrationUrl}}/rd/notify

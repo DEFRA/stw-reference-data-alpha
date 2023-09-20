@@ -2,7 +2,32 @@
 
 This project holds the Reference Data Orchestration.
 
-## Azure Functions
+## Database
+
+The `database` directory contains a MSSQL Docker container and scripts to create tables and load
+data.
+
+Start the container:
+
+```shell
+./run.sh
+```
+
+Download
+the [2023 GBIF backbone](https://hosted-datasets.gbif.org/datasets/backbone/2023-08-28/backbone.zip)
+and copy the `Taxon.tsv` and `VernacularName.tsv` files into `database/gbif`.
+
+Create the tables and load data:
+
+```shell
+./load_data.sh
+```
+
+## Functions
+
+The `functions` directory contains Azure Functions for the orchestration service.
+
+### Setup
 
 A `local.settings.json` must be created in the root to run the functions locally:
 
@@ -38,23 +63,7 @@ Add new configuration "Azure Functions > Run Functions" and fill required fields
 mvn package azure-functions:deploy
 ```
 
-## Database
+## Requests
 
-The `database` directory contains a MSSQL Docker container and scripts to create tables and load
-data.
-
-Start the container:
-
-```shell
-./run.sh
-```
-
-Download
-the [2023 GBIF backbone](https://hosted-datasets.gbif.org/datasets/backbone/2023-08-28/backbone.zip)
-and copy the `Taxon.tsv` and `VernacularName.tsv` files into `database/gbif`.
-
-Create the tables and load data:
-
-```shell
-./load_data.sh
-```
+The `requests` directory contains `.http` files which can be used to send requests via the IntelliJ
+[HTTP Client plugin](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html).

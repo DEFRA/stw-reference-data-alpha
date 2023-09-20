@@ -39,6 +39,25 @@ CREATE TABLE commodity_type
     name nvarchar(100) NOT NULL
 );
 
+CREATE TABLE class
+(
+    id             INT PRIMARY KEY IDENTITY,
+    name           NVARCHAR(50) NOT NULL,
+    commodity_code NCHAR(10)    NOT NULL,
+    effective_from DATETIME     NOT NULL,
+    effective_to   DATETIME,
+);
+
+CREATE TABLE variety
+(
+    id             INT PRIMARY KEY IDENTITY,
+    name           NVARCHAR(50) NOT NULL,
+    commodity_code NCHAR(10)    NOT NULL,
+    eppo           NCHAR(6)     NOT NULL,
+    effective_from DATETIME     NOT NULL,
+    effective_to   DATETIME,
+);
+
 CREATE TABLE commodity
 (
     id             int PRIMARY KEY IDENTITY,
@@ -46,7 +65,7 @@ CREATE TABLE commodity
     commodity_code int,
     species        int,
     commodity_type int,
-    effective_from datetime,
+    effective_from datetime NOT NULL,
     effective_to   datetime,
 );
 

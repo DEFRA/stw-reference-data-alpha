@@ -67,3 +67,14 @@ mvn package azure-functions:deploy
 
 The `requests` directory contains `.http` files which can be used to send requests via the IntelliJ
 [HTTP Client plugin](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html).
+
+## Viewer
+
+The `viewer` directory contains a browser application to view the structure returned by the stub
+MDM.
+
+The files must be served by a web server, e.g. from the `viewer` directory run:
+
+```shell
+npx serve -p 9002
+```

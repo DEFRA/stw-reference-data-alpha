@@ -1,8 +1,6 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm'
 
-const response = await fetch(
-  'http://localhost:8080/mdm/api?filter=commodity_code&effectiveFrom=2023-01-01T00:00:00Z&effectiveTo=2023-12-01T00:00:00Z'
-)
+const response = await fetch('http://localhost:9001/payload')
 const data = await response.json()
 console.log(data)
 

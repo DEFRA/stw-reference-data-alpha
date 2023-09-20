@@ -18,6 +18,7 @@ import org.defra.mdm.dao.model.Species;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,7 +46,7 @@ public class Controller {
   }
 
   @GetMapping("/payload")
-  public RepresentationModel<?> getPayload() {
+  public ResponseEntity<RepresentationModel<?>> getPayload() {
     List<Commodity> commodities = commodityRepository.findAll();
     CollectionModel<? extends RepresentationModel<?>> commodityModels = CollectionModel.of(
         commodities.stream()
@@ -77,13 +78,15 @@ public class Controller {
         .map(CommodityType::getId)
         .distinct()
         .toList();
-    return jsonApiModel()
-        .model(commodityModels)
-        .included(certificateRepository.findAllByIdIn(certificateIds))
-        .included(commodityCodeModels)
-        .included(speciesRepository.findAllByIdIn(speciesIds))
-        .included(commodityTypeRepository.findAllByIdIn(commodityTypeIds))
-        .build();
+    return ResponseEntity.ok()
+        .headers(headers -> headers.setAccessControlAllowOrigin("*"))
+        .body(jsonApiModel()
+            .model(commodityModels)
+            .included(certificateRepository.findAllByIdIn(certificateIds))
+            .included(commodityCodeModels)
+            .included(speciesRepository.findAllByIdIn(speciesIds))
+            .included(commodityTypeRepository.findAllByIdIn(commodityTypeIds))
+            .build());
   }
 
   private List<CommodityCode> getParents(CommodityCode commodityCode) {

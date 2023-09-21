@@ -1,6 +1,5 @@
 package org.defra.orchestration.mapper;
 
-import org.defra.orchestration.apiclient.model.Commodity;
 import org.defra.orchestration.apiclient.model.CommodityCode;
 import org.defra.orchestration.dto.CommodityNomenclature;
 import org.mapstruct.Mapper;

@@ -1,6 +1,5 @@
 package org.defra.orchestration.apiclient.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toedter.spring.hateoas.jsonapi.JsonApiTypeForClass;
 import lombok.Data;
 

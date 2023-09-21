@@ -3,28 +3,28 @@ package org.defra.orchestration.apiclient.model;
 import com.toedter.spring.hateoas.jsonapi.JsonApiRelationships;
 import com.toedter.spring.hateoas.jsonapi.JsonApiTypeForClass;
 import java.time.LocalDateTime;
-import lombok.Data;
+import lombok.Value;
 
 @JsonApiTypeForClass("commodity_code")
-@Data
+@Value
 public class CommodityCode {
 
-  private String id;
+  String id;
 
-  private String code;
+  String code;
 
-  private String suffix;
+  String suffix;
 
-  private String description;
+  String description;
 
-  private String sourceName;
+  String sourceName;
 
-  private String sourceId;
+  String sourceId;
 
   @JsonApiRelationships("parent")
-  private CommodityCode parent;
+  CommodityCode parent;
 
-  private LocalDateTime effectiveFrom;
+  LocalDateTime effectiveFrom;
 
-  private LocalDateTime effectiveTo;
+  LocalDateTime effectiveTo;
 }

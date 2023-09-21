@@ -2,32 +2,32 @@ package org.defra.orchestration.apiclient.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.toedter.spring.hateoas.jsonapi.JsonApiTypeForClass;
-import lombok.Data;
+import lombok.Value;
 
 @JsonApiTypeForClass("species")
-@Data
+@Value
 public class Species {
 
-  private String id;
+  String id;
 
-  private String eppo;
+  String eppo;
 
-  private String simpleName;
+  String simpleName;
 
-  private String rank;
+  String rank;
 
-  private String kingdom;
+  String kingdom;
 
   @JsonProperty("class")
-  private String clazz;
+  String clazz;
 
-  private String family;
+  String family;
 
-  private String genus;
+  String genus;
 
-  private String species;
+  String species;
 
-  private String sourceName;
+  String sourceName;
 
-  private String sourceId;
+  String sourceId;
 }

@@ -1,13 +1,12 @@
 package org.defra.orchestration.apiclient.model;
 
 import com.toedter.spring.hateoas.jsonapi.JsonApiTypeForClass;
-import lombok.Data;
+import lombok.Value;
 
 @JsonApiTypeForClass("commodity_type")
-@Data
+@Value
 public class CommodityType {
 
-  private String id;
-
-  private String name;
+  String id;
+  String name;
 }

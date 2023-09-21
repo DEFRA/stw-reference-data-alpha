@@ -58,5 +58,20 @@ sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity_type.sql
 echo 'Loading commodity data...'
 sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity.sql
 
+echo 'Loading class data...'
+sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i class.sql
+
+echo 'Loading variety data...'
+sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i variety.sql
+
+echo 'Loading inspection responsibility data...'
+sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i inspection_responsibility.sql
+
+echo 'Loading hmi marketing data...'
+sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i hmi_marketing.sql
+
+echo 'Loading commodity group data...'
+sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity_group.sql
+
 echo 'Creating view...'
 sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i create_view.sql

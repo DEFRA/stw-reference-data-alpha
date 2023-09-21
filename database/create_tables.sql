@@ -58,6 +58,37 @@ CREATE TABLE variety
     effective_to   DATETIME,
 );
 
+CREATE TABLE inspection_responsibility
+(
+    id                        INT PRIMARY KEY IDENTITY,
+    commodity_code            NCHAR(10)    NOT NULL,
+    eppo                      NCHAR(6)     NOT NULL,
+    inspection_responsibility NVARCHAR(50) NOT NULL,
+    effective_from            DATETIME     NOT NULL,
+    effective_to              DATETIME,
+);
+
+CREATE TABLE hmi_marketing
+(
+    id                          INT PRIMARY KEY IDENTITY,
+    commodity_code              NCHAR(10)    NOT NULL,
+    eppo                        NCHAR(6)     NOT NULL,
+    variety                     NVARCHAR(50) NOT NULL,
+    certificate_validity_period int          NOT NULL,
+    hmi_marketing_standard      nvarchar(50) NOT NULL,
+    effective_from              DATETIME     NOT NULL,
+    effective_to                DATETIME,
+);
+
+CREATE TABLE commodity_group
+(
+    id             INT PRIMARY KEY IDENTITY,
+    name           NVARCHAR(100) NOT NULL,
+    commodity_code NCHAR(10)     NOT NULL,
+    effective_from DATETIME      NOT NULL,
+    effective_to   DATETIME,
+);
+
 CREATE TABLE commodity
 (
     id             int PRIMARY KEY IDENTITY,

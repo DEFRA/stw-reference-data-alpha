@@ -133,4 +133,34 @@ public class IpaffsFunctions {
         .body(objectMapper.writeValueAsString(mdmService.getVarieties()))
         .build();
   }
+
+  @FunctionName("PH-CommodityGroup")
+  public HttpResponseMessage commodityGroup(
+      @HttpTrigger(
+          name = "req",
+          methods = HttpMethod.GET,
+          authLevel = AuthorizationLevel.ANONYMOUS
+      ) HttpRequestMessage<Optional<String>> request,
+      final ExecutionContext context) throws JsonProcessingException {
+    log.info("PH-CommodityGroup HTTP trigger starting");
+    return request.createResponseBuilder(HttpStatus.OK)
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getCommodityGroups()))
+        .build();
+  }
+
+  @FunctionName("PH-CommodityGroup-Commodity")
+  public HttpResponseMessage commodityGroupCommodity(
+      @HttpTrigger(
+          name = "req",
+          methods = HttpMethod.GET,
+          authLevel = AuthorizationLevel.ANONYMOUS
+      ) HttpRequestMessage<Optional<String>> request,
+      final ExecutionContext context) throws JsonProcessingException {
+    log.info("PH-CommodityGroup-Commodity HTTP trigger starting");
+    return request.createResponseBuilder(HttpStatus.OK)
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getCommodityGroupCommodity()))
+        .build();
+  }
 }

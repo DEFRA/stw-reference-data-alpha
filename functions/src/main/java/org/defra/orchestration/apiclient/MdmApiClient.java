@@ -7,6 +7,9 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.defra.orchestration.apiclient.model.Commodity;
 import org.defra.orchestration.apiclient.model.CommodityClass;
+import org.defra.orchestration.apiclient.model.CommodityGroup;
+import org.defra.orchestration.apiclient.model.HmiMarketing;
+import org.defra.orchestration.apiclient.model.InspectionResponsibility;
 import org.defra.orchestration.apiclient.model.Variety;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -59,6 +62,36 @@ public class MdmApiClient {
         .accept(APPLICATION_JSON)
         .retrieve()
         .bodyToFlux(Variety.class)
+        .collectList()
+        .block();
+  }
+
+  public List<CommodityGroup> getGroups() {
+    return webClient.get()
+        .uri("/groups")
+        .accept(APPLICATION_JSON)
+        .retrieve()
+        .bodyToFlux(CommodityGroup.class)
+        .collectList()
+        .block();
+  }
+
+  public List<HmiMarketing> getHmiMarketing() {
+    return webClient.get()
+        .uri("/hmi-marketing")
+        .accept(APPLICATION_JSON)
+        .retrieve()
+        .bodyToFlux(HmiMarketing.class)
+        .collectList()
+        .block();
+  }
+
+  public List<InspectionResponsibility> getInspectionResponsibilities() {
+    return webClient.get()
+        .uri("/inspection-responsibilities")
+        .accept(APPLICATION_JSON)
+        .retrieve()
+        .bodyToFlux(InspectionResponsibility.class)
         .collectList()
         .block();
   }

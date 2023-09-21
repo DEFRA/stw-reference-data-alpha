@@ -8,25 +8,33 @@ import java.util.Objects;
 import org.defra.mdm.dao.CertificateRepository;
 import org.defra.mdm.dao.CommodityClassRepository;
 import org.defra.mdm.dao.CommodityCodeRepository;
+import org.defra.mdm.dao.CommodityGroupRepository;
 import org.defra.mdm.dao.CommodityRepository;
 import org.defra.mdm.dao.CommodityTypeRepository;
+import org.defra.mdm.dao.HmiMarketingRepository;
+import org.defra.mdm.dao.InspectionResponsibilityRepository;
 import org.defra.mdm.dao.SpeciesRepository;
 import org.defra.mdm.dao.VarietyRepository;
 import org.defra.mdm.dao.model.Certificate;
 import org.defra.mdm.dao.model.Commodity;
 import org.defra.mdm.dao.model.CommodityClass;
 import org.defra.mdm.dao.model.CommodityCode;
+import org.defra.mdm.dao.model.CommodityGroup;
 import org.defra.mdm.dao.model.CommodityType;
+import org.defra.mdm.dao.model.HmiMarketing;
+import org.defra.mdm.dao.model.InspectionResponsibility;
 import org.defra.mdm.dao.model.Species;
 import org.defra.mdm.dao.model.Variety;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class Controller {
 
   private final CommodityRepository commodityRepository;
@@ -36,6 +44,9 @@ public class Controller {
   private final CommodityTypeRepository commodityTypeRepository;
   private final CommodityClassRepository commodityClassRepository;
   private final VarietyRepository varietyRepository;
+  private final CommodityGroupRepository commodityGroupRepository;
+  private final HmiMarketingRepository hmiMarketingRepository;
+  private final InspectionResponsibilityRepository inspectionResponsibilityRepository;
 
   @Autowired
   public Controller(
@@ -45,7 +56,10 @@ public class Controller {
       SpeciesRepository speciesRepository,
       CommodityTypeRepository commodityTypeRepository,
       CommodityClassRepository commodityClassRepository,
-      VarietyRepository varietyRepository) {
+      VarietyRepository varietyRepository,
+      CommodityGroupRepository commodityGroupRepository,
+      HmiMarketingRepository hmiMarketingRepository,
+      InspectionResponsibilityRepository inspectionResponsibilityRepository) {
     this.commodityRepository = commodityRepository;
     this.certificateRepository = certificateRepository;
     this.commodityCodeRepository = commodityCodeRepository;
@@ -53,6 +67,9 @@ public class Controller {
     this.commodityTypeRepository = commodityTypeRepository;
     this.commodityClassRepository = commodityClassRepository;
     this.varietyRepository = varietyRepository;
+    this.commodityGroupRepository = commodityGroupRepository;
+    this.hmiMarketingRepository = hmiMarketingRepository;
+    this.inspectionResponsibilityRepository = inspectionResponsibilityRepository;
   }
 
   @GetMapping("/commodities")
@@ -89,7 +106,6 @@ public class Controller {
         .distinct()
         .toList();
     return ResponseEntity.ok()
-        .headers(headers -> headers.setAccessControlAllowOrigin("*"))
         .body(jsonApiModel()
             .model(commodityModels)
             .included(certificateRepository.findAllByIdIn(certificateIds))
@@ -102,15 +118,31 @@ public class Controller {
   @GetMapping("/classes")
   public ResponseEntity<Iterable<CommodityClass>> getClasses() {
     return ResponseEntity.ok()
-        .headers(headers -> headers.setAccessControlAllowOrigin("*"))
         .body(commodityClassRepository.findAll());
   }
 
   @GetMapping("/varieties")
   public ResponseEntity<Iterable<Variety>> getVarieties() {
     return ResponseEntity.ok()
-        .headers(headers -> headers.setAccessControlAllowOrigin("*"))
         .body(varietyRepository.findAll());
+  }
+
+  @GetMapping("/groups")
+  public ResponseEntity<Iterable<CommodityGroup>> getGroups() {
+    return ResponseEntity.ok()
+        .body(commodityGroupRepository.findAll());
+  }
+
+  @GetMapping("/hmi-marketing")
+  public ResponseEntity<Iterable<HmiMarketing>> getHmiMarketing() {
+    return ResponseEntity.ok()
+        .body(hmiMarketingRepository.findAll());
+  }
+
+  @GetMapping("/inspection-responsibilities")
+  public ResponseEntity<Iterable<InspectionResponsibility>> getInspectionResponsibilities() {
+    return ResponseEntity.ok()
+        .body(inspectionResponsibilityRepository.findAll());
   }
 
   private List<CommodityCode> getParents(CommodityCode commodityCode) {

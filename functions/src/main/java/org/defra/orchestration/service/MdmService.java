@@ -1,17 +1,26 @@
 package org.defra.orchestration.service;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.defra.orchestration.apiclient.MdmApiClient;
 import org.defra.orchestration.apiclient.model.Commodity;
 import org.defra.orchestration.apiclient.model.CommodityCode;
+import org.defra.orchestration.apiclient.model.CommodityGroup;
 import org.defra.orchestration.dto.Certificate;
 import org.defra.orchestration.dto.CertificationNomenclature;
 import org.defra.orchestration.dto.CertificationRequirement;
 import org.defra.orchestration.dto.CommodityClass;
 import org.defra.orchestration.dto.CommodityEppoVariety;
+import org.defra.orchestration.dto.CommodityGroupCommodity;
 import org.defra.orchestration.dto.CommodityNomenclature;
 import org.defra.orchestration.dto.DataEntity;
 import org.defra.orchestration.dto.GenusAndSpecies;
@@ -25,8 +34,12 @@ import org.defra.orchestration.mapper.CertificationNomenclatureMapper;
 import org.defra.orchestration.mapper.CertificationRequirementMapper;
 import org.defra.orchestration.mapper.CommodityClassMapper;
 import org.defra.orchestration.mapper.CommodityEppoVarietyMapper;
+import org.defra.orchestration.mapper.CommodityGroupCommodityMapper;
+import org.defra.orchestration.mapper.CommodityGroupMapper;
 import org.defra.orchestration.mapper.CommodityNomenclatureMapper;
 import org.defra.orchestration.mapper.GenusAndSpeciesMapper;
+import org.defra.orchestration.mapper.HmiMarketingMapper;
+import org.defra.orchestration.mapper.InspectionResponsibilityMapper;
 import org.defra.orchestration.mapper.SpeciesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,6 +56,10 @@ public class MdmService {
   private final GenusAndSpeciesMapper genusAndSpeciesMapper;
   private final CommodityClassMapper commodityClassMapper;
   private final CommodityEppoVarietyMapper commodityEppoVarietyMapper;
+  private final CommodityGroupMapper commodityGroupMapper;
+  private final CommodityGroupCommodityMapper commodityGroupCommodityMapper;
+  private final HmiMarketingMapper hmiMarketingMapper;
+  private final InspectionResponsibilityMapper inspectionResponsibilityMapper;
 
   @Autowired
   public MdmService(
@@ -54,7 +71,11 @@ public class MdmService {
       SpeciesMapper speciesMapper,
       GenusAndSpeciesMapper genusAndSpeciesMapper,
       CommodityClassMapper commodityClassMapper,
-      CommodityEppoVarietyMapper commodityEppoVarietyMapper) {
+      CommodityEppoVarietyMapper commodityEppoVarietyMapper,
+      CommodityGroupMapper commodityGroupMapper,
+      CommodityGroupCommodityMapper commodityGroupCommodityMapper,
+      HmiMarketingMapper hmiMarketingMapper,
+      InspectionResponsibilityMapper inspectionResponsibilityMapper) {
     this.apiClient = apiClient;
     this.commodityNomenclatureMapper = commodityNomenclatureMapper;
     this.certificateMapper = certificateMapper;
@@ -64,6 +85,10 @@ public class MdmService {
     this.genusAndSpeciesMapper = genusAndSpeciesMapper;
     this.commodityClassMapper = commodityClassMapper;
     this.commodityEppoVarietyMapper = commodityEppoVarietyMapper;
+    this.commodityGroupMapper = commodityGroupMapper;
+    this.commodityGroupCommodityMapper = commodityGroupCommodityMapper;
+    this.hmiMarketingMapper = hmiMarketingMapper;
+    this.inspectionResponsibilityMapper = inspectionResponsibilityMapper;
   }
 
   public RdsResponse<CommodityNomenclature> getCommodityNomenclature() {
@@ -192,6 +217,38 @@ public class MdmService {
         .map(commodityEppoVarietyMapper::map)
         .toList();
     return buildResponse(data);
+  }
+
+  public RdsResponse<org.defra.orchestration.dto.CommodityGroup> getCommodityGroups() {
+    List<org.defra.orchestration.dto.CommodityGroup> data = apiClient.getGroups().stream()
+        .filter(distinctByKey(CommodityGroup::getName))
+        .map(commodityGroupMapper::map)
+        .toList();
+    return buildResponse(data);
+  }
+
+  public RdsResponse<CommodityGroupCommodity> getCommodityGroupCommodity() {
+    List<CommodityGroup> groups = apiClient.getGroups();
+    Map<Integer, List<CommodityGroup>> groupMap = groups.stream().collect(Collectors.toMap(
+        group -> groups.stream()
+            .filter(g -> g.getName().equals(group.getName()))
+            .findFirst()
+            .map(CommodityGroup::getId)
+            .orElseThrow(),
+        List::of,
+        (a, b) -> Stream.of(a, b).flatMap(List::stream).toList()
+    ));
+    List<CommodityGroupCommodity> data = groupMap.entrySet().stream()
+        .flatMap(entry -> entry.getValue().stream()
+            .map(group -> new SimpleEntry<>(entry.getKey(), group)))
+        .map(entry -> commodityGroupCommodityMapper.map(entry.getValue(), entry.getKey()))
+        .toList();
+    return buildResponse(data);
+  }
+
+  private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+    Set<Object> seen = ConcurrentHashMap.newKeySet();
+    return t -> seen.add(keyExtractor.apply(t));
   }
 
   private <T extends DataEntity> RdsResponse<T> buildResponse(List<T> data) {

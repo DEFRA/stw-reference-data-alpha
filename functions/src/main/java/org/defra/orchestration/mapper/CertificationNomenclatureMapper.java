@@ -10,8 +10,6 @@ import org.mapstruct.Named;
 public interface CertificationNomenclatureMapper {
 
   @Mapping(target = "code", source = "id")
-  @Mapping(target = "effectiveFrom", source = "effectiveFrom")
-  @Mapping(target = "effectiveTo", source = "effectiveTo")
   @Mapping(target = "certificationRequirementCode", source = ".", qualifiedByName = "requirementCode")
   @Mapping(target = "classCode", ignore = true)
   @Mapping(target = "classId", ignore = true)

@@ -103,4 +103,34 @@ public class IpaffsFunctions {
         .body(objectMapper.writeValueAsString(mdmService.getCertificationNomenclature()))
         .build();
   }
+
+  @FunctionName("PH-CommodityClass")
+  public HttpResponseMessage commodityClass(
+      @HttpTrigger(
+          name = "req",
+          methods = HttpMethod.GET,
+          authLevel = AuthorizationLevel.ANONYMOUS
+      ) HttpRequestMessage<Optional<String>> request,
+      final ExecutionContext context) throws JsonProcessingException {
+    log.info("PH-CommodityClass HTTP trigger starting");
+    return request.createResponseBuilder(HttpStatus.OK)
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getClasses()))
+        .build();
+  }
+
+  @FunctionName("PH-CommEPPOVariety")
+  public HttpResponseMessage commEppoVariety(
+      @HttpTrigger(
+          name = "req",
+          methods = HttpMethod.GET,
+          authLevel = AuthorizationLevel.ANONYMOUS
+      ) HttpRequestMessage<Optional<String>> request,
+      final ExecutionContext context) throws JsonProcessingException {
+    log.info("PH-CommEPPOVariety HTTP trigger starting");
+    return request.createResponseBuilder(HttpStatus.OK)
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getVarieties()))
+        .build();
+  }
 }

@@ -15,7 +15,7 @@ import lombok.Data;
 public class Commodity {
 
   @Id
-  private String id;
+  private int id;
 
   @ManyToOne
   @JoinColumn(name = "certificate")

@@ -6,15 +6,19 @@ import com.toedter.spring.hateoas.jsonapi.JsonApiModelBuilder;
 import java.util.List;
 import java.util.Objects;
 import org.defra.mdm.dao.CertificateRepository;
+import org.defra.mdm.dao.CommodityClassRepository;
 import org.defra.mdm.dao.CommodityCodeRepository;
 import org.defra.mdm.dao.CommodityRepository;
 import org.defra.mdm.dao.CommodityTypeRepository;
 import org.defra.mdm.dao.SpeciesRepository;
+import org.defra.mdm.dao.VarietyRepository;
 import org.defra.mdm.dao.model.Certificate;
 import org.defra.mdm.dao.model.Commodity;
+import org.defra.mdm.dao.model.CommodityClass;
 import org.defra.mdm.dao.model.CommodityCode;
 import org.defra.mdm.dao.model.CommodityType;
 import org.defra.mdm.dao.model.Species;
+import org.defra.mdm.dao.model.Variety;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
@@ -30,6 +34,8 @@ public class Controller {
   private final CommodityCodeRepository commodityCodeRepository;
   private final SpeciesRepository speciesRepository;
   private final CommodityTypeRepository commodityTypeRepository;
+  private final CommodityClassRepository commodityClassRepository;
+  private final VarietyRepository varietyRepository;
 
   @Autowired
   public Controller(
@@ -37,27 +43,31 @@ public class Controller {
       CertificateRepository certificateRepository,
       CommodityCodeRepository commodityCodeRepository,
       SpeciesRepository speciesRepository,
-      CommodityTypeRepository commodityTypeRepository) {
+      CommodityTypeRepository commodityTypeRepository,
+      CommodityClassRepository commodityClassRepository,
+      VarietyRepository varietyRepository) {
     this.commodityRepository = commodityRepository;
     this.certificateRepository = certificateRepository;
     this.commodityCodeRepository = commodityCodeRepository;
     this.speciesRepository = speciesRepository;
     this.commodityTypeRepository = commodityTypeRepository;
+    this.commodityClassRepository = commodityClassRepository;
+    this.varietyRepository = varietyRepository;
   }
 
-  @GetMapping("/payload")
-  public ResponseEntity<RepresentationModel<?>> getPayload() {
+  @GetMapping("/commodities")
+  public ResponseEntity<RepresentationModel<?>> getCommodities() {
     List<Commodity> commodities = commodityRepository.findAll();
     CollectionModel<? extends RepresentationModel<?>> commodityModels = CollectionModel.of(
         commodities.stream()
             .map(this::getCommodityRepresentation)
             .toList());
-    List<String> certificateIds = commodities.stream()
+    List<Integer> certificateIds = commodities.stream()
         .map(Commodity::getCertificate)
         .map(Certificate::getId)
         .distinct()
         .toList();
-    List<String> commodityCodeIds = commodities.stream()
+    List<Integer> commodityCodeIds = commodities.stream()
         .map(Commodity::getCommodityCode)
         .flatMap(commodityCode -> getParents(commodityCode).stream())
         .map(CommodityCode::getId)
@@ -66,13 +76,13 @@ public class Controller {
     List<?> commodityCodeModels = commodityCodeRepository.findAllByIdIn(commodityCodeIds).stream()
         .map(this::getCommodityCodeRepresentation)
         .toList();
-    List<String> speciesIds = commodities.stream()
+    List<Integer> speciesIds = commodities.stream()
         .map(Commodity::getSpecies)
         .filter(Objects::nonNull)
         .map(Species::getId)
         .distinct()
         .toList();
-    List<String> commodityTypeIds = commodities.stream()
+    List<Integer> commodityTypeIds = commodities.stream()
         .map(Commodity::getCommodityType)
         .filter(Objects::nonNull)
         .map(CommodityType::getId)
@@ -87,6 +97,20 @@ public class Controller {
             .included(speciesRepository.findAllByIdIn(speciesIds))
             .included(commodityTypeRepository.findAllByIdIn(commodityTypeIds))
             .build());
+  }
+
+  @GetMapping("/classes")
+  public ResponseEntity<Iterable<CommodityClass>> getClasses() {
+    return ResponseEntity.ok()
+        .headers(headers -> headers.setAccessControlAllowOrigin("*"))
+        .body(commodityClassRepository.findAll());
+  }
+
+  @GetMapping("/varieties")
+  public ResponseEntity<Iterable<Variety>> getVarieties() {
+    return ResponseEntity.ok()
+        .headers(headers -> headers.setAccessControlAllowOrigin("*"))
+        .body(varietyRepository.findAll());
   }
 
   private List<CommodityCode> getParents(CommodityCode commodityCode) {

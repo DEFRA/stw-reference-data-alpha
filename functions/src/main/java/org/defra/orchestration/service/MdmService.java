@@ -10,6 +10,8 @@ import org.defra.orchestration.apiclient.model.CommodityCode;
 import org.defra.orchestration.dto.Certificate;
 import org.defra.orchestration.dto.CertificationNomenclature;
 import org.defra.orchestration.dto.CertificationRequirement;
+import org.defra.orchestration.dto.CommodityClass;
+import org.defra.orchestration.dto.CommodityEppoVariety;
 import org.defra.orchestration.dto.CommodityNomenclature;
 import org.defra.orchestration.dto.DataEntity;
 import org.defra.orchestration.dto.GenusAndSpecies;
@@ -21,6 +23,8 @@ import org.defra.orchestration.dto.Species;
 import org.defra.orchestration.mapper.CertificateMapper;
 import org.defra.orchestration.mapper.CertificationNomenclatureMapper;
 import org.defra.orchestration.mapper.CertificationRequirementMapper;
+import org.defra.orchestration.mapper.CommodityClassMapper;
+import org.defra.orchestration.mapper.CommodityEppoVarietyMapper;
 import org.defra.orchestration.mapper.CommodityNomenclatureMapper;
 import org.defra.orchestration.mapper.GenusAndSpeciesMapper;
 import org.defra.orchestration.mapper.SpeciesMapper;
@@ -37,6 +41,8 @@ public class MdmService {
   private final CertificationRequirementMapper certificationRequirementMapper;
   private final CertificationNomenclatureMapper certificationNomenclatureMapper;
   private final GenusAndSpeciesMapper genusAndSpeciesMapper;
+  private final CommodityClassMapper commodityClassMapper;
+  private final CommodityEppoVarietyMapper commodityEppoVarietyMapper;
 
   @Autowired
   public MdmService(
@@ -46,7 +52,9 @@ public class MdmService {
       CertificationRequirementMapper certificationRequirementMapper,
       CertificationNomenclatureMapper certificationNomenclatureMapper,
       SpeciesMapper speciesMapper,
-      GenusAndSpeciesMapper genusAndSpeciesMapper) {
+      GenusAndSpeciesMapper genusAndSpeciesMapper,
+      CommodityClassMapper commodityClassMapper,
+      CommodityEppoVarietyMapper commodityEppoVarietyMapper) {
     this.apiClient = apiClient;
     this.commodityNomenclatureMapper = commodityNomenclatureMapper;
     this.certificateMapper = certificateMapper;
@@ -54,6 +62,8 @@ public class MdmService {
     this.certificationNomenclatureMapper = certificationNomenclatureMapper;
     this.speciesMapper = speciesMapper;
     this.genusAndSpeciesMapper = genusAndSpeciesMapper;
+    this.commodityClassMapper = commodityClassMapper;
+    this.commodityEppoVarietyMapper = commodityEppoVarietyMapper;
   }
 
   public RdsResponse<CommodityNomenclature> getCommodityNomenclature() {
@@ -166,6 +176,20 @@ public class MdmService {
               .orElseThrow();
           return speciesMapper.map(species, parent);
         })
+        .toList();
+    return buildResponse(data);
+  }
+
+  public RdsResponse<CommodityClass> getClasses() {
+    List<CommodityClass> data = apiClient.getClasses().stream()
+        .map(commodityClassMapper::map)
+        .toList();
+    return buildResponse(data);
+  }
+
+  public RdsResponse<CommodityEppoVariety> getVarieties() {
+    List<CommodityEppoVariety> data = apiClient.getVarieties().stream()
+        .map(commodityEppoVarietyMapper::map)
         .toList();
     return buildResponse(data);
   }

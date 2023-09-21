@@ -1,6 +1,6 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm'
 
-const response = await fetch('http://localhost:9001/payload')
+const response = await fetch('http://localhost:9001/commodities')
 const data = await response.json()
 console.log(data)
 

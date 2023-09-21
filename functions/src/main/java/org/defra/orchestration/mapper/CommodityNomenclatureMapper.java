@@ -11,8 +11,6 @@ import org.mapstruct.Named;
 public interface CommodityNomenclatureMapper {
 
   @Mapping(target = "code", source = "id")
-  @Mapping(target = "effectiveFrom", source = "effectiveFrom")
-  @Mapping(target = "effectiveTo", source = "effectiveTo")
   @Mapping(target = "commodityNomenclatureParentCode", source = "parent.id")
   @Mapping(target = "sortingKey", source = ".", qualifiedByName = "sortingKey")
   @Mapping(target = "tracesCommodityCode", source = ".", qualifiedByName = "commodityCode")

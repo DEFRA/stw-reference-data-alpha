@@ -163,4 +163,34 @@ public class IpaffsFunctions {
         .body(objectMapper.writeValueAsString(mdmService.getCommodityGroupCommodity()))
         .build();
   }
+
+  @FunctionName("PH-Inspection-Responsibility")
+  public HttpResponseMessage inspectionResponsibility(
+      @HttpTrigger(
+          name = "req",
+          methods = HttpMethod.GET,
+          authLevel = AuthorizationLevel.ANONYMOUS
+      ) HttpRequestMessage<Optional<String>> request,
+      final ExecutionContext context) throws JsonProcessingException {
+    log.info("PH-Inspection-Responsibility HTTP trigger starting");
+    return request.createResponseBuilder(HttpStatus.OK)
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getInspectionResponsibility()))
+        .build();
+  }
+
+  @FunctionName("PH-CVP-HMIMarketing")
+  public HttpResponseMessage hmiMarketing(
+      @HttpTrigger(
+          name = "req",
+          methods = HttpMethod.GET,
+          authLevel = AuthorizationLevel.ANONYMOUS
+      ) HttpRequestMessage<Optional<String>> request,
+      final ExecutionContext context) throws JsonProcessingException {
+    log.info("PH-CVP-HMIMarketing HTTP trigger starting");
+    return request.createResponseBuilder(HttpStatus.OK)
+        .header("Content-Type", "application/json")
+        .body(objectMapper.writeValueAsString(mdmService.getHmiMarketing()))
+        .build();
+  }
 }

@@ -24,6 +24,8 @@ import org.defra.orchestration.dto.CommodityGroupCommodity;
 import org.defra.orchestration.dto.CommodityNomenclature;
 import org.defra.orchestration.dto.DataEntity;
 import org.defra.orchestration.dto.GenusAndSpecies;
+import org.defra.orchestration.dto.HmiMarketing;
+import org.defra.orchestration.dto.InspectionResponsibility;
 import org.defra.orchestration.dto.Meta;
 import org.defra.orchestration.dto.Pages;
 import org.defra.orchestration.dto.PhesResponse;
@@ -242,6 +244,20 @@ public class MdmService {
         .flatMap(entry -> entry.getValue().stream()
             .map(group -> new SimpleEntry<>(entry.getKey(), group)))
         .map(entry -> commodityGroupCommodityMapper.map(entry.getValue(), entry.getKey()))
+        .toList();
+    return buildResponse(data);
+  }
+
+  public RdsResponse<HmiMarketing> getHmiMarketing() {
+    List<HmiMarketing> data = apiClient.getHmiMarketing().stream()
+        .map(hmiMarketingMapper::map)
+        .toList();
+    return buildResponse(data);
+  }
+
+  public RdsResponse<InspectionResponsibility> getInspectionResponsibility() {
+    List<InspectionResponsibility> data = apiClient.getInspectionResponsibilities().stream()
+        .map(inspectionResponsibilityMapper::map)
         .toList();
     return buildResponse(data);
   }

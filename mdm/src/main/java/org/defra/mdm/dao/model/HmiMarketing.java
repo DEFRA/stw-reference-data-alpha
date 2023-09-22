@@ -16,6 +16,14 @@ public class HmiMarketing {
 
   private String eppo;
 
+  public String getEppo() {
+    if (eppo == null) {
+      return null;
+    } else {
+      return eppo.trim();
+    }
+  }
+
   private String variety;
 
   private int certificateValidityPeriod;

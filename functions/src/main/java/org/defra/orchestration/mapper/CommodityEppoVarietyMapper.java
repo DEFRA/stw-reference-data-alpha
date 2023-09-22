@@ -5,11 +5,11 @@ import org.defra.orchestration.dto.CommodityEppoVariety;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(uses = MapperUtils.class)
 public interface CommodityEppoVarietyMapper {
 
   @Mapping(target = "code", source = "id")
-  @Mapping(target = "tracesCommodityCode", source = "commodityCode")
+  @Mapping(target = "tracesCommodityCode", source = "commodityCode", qualifiedByName = "trimCommodityCode")
   @Mapping(target = "eppoCode", source = "eppo")
   @Mapping(target = "variety", source = "name")
   CommodityEppoVariety map(Variety variety);

@@ -1,13 +1,12 @@
 package org.defra.orchestration.mapper;
 
 import org.defra.orchestration.apiclient.model.Commodity;
-import org.defra.orchestration.apiclient.model.CommodityCode;
 import org.defra.orchestration.dto.CertificationRequirement;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-@Mapper
+@Mapper(uses = MapperUtils.class)
 public interface CertificationRequirementMapper {
 
   @Mapping(target = "code", source = ".", qualifiedByName = "requirementCode")
@@ -21,21 +20,5 @@ public interface CertificationRequirementMapper {
   @Named("selectable")
   default Boolean selectable(Commodity commodity) {
     return commodity.getId() != null;
-  }
-
-  @Named("requirementCode")
-  default String requirementCode(Commodity commodity) {
-    return commodity.getCertificate().getId() + "-" + commodity.getCommodityCode().getId();
-  }
-
-  @Named("commodityCode")
-  default String commodityCode(CommodityCode commodityCode) {
-    if (commodityCode == null) {
-      return null;
-    }
-    String trimmed = commodityCode.getCode().replaceAll("(00)*$", "");
-    return commodityCode.getSuffix().equals("80")
-        ? trimmed
-        : trimmed.substring(0, trimmed.length() - 1);
   }
 }

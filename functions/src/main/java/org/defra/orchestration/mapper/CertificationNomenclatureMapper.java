@@ -4,9 +4,8 @@ import org.defra.orchestration.apiclient.model.Commodity;
 import org.defra.orchestration.dto.CertificationNomenclature;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 
-@Mapper
+@Mapper(uses = MapperUtils.class)
 public interface CertificationNomenclatureMapper {
 
   @Mapping(target = "code", source = "id")
@@ -28,9 +27,4 @@ public interface CertificationNomenclatureMapper {
   @Mapping(target = "speciesId", source = "species.id")
   @Mapping(target = "speciesName", source = "species.species")
   CertificationNomenclature map(Commodity commodity);
-
-  @Named("requirementCode")
-  default String requirementCode(Commodity commodity) {
-    return commodity.getCertificate().getId() + "-" + commodity.getCommodityCode().getId();
-  }
 }

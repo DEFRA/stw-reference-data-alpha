@@ -5,19 +5,24 @@ import org.defra.orchestration.dto.CommodityGroupCommodity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Mapper
-public interface CommodityGroupCommodityMapper {
+@Mapper(uses = MapperUtils.class)
+public abstract class CommodityGroupCommodityMapper {
+
+  @Autowired
+  private MapperUtils mapperUtils;
 
   @Mapping(target = "code", source = "commodityGroup.id")
-  @Mapping(target = "tracesCommodityCode", source = "commodityGroup.commodityCode")
+  @Mapping(target = "tracesCommodityCode", source = "commodityGroup.commodityCode", qualifiedByName = "trimCommodityCode")
   @Mapping(target = "name", source = "commodityGroup", qualifiedByName = "name")
   @Mapping(target = "commodityGroupCode", source = "commodityGroupId")
   @Mapping(target = "lastChgDateTime", source = "commodityGroup.effectiveFrom")
-  CommodityGroupCommodity map(CommodityGroup commodityGroup, int commodityGroupId);
+  public abstract CommodityGroupCommodity map(CommodityGroup commodityGroup, int commodityGroupId);
 
   @Named("name")
-  default String name(CommodityGroup commodityGroup) {
-    return String.format("%s %s", commodityGroup.getCommodityCode(), commodityGroup.getName());
+  public String name(CommodityGroup commodityGroup) {
+    return String.format("%s %s", mapperUtils.trimCommodityCode(commodityGroup.getCommodityCode()),
+        commodityGroup.getName());
   }
 }

@@ -19,5 +19,6 @@ public class HmiMarketing extends DataEntity {
 
   String certificateValidityPeriod;
 
+  @JsonProperty("HMIMarketingStandard")
   String hmiMarketingStandard;
 }

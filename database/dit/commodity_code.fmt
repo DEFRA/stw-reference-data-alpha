@@ -1,0 +1,12 @@
+14.0
+10
+1       SQLCHAR             0       0       "\""       0     ""                                                           ""
+2       SQLCHAR             0       12      "\",\""    1     id                                                           ""
+3       SQLCHAR             0       20      "\",\""    2     code                                                         SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0       4       "\",\""    3     suffix                                                       SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0       0       "\",\""    4     description                                                  SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0       12      "\",\""    5     parent_id                                                    ""
+7       SQLCHAR             0       24      "\",\""    6     effective_from                                               ""
+8       SQLCHAR             0       24      "\",\""    7     effective_to                                                 ""
+9       SQLCHAR             0       100     "\",\""    8     source_name                                                  SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR             0       100     "\"\n"     9     source_id                                                    SQL_Latin1_General_CP1_CI_AS

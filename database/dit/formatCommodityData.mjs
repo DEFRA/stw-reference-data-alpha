@@ -11,7 +11,7 @@ records = records.map(record => ({
   id: replaceNa(record.commodity__sid),
   code: replaceNa(record.commodity__code),
   suffix: replaceNa(record.commodity__suffix),
-  description: replaceNa(record.commodity__description),
+  description: record.commodity__description,
   parent_id: replaceNa(record.parent__sid),
   effective_from: replaceNa(record.commodity__validity_start),
   effective_to: replaceNa(record.commodity__validity_end),
@@ -22,4 +22,8 @@ records = records.map(record => ({
   ...record,
   parent_id: records.find(r => r.id === record.parent_id)?.id
 }));
-fs.writeFileSync('./dit_commodities_output.csv', stringify(records, { header: false, quoted: true }));
+fs.writeFileSync('./dit_commodities_output.csv', stringify(records, {
+  header: false,
+  quoted: true,
+  quoted_empty: true
+}));

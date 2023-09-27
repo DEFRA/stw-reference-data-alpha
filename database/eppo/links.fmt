@@ -1,0 +1,8 @@
+14.0
+6
+1       SQLCHAR             0       12      ","    1     idlink                                                   ""
+2       SQLCHAR             0       12      ","    2     codeid                                                   ""
+3       SQLCHAR             0       12      ","    3     codeid_parent                                            ""
+4       SQLCHAR             0       1       ","    4     status                                                   SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0       24      ","    5     c_date                                                   ""
+6       SQLCHAR             0       24      "\n"   6     m_date                                                   ""

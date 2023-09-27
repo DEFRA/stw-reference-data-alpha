@@ -1,77 +1,66 @@
 #!/usr/bin/env bash
 
-echo "Waiting for database to be ready"
-while ! sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -Q "SELECT @@VERSION" &>/dev/null; do
-  echo "Database not ready, sleeping for 10 seconds..."
-  sleep 10
-done
-echo "Database is ready"
-
-echo 'Creating database...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -Q "CREATE DATABASE reference_data"
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -Q "EXEC sp_defaultdb @loginame='SA', @defdb='reference_data'"
+S=${SQL_SERVER:-'tcp:127.0.0.1,1434'}
+U=${SQL_USERNAME:-'SA'}
+P=${SQL_PASSWORD:-'Password1'}
 
 echo 'Creating tables...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i create_tables.sql
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i eppo/sqlschema.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i create_tables.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i eppo/sqlschema.sql
 
 echo 'Loading DIT commodity data...'
-docker cp dit/dit_commodities_output.csv ref-data-db:/tmp
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -Q "BULK INSERT commodity_code FROM '/tmp/dit_commodities_output.csv' WITH (FORMAT = 'CSV')"
+bcp commodity_code IN dit/dit_commodities_output.csv -f dit/commodity_code.fmt -S $S -U $U -P $P -d reference_data
 
 echo 'Loading GBIF taxon data...'
-bcp taxon IN gbif/Taxon.tsv -f gbif/taxon.fmt -S "tcp:127.0.0.1,1434" -U SA -P Password1 -F 2
+bcp taxon IN gbif/Taxon.tsv -f gbif/taxon.fmt -S $S -U $U -P $P -d reference_data -F 2
 echo 'Loading GBIF vernacular_name data...'
-bcp vernacular_name IN gbif/VernacularName.tsv -f gbif/vernacular_name.fmt -S "tcp:127.0.0.1,1434" -U SA -P Password1 -F 2
+bcp vernacular_name IN gbif/VernacularName.tsv -f gbif/vernacular_name.fmt -S $S -U $U -P $P -d reference_data -F 2
 echo 'Copying GBIF to species table...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i gbif/copy_to_species.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i gbif/copy_to_species.sql
 
 echo 'Loading EPPO authorities data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i eppo/authorities.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i eppo/authorities.sql
 echo 'Loading EPPO codes data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i eppo/codes.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i eppo/codes.sql
 echo 'Loading EPPO countries data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i eppo/countries.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i eppo/countries.sql
 echo 'Loading EPPO datatypes data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i eppo/datatypes.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i eppo/datatypes.sql
 echo 'Loading EPPO langs data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i eppo/langs.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i eppo/langs.sql
 echo 'Loading EPPO links data...'
-docker cp eppo/links.csv ref-data-db:/tmp
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -Q "BULK INSERT t_links FROM '/tmp/links.csv' WITH (FORMAT = 'CSV')"
+bcp t_links IN eppo/links.csv -f eppo/links.fmt -S $S -U $U -P $P -d reference_data
 echo 'Loading EPPO names data...'
-docker cp eppo/names.csv ref-data-db:/tmp
-docker cp eppo/names.fmt ref-data-db:/tmp
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -Q "BULK INSERT t_names FROM '/tmp/names.csv' WITH (FORMAT = 'CSV', FORMATFILE = '/tmp/names.fmt')"
+bcp t_names IN eppo/names.csv -f eppo/names.fmt -S $S -U $U -P $P -d reference_data
 echo 'Copying EPPO to species table...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i eppo/copy_to_species.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i eppo/copy_to_species.sql
 
 echo 'Loading certificate data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i certificate.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i certificate.sql
 
 echo 'Loading species data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i species.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i species.sql
 
 echo 'Loading commodity type data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity_type.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i commodity_type.sql
 
 echo 'Loading commodity data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i commodity.sql
 
 echo 'Loading class data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i class.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i class.sql
 
 echo 'Loading variety data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i variety.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i variety.sql
 
 echo 'Loading inspection responsibility data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i inspection_responsibility.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i inspection_responsibility.sql
 
 echo 'Loading hmi marketing data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i hmi_marketing.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i hmi_marketing.sql
 
 echo 'Loading commodity group data...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i commodity_group.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i commodity_group.sql
 
 echo 'Creating view...'
-sqlcmd -S "tcp:127.0.0.1,1434" -U SA -P Password1 -i create_view.sql
+sqlcmd -S $S -U $U -P $P -d reference_data -i create_view.sql

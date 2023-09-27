@@ -7,6 +7,8 @@
 
 -- DELETE FROM t_langs;
 
+SET NOCOUNT ON;
+
 INSERT INTO t_langs (codelang,language) VALUES ('aa','Afar');
 INSERT INTO t_langs (codelang,language) VALUES ('ab','Abkhazian');
 INSERT INTO t_langs (codelang,language) VALUES ('ae','Avestan');

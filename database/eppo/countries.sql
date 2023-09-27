@@ -7,6 +7,8 @@
 
 -- DELETE FROM t_countries;
 
+SET NOCOUNT ON;
+
 INSERT INTO t_countries (isocountry,country) VALUES ('1A','Europe');
 INSERT INTO t_countries (isocountry,country) VALUES ('1B','Balkans');
 INSERT INTO t_countries (isocountry,country) VALUES ('1C','Central Europe');

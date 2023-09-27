@@ -1,3 +1,5 @@
+SET NOCOUNT ON;
+
 INSERT INTO reference_data.dbo.variety (name, commodity_code, eppo, effective_from, effective_to) VALUES (N'McIntosh Red', N'0808108090', N'MABSD ', N'2023-09-20 14:12:33.000', null);
 INSERT INTO reference_data.dbo.variety (name, commodity_code, eppo, effective_from, effective_to) VALUES (N'Spartan', N'0808108090', N'MABSD', N'2023-09-20 14:12:33.000', null);
 INSERT INTO reference_data.dbo.variety (name, commodity_code, eppo, effective_from, effective_to) VALUES (N'Royal Gala', N'0808108090', N'MABSD', N'2023-09-20 14:12:33.000', null);

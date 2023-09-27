@@ -7,6 +7,8 @@
 
 -- DELETE FROM t_authorities;
 
+SET NOCOUNT ON;
+
 INSERT INTO t_authorities (idauth,authdesc) VALUES (1,'(Linnaeus) W.T.Aiton');
 INSERT INTO t_authorities (idauth,authdesc) VALUES (2,'Chevalier');
 INSERT INTO t_authorities (idauth,authdesc) VALUES (3,'W.W.Smith');

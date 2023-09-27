@@ -1,3 +1,5 @@
+SET NOCOUNT ON;
+
 INSERT INTO reference_data.dbo.hmi_marketing (commodity_code, eppo, variety, certificate_validity_period, hmi_marketing_standard, effective_from) VALUES (N'0808108090', N'MABSD', N'Pirouette', N'7', N'SMS', N'2021-03-09 11:17:51.000');
 INSERT INTO reference_data.dbo.hmi_marketing (commodity_code, eppo, variety, certificate_validity_period, hmi_marketing_standard, effective_from) VALUES (N'0808108090', N'MABSD', N'Pink Lady', N'7', N'SMS', N'2021-03-09 11:17:51.000');
 INSERT INTO reference_data.dbo.hmi_marketing (commodity_code, eppo, variety, certificate_validity_period, hmi_marketing_standard, effective_from) VALUES (N'0808108090', N'MABSD', N'Starkrimson', N'7', N'SMS', N'2021-03-09 11:17:51.000');

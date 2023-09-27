@@ -1,3 +1,5 @@
+SET NOCOUNT ON;
+
 INSERT INTO reference_data.dbo.certificate (id, name) VALUES (640, 'CVEDA');
 INSERT INTO reference_data.dbo.certificate (id, name) VALUES (678, 'CED');
 INSERT INTO reference_data.dbo.certificate (id, name) VALUES (851, 'CHED-PP');

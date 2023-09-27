@@ -7,20 +7,14 @@ This project holds the Reference Data Orchestration.
 The `database` directory contains a MSSQL Docker container and scripts to create tables and load
 data.
 
-Start the container:
-
-```shell
-./run.sh
-```
-
 Download
 the [2023 GBIF backbone](https://hosted-datasets.gbif.org/datasets/backbone/2023-08-28/backbone.zip)
 and copy the `Taxon.tsv` and `VernacularName.tsv` files into `database/gbif`.
 
-Create the tables and load data:
+Start the database:
 
 ```shell
-./load_data.sh
+./run.sh
 ```
 
 ## Functions

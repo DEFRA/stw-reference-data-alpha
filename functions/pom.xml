@@ -109,7 +109,7 @@
         <version>${azure-functions-maven-plugin.version}</version>
         <configuration>
           <appName>${functionAppName}</appName>
-          <resourceGroup>POC-STW-1</resourceGroup>
+          <resourceGroup>POC-STW-3</resourceGroup>
           <appServicePlanName>${servicePlanName}</appServicePlanName>
           <!-- function app region-->
           <!-- refers https://github.com/microsoft/azure-maven-plugins/wiki/Azure-Functions:-Configuration-Details#supported-regions for all valid values -->
@@ -121,6 +121,7 @@
           <!-- Whether to disable application insights, default is false -->
           <!-- refers https://github.com/microsoft/azure-maven-plugins/wiki/Azure-Functions:-Configuration-Details for all valid configurations for application insights-->
           <!-- <disableAppInsights></disableAppInsights> -->
+          <appInsightsInstance>ref-data-application-insights</appInsightsInstance>
           <runtime>
             <!-- runtime os, could be windows, linux or docker-->
             <os>windows</os>

@@ -63,6 +63,26 @@ Add new configuration "Azure Functions > Run Functions" and fill required fields
 mvn package azure-functions:deploy
 ```
 
+## MDM
+
+The `mdm` directory contains a Spring Boot application which serves requests to the database.
+
+### Run via CLI
+
+```shell
+mvn spring-boot:run
+```
+
+### Run via IntelliJ
+
+Open `MdmApplication` and run the class.
+
+### Deploy
+
+```shell
+mvn package azure-spring-apps:deploy
+```
+
 ## Viewer
 
 The `viewer` directory contains a browser application to view the structure returned by the stub

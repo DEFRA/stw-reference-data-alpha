@@ -2,9 +2,9 @@ server:
   port: 9001
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1434;database=reference_data;trustServerCertificate=true
-    username: SA
-    password: Password1
+    url: ${JDBC_URL:jdbc:sqlserver://localhost:1434;database=reference_data;trustServerCertificate=true}
+    username: ${SQL_USERNAME:SA}
+    password: ${SQL_PASSWORD:Password1}
   jpa:
     properties:
       hibernate:

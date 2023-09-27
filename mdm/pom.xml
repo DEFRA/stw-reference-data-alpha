@@ -85,6 +85,35 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-spring-apps-maven-plugin</artifactId>
+        <version>1.18.0</version>
+        <configuration>
+          <subscriptionId>d6f720f6-0e75-44c9-a406-2840c33ec61e</subscriptionId>
+          <resourceGroup>POC-STW-3</resourceGroup>
+          <clusterName>ref-data-mdm</clusterName>
+          <appName>ref-data-mdm</appName>
+          <isPublic>true</isPublic>
+          <deployment>
+            <cpu>1</cpu>
+            <memoryInGB>1</memoryInGB>
+            <instanceCount>1</instanceCount>
+            <runtimeVersion>Java 17</runtimeVersion>
+            <resources>
+              <resource>
+                <filtering/>
+                <mergeId/>
+                <targetPath/>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>

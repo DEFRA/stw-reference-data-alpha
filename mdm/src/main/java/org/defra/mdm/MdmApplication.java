@@ -11,7 +11,7 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @SpringBootApplication
 @EnableHypermediaSupport(type = {})
-public class PayloadBuilderApplication {
+public class MdmApplication {
 
   @Bean
   public ObjectMapper objectMapper() {
@@ -31,6 +31,6 @@ public class PayloadBuilderApplication {
   }
 
   public static void main(String[] args) {
-    SpringApplication.run(PayloadBuilderApplication.class, args);
+    SpringApplication.run(MdmApplication.class, args);
   }
 }

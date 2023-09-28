@@ -87,3 +87,12 @@ The files must be served by a web server, e.g. from the `viewer` directory run:
 ```shell
 npx serve -p 9002
 ```
+
+## Demo
+
+1. Deploy reference data loader into a pool
+2. Single component deploy frontend notification into that pool
+3. Set `REFERENCE_DATA_LOADER_SERVICE_RDS_API_URL=https://ref-data-orchestration-function-app.azurewebsites.net/api` on the reference data loader configuration
+4. Set `IPAFFS_BASE_URL` to the reference data URL of the deployed pool in the reference data orchestration function configuration e.g. `https://referencedataloader-microservice-13.azurewebsites.net`
+5. Truncate the tables to be synced - this needs to be done with DELETE statement not TRUNCATE and can be done with our AD logins
+6. Trigger the sync through the notify URL on the function

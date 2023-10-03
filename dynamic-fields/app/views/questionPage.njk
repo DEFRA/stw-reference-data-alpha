@@ -18,6 +18,8 @@
 
       <form class="form" action="/path/of/next/page" method="post">
 
+        {{ htmlTest | safe }}
+
         {% for component in components %}
 
           {% if component.type === 'text' %}

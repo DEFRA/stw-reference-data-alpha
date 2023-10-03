@@ -57,7 +57,54 @@ const pages = [
       }
     ]
   },
-  { title: 'Origin of the import' },
+  {
+    url: '/origin-of-the-import',
+    title: 'Origin of the import',
+    components: [
+      {
+        type: 'select',
+        name: 'countryOfOrigin',
+        label: 'Country of origin',
+        items: [
+          { value: '', text: 'Select a country', default: true },
+          { value: 'AF', text: 'Afghanistan' },
+          { value: 'AX', text: 'Aland Islands' },
+          { value: 'AL', text: 'Albania' },
+          { value: 'DZ', text: 'Algeria' },
+          { value: 'AS', text: 'American Samoa' },
+          { value: 'AD', text: 'Andorra' },
+          { value: 'AO', text: 'Angola' }
+        ]
+      },
+      {
+        type: 'radio',
+        name: 'requireRegionOfOrigin',
+        label: 'Does the consignment require a region of origin code?',
+        items: [
+          {
+            value: true,
+            text: 'Yes',
+            components: [
+              {
+                type: 'text',
+                name: 'regionOfOrigin',
+                label: 'Enter the region of origin code'
+              }
+            ]
+          },
+          {
+            value: false,
+            text: 'No'
+          }
+        ]
+      },
+      {
+        type: 'text',
+        name: 'internalReferenceNumber',
+        label: 'Your internal reference number for this consignment (optional)'
+      }
+    ]
+  },
   { title: 'How do you wnt to add your commodity details' },
   { title: 'Commodity picker' },
   { title: 'Commodity species' },
@@ -77,7 +124,10 @@ const pages = [
           },
           {
             text: 'Transhipment / Onward travel',
-            value: 'transhipment'
+            value: 'transhipment',
+            conditional: {
+              html: '<h1>Hello</h1>'
+            }
           },
           {
             text: 'For re-entry',
@@ -178,7 +228,14 @@ router.get('/', (req, res) => {
 
 pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
-    res.render('questionPage', { pageName: page.title, components: page.components})
+    const template = `{% from "govuk/components/input/macro.njk" import govukInput %}
+          {{ govukInput({
+              label: {
+                text: 'Label'
+              },
+              name: 'name'
+            }) }}`
+    res.render('questionPage', { pageName: page.title, components: page.components, htmlTest: res.app.get('nunjucksEnv').renderString(template) })
   })
 })
 

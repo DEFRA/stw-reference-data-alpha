@@ -36,7 +36,27 @@ const pages = [
       }
     ]
   },
-  { title: 'Origin of the animal or product' },
+  {
+    url: '/country-of-origin',
+    title: 'Origin of the animal or product',
+    components: [
+      {
+        type: 'select',
+        name: 'countryOfOrigin',
+        label: 'Country of origin',
+        items: [
+          { value: '', text: 'Select a country', default: true },
+          { value: 'AF', text: 'Afghanistan' },
+          { value: 'AX', text: 'Aland Islands' },
+          { value: 'AL', text: 'Albania' },
+          { value: 'DZ', text: 'Algeria' },
+          { value: 'AS', text: 'American Samoa' },
+          { value: 'AD', text: 'Andorra' },
+          { value: 'AO', text: 'Angola' }
+        ]
+      }
+    ]
+  },
   { title: 'Origin of the import' },
   { title: 'How do you wnt to add your commodity details' },
   { title: 'Commodity picker' },

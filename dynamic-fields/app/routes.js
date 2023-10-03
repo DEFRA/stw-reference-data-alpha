@@ -2,7 +2,7 @@
 // For guidance on how to create routes see:
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
-
+const _ = require('lodash')
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
@@ -43,7 +43,53 @@ const pages = [
   { title: 'Commodity species' },
   { title: 'Variety and class' },
   { title: 'Commodity summary' },
-  { title: 'About the consignment (purpose)' },
+  {
+    id: 'contactDetails',
+    title: 'About the consignment (purpose)',
+    components: [
+      {
+        type: 'radio',
+        name: 'top-level',
+        label: 'What is the purpose of the consignment?',
+        values: [{
+          text: 'For internal market',
+          value: 'internal-market'
+        },
+          {
+            text: 'Transhipment / Onward travel',
+            value: 'transhipment'
+          },
+          {
+            text: 'For re-entry',
+            value: 're-entry',
+            components: [
+              {
+                type: 'text',
+                name: 'email',
+                label: 'Email address'
+              }
+            ]
+          },
+          {
+            text: 'Transit',
+            value: 'transit'
+          },
+          {
+            text: 'Private import',
+            value: 'private-import'
+          },
+          {
+            text: 'Transfer to',
+            value: 'transfer-to'
+          },
+          {
+            text: 'For import re-conformity check',
+            value: 'import-re-conformity-check'
+          }
+        ]
+      }
+    ]
+  },
   { title: 'Commodity details' },
   { title: 'Commodity details bulk' },
   { title: 'Additional details' },
@@ -114,4 +160,9 @@ pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
     res.render('questionPage', { pageName: page.title, components: page.components})
   })
+})
+
+router.get('/purpose', (req, res) => {
+  const { title, components} = pages[1]
+  res.render('purposePage', { pageTitle: title, components })
 })

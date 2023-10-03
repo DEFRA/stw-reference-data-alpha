@@ -259,9 +259,6 @@ const pages = [
 router.get('/', (req, res) => {
   const data = pages.map(page => ({
     title: { text: page.title },
-    status: page.url
-      ? { tag: { text: 'Complete', classes: 'govuk-tag--blue' } }
-      : { tag: { text: 'Incomplete', classes: 'govuk-tag--grey' } },
     href: page.url
   }))
   res.render('index', { data })

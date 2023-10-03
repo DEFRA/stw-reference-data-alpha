@@ -105,7 +105,30 @@ const pages = [
       }
     ]
   },
-  { title: 'How do you wnt to add your commodity details' },
+  {
+    url: '/input-method',
+    title: 'How do you want to add your commodity details',
+    components: [
+      {
+        type: 'radio',
+        name: 'inputMethod',
+        label: 'How do you want to add your commodity details?',
+        items: [
+          {
+            value: 'manual',
+            text: 'Manual entry',
+            hint: 'Enter one commodity line at a time.'
+          },
+          {
+            value: 'csv',
+            text: 'Upload from a CSV file',
+            hint: 'Add all details at once, by uploading a file you can prepare with most ' +
+              'spreadsheet software. Recommended for consignments with many commodity lines.'
+          }
+        ]
+      }
+    ]
+  },
   { title: 'Commodity picker' },
   { title: 'Commodity species' },
   { title: 'Variety and class' },
@@ -232,17 +255,13 @@ const pages = [
   { title: 'Transport details' }
 ]
 
-function getPage(url) {
-  return pages.find(page => page.url === url)
-}
-
 // Add your routes here
 router.get('/', (req, res) => {
   const data = pages.map(page => ({
     title: { text: page.title },
     status: page.url
-      ? { tag: { text: "Complete", classes: "govuk-tag--blue" } }
-      : { tag: { text: "Incomplete", classes: "govuk-tag--grey" } },
+      ? { tag: { text: 'Complete', classes: 'govuk-tag--blue' } }
+      : { tag: { text: 'Incomplete', classes: 'govuk-tag--grey' } },
     href: page.url
   }))
   res.render('index', { data })
@@ -254,7 +273,18 @@ pages.filter(page => page.url).forEach(page => {
       enrichComponents(res, page)
       return res.render('questionPage', { pageName: page.title, components: page.components})
     }
-    res.render('questionPage', { pageName: page.title, components: page.components })
+    res.render('questionPage', {
+      pageName: page.title,
+      components: page.components.map(component => ({
+        ...component,
+        items: component.items?.map(item => ({
+          ...item,
+          hint: {
+            text: item.hint
+          }
+        }))
+      }))
+    })
   })
 })
 

@@ -7,7 +7,35 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
 const pages = [
-  { title: 'What are you importing' },
+  {
+    url: '/what-are-you-importing',
+    title: 'What are you importing',
+    components: [
+      {
+        type: 'radio',
+        name: 'importing',
+        label: 'What are you importing',
+        items: [
+          {
+            value: 'CHEDA',
+            text: 'Live animals'
+          },
+          {
+            value: 'CHEDP',
+            text: 'Products of animal origin'
+          },
+          {
+            value: 'CHEDD',
+            text: 'High risk food and feed of non-animal origin'
+          },
+          {
+            value: 'CHEDPP',
+            text: 'Plants, plant products and other objects'
+          }
+        ]
+      }
+    ]
+  },
   { title: 'Origin of the animal or product' },
   { title: 'Origin of the import' },
   { title: 'How do you wnt to add your commodity details' },
@@ -82,7 +110,8 @@ router.get('/', (req, res) => {
   res.render('index', { data })
 })
 
-router.get('/contact-details', (req, res) => {
-  const { title, components } = getPage('/contact-details')
-  res.render('questionPage', { pageName: title, components })
+pages.filter(page => page.url).forEach(page => {
+  router.get(page.url, (req, res) => {
+    res.render('questionPage', { pageName: page.title, components: page.components})
+  })
 })

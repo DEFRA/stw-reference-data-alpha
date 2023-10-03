@@ -125,18 +125,40 @@ const pages = [
           {
             text: 'Transhipment / Onward travel',
             value: 'transhipment',
-            conditional: {
-              html: '<h1>Hello</h1>'
-            }
-          },
-          {
-            text: 'For re-entry',
-            value: 're-entry',
             components: [
               {
-                type: 'text',
-                name: 'email',
-                label: 'Email address'
+                type: 'dropdown',
+                name: 'bcp',
+                text: 'Exit border control post',
+                items: [{
+                  text: 'Select border control post',
+                  selected: true
+                },
+                {
+                  text: 'Belfast Pharmaceuticals - TESTY',
+                  value: 'TESTY'
+                },
+                {
+                  text: 'Edinburgh Airport (animals) - GBEDI4',
+                  value: 'GBEDI4'
+                }]
+              },
+              {
+                type: 'dropdown',
+                name: 'destination',
+                text: 'Destination country',
+                items: [{
+                  text: 'Select destination country',
+                  selected: true
+                },
+                  {
+                    text: 'Afghanistan',
+                    value: 'AF'
+                  },
+                  {
+                    text: 'Aland Islands',
+                    value: 'AX'
+                  }]
               }
             ]
           },
@@ -228,18 +250,23 @@ router.get('/', (req, res) => {
 
 pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
-    const template = `{% from "govuk/components/input/macro.njk" import govukInput %}
-          {{ govukInput({
-              label: {
-                text: 'Label'
-              },
-              name: 'name'
-            }) }}`
-    res.render('questionPage', { pageName: page.title, components: page.components, htmlTest: res.app.get('nunjucksEnv').renderString(template) })
+    if (page.title === 'About the consignment (purpose)') {
+      enrichComponents(res, page)
+      return res.render('questionPage', { pageName: page.title, components: page.components})
+    }
+    res.render('questionPage', { pageName: page.title, components: page.components })
   })
 })
 
-// router.get('/purpose', (req, res) => {
-//   const { title, components} = pages[1]
-//   res.render('purposePage', { pageTitle: title, components })
-// })
+const enrichComponents = (res, page) => {
+  const nunjucks = res.app.get('nunjucksEnv')
+  const item = _.chain(page.components)
+      .map(i => i.items)
+      .flatten()
+      .filter(i => i.value === 'transhipment')
+      .first()
+      .value()
+  item.conditional = {
+    html: nunjucks.render('components/transhipment.njk', { components: item.components} )
+  }
+}

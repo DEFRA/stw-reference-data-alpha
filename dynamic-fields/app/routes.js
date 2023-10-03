@@ -44,17 +44,17 @@ const pages = [
   { title: 'Variety and class' },
   { title: 'Commodity summary' },
   {
-    id: 'contactDetails',
+    url: '/purpose',
     title: 'About the consignment (purpose)',
     components: [
       {
         type: 'radio',
         name: 'top-level',
         label: 'What is the purpose of the consignment?',
-        values: [{
-          text: 'For internal market',
-          value: 'internal-market'
-        },
+        items: [{
+            text: 'For internal market',
+            value: 'internal-market'
+          },
           {
             text: 'Transhipment / Onward travel',
             value: 'transhipment'
@@ -162,7 +162,7 @@ pages.filter(page => page.url).forEach(page => {
   })
 })
 
-router.get('/purpose', (req, res) => {
-  const { title, components} = pages[1]
-  res.render('purposePage', { pageTitle: title, components })
-})
+// router.get('/purpose', (req, res) => {
+//   const { title, components} = pages[1]
+//   res.render('purposePage', { pageTitle: title, components })
+// })

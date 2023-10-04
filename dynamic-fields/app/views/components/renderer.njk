@@ -1,0 +1,9 @@
+{% for component in components %}
+  {% if component.type === "text" %}
+    {%- include "components/input" -%}
+  {% elseif component.type === "radio" %}
+    {%- include "components/radios" -%}
+  {% elseif component.type === "select" %}
+    {%- include "components/select" -%}
+  {% endif %}
+{% endfor %}

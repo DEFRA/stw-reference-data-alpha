@@ -2,7 +2,7 @@
 // For guidance on how to create routes see:
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
-const _ = require('lodash')
+
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
@@ -198,12 +198,12 @@ const pages = [
             value: 'transhipment',
             components: [
               {
-                type: 'dropdown',
+                type: 'select',
                 name: 'bcp',
-                text: 'Exit border control post',
+                label: 'Exit border control post',
                 items: [{
                   text: 'Select border control post',
-                  selected: true
+                  default: true
                 },
                 {
                   text: 'Belfast Pharmaceuticals - TESTY',
@@ -215,12 +215,12 @@ const pages = [
                 }]
               },
               {
-                type: 'dropdown',
+                type: 'select',
                 name: 'destination',
-                text: 'Destination country',
+                label: 'Destination country',
                 items: [{
                   text: 'Select destination country',
-                  selected: true
+                  default: true
                 },
                   {
                     text: 'Afghanistan',
@@ -314,10 +314,6 @@ router.get('/', (req, res) => {
 
 pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
-    if (page.title === 'About the consignment (purpose)') {
-      enrichComponents(res, page)
-      return res.render('questionPage', { pageName: page.title, components: page.components})
-    }
     const context = {
       pageName: page.title,
       components: page.components.map(component => ({
@@ -328,7 +324,8 @@ pages.filter(page => page.url).forEach(page => {
           value: item.value.toString(),
           hint: {
             text: item.hint
-          }
+          },
+          conditional: item.components ? renderComponents(res, item.components) : null
         }))
       }))
     }
@@ -336,15 +333,9 @@ pages.filter(page => page.url).forEach(page => {
   })
 })
 
-const enrichComponents = (res, page) => {
+function renderComponents(res, components) {
   const nunjucks = res.app.get('nunjucksEnv')
-  const item = _.chain(page.components)
-      .map(i => i.items)
-      .flatten()
-      .filter(i => i.value === 'transhipment')
-      .first()
-      .value()
-  item.conditional = {
-    html: nunjucks.render('components/transhipment.njk', { components: item.components} )
+  return {
+    html: nunjucks.render('components/renderer.njk', { nested: true, components })
   }
 }

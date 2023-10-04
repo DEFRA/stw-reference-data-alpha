@@ -18,56 +18,11 @@
 
       <form class="form" action="/path/of/next/page" method="post">
 
-        {% for component in components %}
-
-          {% if component.type === 'text' %}
-            {{ govukInput({
-              label: {
-                text: component.label,
-                isPageHeading: components.length === 1,
-                classes: 'govuk-label--xl' if components.length === 1 else 'govuk-label--m'
-              },
-              hint: {
-                text: component.hint
-              },
-              id: component.name,
-              name: component.name
-            }) }}
-          {% elseif component.type === 'radio' %}
-            {{ govukRadios({
-              name: component.name,
-              fieldset: {
-                legend: {
-                  text: component.label,
-                  isPageHeading: components.length === 1,
-                  classes: 'govuk-fieldset__legend--xl' if components.length === 1 else 'govuk-fieldset__legend--m'
-                }
-              },
-              hint: {
-                text: component.hint
-              },
-              value: component.value,
-              items: component.items
-            }) }}
-          {% elseif component.type === 'select' %}
-            {{ govukSelect({
-              name: component.name,
-              label: {
-                text: component.label,
-                isPageHeading: components.length === 1,
-                classes: 'govuk-label--xl' if components.length === 1 else 'govuk-label--m'
-              },
-              hint: {
-                text: component.hint
-              },
-              items: component.items
-            }) }}
-          {% endif %}
-
-        {% endfor %}
+        {%- include "components/renderer" -%}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "/"
         }) }}
 
       </form>

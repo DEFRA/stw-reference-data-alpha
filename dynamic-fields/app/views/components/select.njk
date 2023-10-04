@@ -1,0 +1,14 @@
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+{{ govukSelect({
+  name: component.name,
+  label: {
+    text: component.label,
+    isPageHeading: not nested and components.length === 1,
+    classes: 'govuk-label--s' if nested else ('govuk-label--xl' if components.length === 1 else 'govuk-label--m')
+  },
+  hint: {
+    text: component.hint
+  },
+  items: component.items
+}) }}

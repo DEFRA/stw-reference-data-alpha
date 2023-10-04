@@ -29,9 +29,8 @@
     </div>
   </div>
 
-  <p>
-    Current data:<br/>
+  {% call govukDetails({summaryText: "Stored data"}) %}
     <code class="govuk-!-font-size-14">{{ data | dump | replace(",", ", ") }}</code>
-  </p>
+  {% endcall %}
 
 {% endblock %}

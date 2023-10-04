@@ -13,7 +13,7 @@ const pages = [
     components: [
       {
         type: 'radio',
-        name: 'importing',
+        name: 'certificateType',
         label: 'What are you importing',
         items: [
           {
@@ -98,7 +98,10 @@ const pages = [
             text: 'No',
             default: true
           }
-        ]
+        ],
+        conditions: {
+          certificateType: ['CHEDA', 'CHEDP']
+        }
       },
       {
         type: 'select',
@@ -113,7 +116,10 @@ const pages = [
           { value: 'AS', text: 'American Samoa' },
           { value: 'AD', text: 'Andorra' },
           { value: 'AO', text: 'Angola' }
-        ]
+        ],
+        conditions: {
+          certificateType: ['CHEDP', 'CHEDD', 'CHEDPP']
+        }
       },
       {
         type: 'radio',
@@ -122,13 +128,16 @@ const pages = [
         items: [
           {
             value: true,
-            text: 'Yes',
+            text: 'Yes'
           },
           {
             value: false,
             text: 'No'
           }
-        ]
+        ],
+        conditions: {
+          certificateType: ['CHEDP']
+        }
       },
       {
         type: 'radio',
@@ -137,13 +146,16 @@ const pages = [
         items: [
           {
             value: true,
-            text: 'Yes',
+            text: 'Yes'
           },
           {
             value: false,
             text: 'No'
           }
-        ]
+        ],
+        conditions: {
+          certificateType: ['CHEDP']
+        }
       },
       {
         type: 'text',
@@ -189,7 +201,8 @@ const pages = [
         type: 'radio',
         name: 'top-level',
         label: 'What is the purpose of the consignment?',
-        items: [{
+        items: [
+          {
             text: 'For internal market',
             value: 'internal-market'
           },
@@ -205,23 +218,24 @@ const pages = [
                   text: 'Select border control post',
                   default: true
                 },
-                {
-                  text: 'Belfast Pharmaceuticals - TESTY',
-                  value: 'TESTY'
-                },
-                {
-                  text: 'Edinburgh Airport (animals) - GBEDI4',
-                  value: 'GBEDI4'
-                }]
+                  {
+                    text: 'Belfast Pharmaceuticals - TESTY',
+                    value: 'TESTY'
+                  },
+                  {
+                    text: 'Edinburgh Airport (animals) - GBEDI4',
+                    value: 'GBEDI4'
+                  }]
               },
               {
                 type: 'select',
                 name: 'destination',
                 label: 'Destination country',
-                items: [{
-                  text: 'Select destination country',
-                  default: true
-                },
+                items: [
+                  {
+                    text: 'Select destination country',
+                    default: true
+                  },
                   {
                     text: 'Afghanistan',
                     value: 'AF'
@@ -312,28 +326,47 @@ router.get('/', (req, res) => {
   res.render('index', { data })
 })
 
+router.post('/', (req, res) => {
+  res.redirect('/')
+})
+
 pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
     const context = {
       pageName: page.title,
-      components: page.components.map(component => ({
+      components: page.components
+      .filter(component => shouldShow(component, req.session.data))
+      .map(component => ({
         ...component,
-        value: component.items?.find(item => item.default)?.value.toString(),
-        items: component.items?.map(item => ({
-          ...item,
-          value: item.value.toString(),
-          hint: {
-            text: item.hint
-          },
-          conditional: item.components ? renderComponents(res, item.components) : null
-        }))
+        value: getValue(component, req.session.data),
+        items: getItems(component, res)
       }))
     }
     res.render('questionPage', context)
   })
 })
 
-function renderComponents(res, components) {
+function shouldShow (component, data) {
+  return !component.conditions ||
+    Object.entries(component.conditions).every(([key, values]) => values.includes(data[key]))
+}
+
+function getValue (component, data) {
+  return data[component.name] ?? component.items?.find(item => item.default)?.value.toString()
+}
+
+function getItems (component, res) {
+  return component.items?.map(item => ({
+    ...item,
+    value: item.value.toString(),
+    hint: {
+      text: item.hint
+    },
+    conditional: item.components ? renderComponents(res, item.components) : null
+  }))
+}
+
+function renderComponents (res, components) {
   const nunjucks = res.app.get('nunjucksEnv')
   return {
     html: nunjucks.render('components/renderer.njk', { nested: true, components })

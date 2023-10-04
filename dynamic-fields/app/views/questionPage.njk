@@ -16,18 +16,22 @@
         <h1 class="govuk-heading-xl">{{ pageName }}</h1>
       {% endif %}
 
-      <form class="form" action="/path/of/next/page" method="post">
+      <form class="form" action="/" method="post">
 
         {%- include "components/renderer" -%}
 
         {{ govukButton({
-          text: "Continue",
-          href: "/"
+          text: "Continue"
         }) }}
 
       </form>
 
     </div>
   </div>
+
+  <p>
+    Current data:<br/>
+    <code class="govuk-!-font-size-14">{{ data | dump | replace(",", ", ") }}</code>
+  </p>
 
 {% endblock %}

@@ -372,17 +372,21 @@ pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
     const context = {
       pageName: page.title,
-      components: page.components
-      .filter(component => shouldShow(component, req.session.data))
-      .map(component => ({
-        ...component,
-        value: getValue(component, req.session.data),
-        items: getItems(component, res)
-      }))
+      components: enrichComponents(page.components, req, res)
     }
     res.render('questionPage', context)
   })
 })
+
+function enrichComponents(components, req, res) {
+  return components
+  .filter(component => shouldShow(component, req.session.data))
+  .map(component => ({
+    ...component,
+    value: getValue(component, req.session.data),
+    items: getItems(component, req, res)
+  }))
+}
 
 function shouldShow (component, data) {
   return !component.conditions ||
@@ -390,17 +394,17 @@ function shouldShow (component, data) {
 }
 
 function getValue (component, data) {
-  return data[component.name] ?? component.items?.find(item => item.default)?.value.toString()
+  return data[component.name] ?? component.items?.find(item => item.default)?.value?.toString()
 }
 
-function getItems (component, res) {
+function getItems (component, req, res) {
   return component.items?.map(item => ({
     ...item,
-    value: item.value.toString(),
+    value: item.value?.toString(),
     hint: {
       text: item.hint
     },
-    conditional: item.components ? renderComponents(res, item.components) : null
+    conditional: item.components ? renderComponents(res, enrichComponents(item.components, req, res)) : null
   }))
 }
 

@@ -80,6 +80,7 @@ const pages = [
         type: 'radio',
         name: 'requireRegionOfOrigin',
         label: 'Does the consignment require a region of origin code?',
+        hint: 'The code will be on the health certificate if required.',
         items: [
           {
             value: true,
@@ -94,6 +95,52 @@ const pages = [
           },
           {
             value: false,
+            text: 'No',
+            default: true
+          }
+        ]
+      },
+      {
+        type: 'select',
+        name: 'consignmentCountry',
+        label: 'Country from where consigned',
+        items: [
+          { value: '', text: 'Select a country', default: true },
+          { value: 'AF', text: 'Afghanistan' },
+          { value: 'AX', text: 'Aland Islands' },
+          { value: 'AL', text: 'Albania' },
+          { value: 'DZ', text: 'Algeria' },
+          { value: 'AS', text: 'American Samoa' },
+          { value: 'AD', text: 'Andorra' },
+          { value: 'AO', text: 'Angola' }
+        ]
+      },
+      {
+        type: 'radio',
+        name: 'conform',
+        label: 'Does this consignment conform to regulatory requirements?',
+        items: [
+          {
+            value: true,
+            text: 'Yes',
+          },
+          {
+            value: false,
+            text: 'No'
+          }
+        ]
+      },
+      {
+        type: 'radio',
+        name: 'needMeansOfTranport',
+        label: 'Do you need to provide details for means of transport after Border Control Post (BCP)?',
+        items: [
+          {
+            value: true,
+            text: 'Yes',
+          },
+          {
+            value: false,
             text: 'No'
           }
         ]
@@ -101,7 +148,8 @@ const pages = [
       {
         type: 'text',
         name: 'internalReferenceNumber',
-        label: 'Your internal reference number for this consignment (optional)'
+        label: 'Your internal reference number for this consignment (optional)',
+        hint: 'Enter any internal reference number you want to use to identify this consignment, or leave blank.'
       }
     ]
   },
@@ -270,18 +318,21 @@ pages.filter(page => page.url).forEach(page => {
       enrichComponents(res, page)
       return res.render('questionPage', { pageName: page.title, components: page.components})
     }
-    res.render('questionPage', {
+    const context = {
       pageName: page.title,
       components: page.components.map(component => ({
         ...component,
+        value: component.items?.find(item => item.default)?.value.toString(),
         items: component.items?.map(item => ({
           ...item,
+          value: item.value.toString(),
           hint: {
             text: item.hint
           }
         }))
       }))
-    })
+    }
+    res.render('questionPage', context)
   })
 })
 

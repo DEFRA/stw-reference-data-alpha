@@ -25,7 +25,10 @@
               label: {
                 text: component.label,
                 isPageHeading: components.length === 1,
-                classes: 'govuk-label--xl' if components.length === 1
+                classes: 'govuk-label--xl' if components.length === 1 else 'govuk-label--m'
+              },
+              hint: {
+                text: component.hint
               },
               id: component.name,
               name: component.name
@@ -37,9 +40,13 @@
                 legend: {
                   text: component.label,
                   isPageHeading: components.length === 1,
-                  classes: 'govuk-fieldset__legend--xl' if components.length === 1
+                  classes: 'govuk-fieldset__legend--xl' if components.length === 1 else 'govuk-fieldset__legend--m'
                 }
               },
+              hint: {
+                text: component.hint
+              },
+              value: component.value,
               items: component.items
             }) }}
           {% elseif component.type === 'select' %}
@@ -48,7 +55,10 @@
               label: {
                 text: component.label,
                 isPageHeading: components.length === 1,
-                classes: 'govuk-label--xl' if components.length === 1
+                classes: 'govuk-label--xl' if components.length === 1 else 'govuk-label--m'
+              },
+              hint: {
+                text: component.hint
               },
               items: component.items
             }) }}

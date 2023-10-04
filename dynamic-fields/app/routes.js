@@ -100,9 +100,35 @@ const pages = [
           }
         ],
         conditions: {
-          certificateType: ['CHEDA', 'CHEDP']
+          certificateType: ['CHEDA']
         }
       },
+      {
+        type: 'radio',
+        name: 'requireRegionOfOrigin',
+        label: 'Does your consignment require a region code?',
+        items: [
+          {
+            value: true,
+            text: 'Yes',
+            components: [
+              {
+                type: 'text',
+                name: 'regionOfOrigin',
+                label: 'Enter the region code'
+              }
+            ]
+          },
+          {
+            value: false,
+            text: 'No',
+            default: true
+          }
+        ],
+        conditions: {
+          certificateType: ['CHEDP']
+        }
+      }, // The label and hints change between CHEDA and CHEDP, so it's duplicated, dunno if there is a nicer way?
       {
         type: 'select',
         name: 'consignmentCountry',
@@ -161,7 +187,19 @@ const pages = [
         type: 'text',
         name: 'internalReferenceNumber',
         label: 'Your internal reference number for this consignment (optional)',
-        hint: 'Enter any internal reference number you want to use to identify this consignment, or leave blank.'
+        hint: 'Enter any internal reference number you want to use to identify this consignment, or leave blank.',
+        conditions: {
+          certificateType: ['CHEDA', 'CHEDD']
+        }
+      },
+      {
+        type: 'text',
+        name: 'internalReferenceNumber',
+        label: 'Add a reference number for this consignment (optional)',
+        hint: 'This can be whatever internal reference you use for the consignment.',
+        conditions: {
+          certificateType: ['CHEDP', 'CHEDPP']
+        }
       }
     ]
   },

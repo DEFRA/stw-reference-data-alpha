@@ -342,7 +342,98 @@ const pages = [
   { title: 'Accompanying documents' },
   { title: 'Approved establishment of origin' },
   { title: 'Adminal identification details' },
-  { title: 'Consignor or exporter, consignee, importer and place of destination' },
+  {
+    url: '/traders',
+    title: 'Consignor or exporter, consignee, importer and place of destination',
+    components: [
+      {
+        type: 'table',
+        name: 'traders',
+        label: 'Consignor or exporter',
+        head: [
+          { text: 'Name' },
+          { text: 'Address' },
+          { text: 'Country' },
+          { text: '' },
+        ],
+        rows: [[
+          { text: '0984f2248cb743bf' },
+          { text: '922 Buckridge Lane, Apt. 155, Montana, Donnellyside, 15878-8' },
+          { text: 'Poland' },
+          { html: '<a href="/traders/consignor/search" class="govuk-link" id="edit-consignor">Change</a>'}
+        ]]
+      },
+      {
+        type: 'table',
+        name: 'consignee',
+        label: 'Consignee',
+        head: [
+          { text: 'Name' },
+          { text: 'Address' },
+          { text: 'Country' },
+          { text: '' },
+        ],
+        rows: [[
+          { text: '' },
+          { text: '' },
+          { text: '' },
+          { text: '' }
+        ]]
+      },
+      {
+        type: 'link',
+        name: 'add-consignee',
+        label: 'Add a consignee',
+        link: '/traders/consignee/search'
+      },
+      {
+        type: 'table',
+        name: 'importer',
+        label: 'Importer',
+        head: [
+          { text: 'Name' },
+          { text: 'Address' },
+          { text: 'Country' },
+          { text: '' },
+        ],
+        rows: [[
+          { text: '' },
+          { text: '' },
+          { text: '' },
+          { text: '' }
+        ]]
+      },
+      {
+        type: 'link',
+        name: 'add-importer',
+        label: 'Add a importer',
+        link: '/traders/importers/search'
+      },
+      {
+        type: 'table',
+        name: 'place-of-destination',
+        label: 'Place of destination',
+        head: [
+          { text: 'Name' },
+          { text: 'Address' },
+          { text: 'Country' },
+          { text: '' },
+        ],
+        rows: [[
+          { text: '' },
+          { text: '' },
+          { text: '' },
+          { text: '' }
+        ]]
+      },
+      {
+        type: 'link',
+        name: 'add-destination',
+        label: 'Add a place of destination',
+        link: '/traders/final-destination/search'
+      }
+    ]
+  },
   { title: 'Transporter' },
   { title: 'Means of transport after BCP' },
   { title: 'Route' },

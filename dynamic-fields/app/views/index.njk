@@ -11,9 +11,13 @@
       <h1 class="govuk-heading-xl">Dynamic fields testing</h1>
 
       {{ govukTaskList({
-        items: data
+        items: pageLinks
       }) }}
     </div>
   </div>
+
+  {% call govukDetails({summaryText: "Stored data"}) %}
+    <code class="govuk-!-font-size-14">{{ data | dump | replace(",", ", ") }}</code>
+  {% endcall %}
 
 {% endblock %}

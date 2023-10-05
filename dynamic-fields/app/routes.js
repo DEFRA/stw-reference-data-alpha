@@ -10,6 +10,7 @@ const pages = [
   {
     url: '/what-are-you-importing',
     title: 'What are you importing',
+    nextPage: '/country-of-origin',
     components: [
       {
         type: 'radio',
@@ -39,6 +40,7 @@ const pages = [
   {
     url: '/country-of-origin',
     title: 'Origin of the animal or product',
+    nextPage: '/origin-of-the-import',
     components: [
       {
         type: 'select',
@@ -60,6 +62,17 @@ const pages = [
   {
     url: '/origin-of-the-import',
     title: 'Origin of the import',
+    nextPage: [
+      {
+        conditions: {
+          certificateType: ['CHEDPP']
+        },
+        url: '/input-method'
+      },
+      { // No conditions means default option
+        url: '/purpose'
+      }
+    ],
     components: [
       {
         type: 'select',
@@ -206,6 +219,7 @@ const pages = [
   {
     url: '/input-method',
     title: 'How do you want to add your commodity details',
+    nextPage: '/purpose',
     components: [
       {
         type: 'radio',
@@ -341,7 +355,7 @@ const pages = [
   { title: 'Nominated contacts' },
   { title: 'Accompanying documents' },
   { title: 'Approved establishment of origin' },
-  { title: 'Adminal identification details' },
+  { title: 'Animal identification details' },
   {
     url: '/traders',
     title: 'Consignor or exporter, consignee, importer and place of destination',
@@ -451,11 +465,11 @@ const pages = [
 
 // Add your routes here
 router.get('/', (req, res) => {
-  const data = pages.map(page => ({
+  const pageLinks = pages.map(page => ({
     title: { text: shouldShow(page, req.session.data) ? page.title : `${page.title} (Hidden for ${req.session.data.certificateType})` },
     href: shouldShow(page, req.session.data) ? page.url : null
   }))
-  res.render('index', { data })
+  res.render('index', { pageLinks })
 })
 
 router.post('/', (req, res) => {
@@ -469,6 +483,19 @@ pages.filter(page => page.url).forEach(page => {
       components: enrichComponents(page.components, req, res)
     }
     res.render('questionPage', context)
+  })
+
+  router.post(page.url, (req, res) => {
+    const action = req.session.data.action
+    delete req.session.data.action
+    if (action === "continue") {
+      const nextPage = typeof page.nextPage === 'string'
+        ? page.nextPage
+        : page.nextPage.find(option => shouldShow(option, req.session.data)).url
+      res.redirect(nextPage)
+    } else {
+      res.redirect('/')
+    }
   })
 })
 

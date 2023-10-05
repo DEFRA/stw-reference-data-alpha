@@ -16,18 +16,35 @@
         <h1 class="govuk-heading-xl">{{ pageName }}</h1>
       {% endif %}
 
-      <form class="form" action="/" method="post">
+      <form class="form" method="post">
 
         {%- include "components/renderer" -%}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+        <div class="govuk-!-margin-bottom-4">
+          {{ govukButton({
+            text: "Save and return to hub",
+            name: "action",
+            value: "return",
+            classes: "govuk-!-margin-bottom-0 govuk-!-margin-right-1"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and continue",
+            name: "action",
+            value: "continue",
+            classes: "govuk-!-margin-bottom-0"
+          }) }}
+        </div>
+        <p class="govuk-body">
+          <a href="/">Cancel and return to hub</a>
+        </p>
 
       </form>
 
     </div>
   </div>
+
+  <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
 
   {% call govukDetails({summaryText: "Stored data"}) %}
     <code class="govuk-!-font-size-14">{{ data | dump | replace(",", ", ") }}</code>

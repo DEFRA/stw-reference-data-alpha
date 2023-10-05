@@ -333,7 +333,10 @@ const pages = [
         name: 'agent',
         label: 'Agent'
       }
-    ]
+    ],
+    conditions: {
+      certificateType: ['CHEDPP']
+    }
   },
   { title: 'Nominated contacts' },
   { title: 'Accompanying documents' },
@@ -358,8 +361,8 @@ const pages = [
 // Add your routes here
 router.get('/', (req, res) => {
   const data = pages.map(page => ({
-    title: { text: page.title },
-    href: page.url
+    title: { text: shouldShow(page, req.session.data) ? page.title : `${page.title} (Hidden for ${req.session.data.certificateType})` },
+    href: shouldShow(page, req.session.data) ? page.url : null
   }))
   res.render('index', { data })
 })

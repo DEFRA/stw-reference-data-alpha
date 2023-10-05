@@ -9,5 +9,9 @@
     {%- include 'components/table' -%}
   {% elseif component.type === 'link' %}
     {%- include 'components/link' -%}
+  {% elseif component.type === 'date' %}
+    {%- include 'components/date' -%}
+  {% elseif component.type === 'time' %}
+    {%- include 'components/time' -%}
   {% endif %}
 {% endfor %}

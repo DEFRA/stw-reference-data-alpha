@@ -1,0 +1,16 @@
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+{{ govukDateInput({
+  id: component.name,
+  namePrefix: component.name,
+  fieldset: {
+    legend: {
+      text: component.label,
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: component.hint
+  }
+}) }}

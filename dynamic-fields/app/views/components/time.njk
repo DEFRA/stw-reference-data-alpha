@@ -1,0 +1,18 @@
+<div class="govuk-form-group ">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-visually-hidden">Time entry:</legend>
+    <span class="govuk-hint">{{ component.hint }}</span>
+    <div class="govuk-date-input" id="time">
+      {% for item in component.items %}
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="time-{{ item.text }}">
+              {{ item.text }}
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="time-{{ item.text }}" name="time-{{ item.text }}" type="text" maxlength="2" inputmode="numeric" value="{{ item.value }}">
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </fieldset>
+</div>

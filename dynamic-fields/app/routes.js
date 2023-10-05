@@ -359,6 +359,7 @@ const pages = [
   {
     url: '/traders',
     title: 'Consignor or exporter, consignee, importer and place of destination',
+    nextPage: '/transport',
     components: [
       {
         type: 'table',
@@ -449,7 +450,57 @@ const pages = [
     ]
   },
   { title: 'Transporter' },
-  { title: 'Means of transport after BCP' },
+  {
+    url: '/means-of-transport',
+    title: 'Means of transport after Border Control Post (BCP)',
+    nextPage: '/route',
+    components: [
+      {
+        type: 'select',
+        label: 'Means of transport after the BCP',
+        items: [{
+              text: 'Select means of transport after the BCP',
+              default: true
+            },
+            {
+              text: 'Airplane',
+              value: 'plane'
+            },
+            {
+              text: 'Railway',
+              value: 'rail'
+            }]
+      },
+      {
+        type: 'text',
+        label: 'Identification',
+        hint: 'Flight number, vessel name or vehicle registration',
+      },
+      {
+        type: 'text',
+        label: 'Document',
+        hint: 'Air Waybill, Bill of lading or ship manifest',
+      },
+      {
+        type: 'date',
+        label: 'Date and time of departure',
+        hint: 'For example, 15 8 2020',
+      },
+      {
+        type: 'time',
+        hint: '24 hour format',
+        items: [
+          {
+            text: 'Hour',
+            value: ''
+          },
+          {
+            text: 'Minutes',
+            value: ''
+          }]
+      }
+    ]
+  },
   { title: 'Route' },
   { title: 'Organisation address' },
   { title: 'Do you know the commodity code' },

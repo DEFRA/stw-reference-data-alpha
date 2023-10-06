@@ -13,5 +13,7 @@
     {%- include 'components/date' -%}
   {% elseif component.type === 'time' %}
     {%- include 'components/time' -%}
+  {% elseif component.type === 'trader' %}
+    {%- include 'components/trader' -%}
   {% endif %}
 {% endfor %}

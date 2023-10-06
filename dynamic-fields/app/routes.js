@@ -362,90 +362,272 @@ const pages = [
     nextPage: '/transport',
     components: [
       {
-        type: 'table',
-        name: 'traders',
-        label: 'Consignor or exporter',
-        head: [
-          { text: 'Name' },
-          { text: 'Address' },
-          { text: 'Country' },
-          { text: '' },
-        ],
-        rows: [[
-          { text: '0984f2248cb743bf' },
-          { text: '922 Buckridge Lane, Apt. 155, Montana, Donnellyside, 15878-8' },
-          { text: 'Poland' },
-          { html: '<a href="/traders/consignor/search" class="govuk-link" id="edit-consignor">Change</a>'}
-        ]]
+        type: 'trader',
+        name: 'consignor',
+        label: 'Consignor or exporter'
       },
       {
-        type: 'table',
+        type: 'trader',
         name: 'consignee',
-        label: 'Consignee',
-        head: [
-          { text: 'Name' },
-          { text: 'Address' },
-          { text: 'Country' },
-          { text: '' },
-        ],
-        rows: [[
-          { text: '' },
-          { text: '' },
-          { text: '' },
-          { text: '' }
-        ]]
+        label: 'Consignee'
       },
       {
-        type: 'link',
-        name: 'add-consignee',
-        label: 'Add a consignee',
-        link: '/traders/consignee/search'
+        type: 'trader',
+        name: 'Importer',
+        label: 'Importer'
       },
       {
-        type: 'table',
-        name: 'importer',
-        label: 'Importer',
-        head: [
-          { text: 'Name' },
-          { text: 'Address' },
-          { text: 'Country' },
-          { text: '' },
-        ],
-        rows: [[
-          { text: '' },
-          { text: '' },
-          { text: '' },
-          { text: '' }
-        ]]
+        type: 'trader',
+        name: 'placeOfDestination',
+        label: 'Place of destination'
+      }
+    ]
+  },
+  {
+    url: '/add-consignor',
+    title: 'Add consignor',
+    nextPage: '/traders',
+    components: [
+      {
+        type: 'text',
+        name: 'consignorName',
+        label: 'Consignor name'
       },
       {
-        type: 'link',
-        name: 'add-importer',
-        label: 'Add a importer',
-        link: '/traders/importers/search'
+        type: 'text',
+        name: 'consignorAddressLine1',
+        label: 'Address line 1'
       },
       {
-        type: 'table',
-        name: 'place-of-destination',
-        label: 'Place of destination',
-        head: [
-          { text: 'Name' },
-          { text: 'Address' },
-          { text: 'Country' },
-          { text: '' },
-        ],
-        rows: [[
-          { text: '' },
-          { text: '' },
-          { text: '' },
-          { text: '' }
-        ]]
+        type: 'text',
+        name: 'consignorAddressLine2',
+        label: 'Address line 2 (optional)'
       },
       {
-        type: 'link',
-        name: 'add-destination',
-        label: 'Add a place of destination',
-        link: '/traders/final-destination/search'
+        type: 'text',
+        name: 'consignorAddressLine3',
+        label: 'Address line 3 (optional)'
+      },
+      {
+        type: 'text',
+        name: 'consignorCity',
+        label: 'City or town'
+      },
+      {
+        type: 'text',
+        name: 'consignorPostcode',
+        label: 'Postcode or ZIP code'
+      },
+      {
+        type: 'text',
+        name: 'consignorTelephoneNumber',
+        label: 'Telephone number'
+      },
+      {
+        type: 'select',
+        name: 'consignorCountry',
+        label: 'Country',
+        items: [
+          { value: '', text: 'Select a country', default: true },
+          { value: 'AF', text: 'Afghanistan' },
+          { value: 'AX', text: 'Aland Islands' },
+          { value: 'AL', text: 'Albania' },
+          { value: 'DZ', text: 'Algeria' },
+          { value: 'AS', text: 'American Samoa' },
+          { value: 'AD', text: 'Andorra' },
+          { value: 'AO', text: 'Angola' }
+        ]
+      },
+      {
+        type: 'text',
+        name: 'consignorEmailAddress',
+        label: 'Email address'
+      }
+    ]
+  },
+  {
+    url: '/add-consignee',
+    title: 'Add consignee',
+    nextPage: '/traders',
+    components: [
+      {
+        type: 'text',
+        name: 'consigneeName',
+        label: 'Consignee name'
+      },
+      {
+        type: 'text',
+        name: 'consigneeAddressLine1',
+        label: 'Address line 1'
+      },
+      {
+        type: 'text',
+        name: 'consigneeAddressLine2',
+        label: 'Address line 2 (optional)'
+      },
+      {
+        type: 'text',
+        name: 'consigneeAddressLine3',
+        label: 'Address line 3 (optional)'
+      },
+      {
+        type: 'text',
+        name: 'consigneeCity',
+        label: 'City or town'
+      },
+      {
+        type: 'text',
+        name: 'consigneePostcode',
+        label: 'Postcode or ZIP code'
+      },
+      {
+        type: 'text',
+        name: 'consigneeTelephoneNumber',
+        label: 'Telephone number'
+      },
+      {
+        type: 'select',
+        name: 'consigneeCountry',
+        label: 'Country',
+        items: [
+          { value: '', text: 'Select a country', default: true },
+          { value: 'AF', text: 'Afghanistan' },
+          { value: 'AX', text: 'Aland Islands' },
+          { value: 'AL', text: 'Albania' },
+          { value: 'DZ', text: 'Algeria' },
+          { value: 'AS', text: 'American Samoa' },
+          { value: 'AD', text: 'Andorra' },
+          { value: 'AO', text: 'Angola' }
+        ]
+      },
+      {
+        type: 'text',
+        name: 'consigneeEmailAddress',
+        label: 'Email address'
+      }
+    ]
+  },
+  {
+    url: '/add-importer',
+    title: 'Add importer',
+    nextPage: '/traders',
+    components: [
+      {
+        type: 'text',
+        name: 'importerName',
+        label: 'Importer name'
+      },
+      {
+        type: 'text',
+        name: 'importerAddressLine1',
+        label: 'Address line 1'
+      },
+      {
+        type: 'text',
+        name: 'importerAddressLine2',
+        label: 'Address line 2 (optional)'
+      },
+      {
+        type: 'text',
+        name: 'importerAddressLine3',
+        label: 'Address line 3 (optional)'
+      },
+      {
+        type: 'text',
+        name: 'importerCity',
+        label: 'City or town'
+      },
+      {
+        type: 'text',
+        name: 'importerPostcode',
+        label: 'Postcode or ZIP code'
+      },
+      {
+        type: 'text',
+        name: 'importerTelephoneNumber',
+        label: 'Telephone number'
+      },
+      {
+        type: 'select',
+        name: 'importerCountry',
+        label: 'Country',
+        items: [
+          { value: '', text: 'Select a country', default: true },
+          { value: 'AF', text: 'Afghanistan' },
+          { value: 'AX', text: 'Aland Islands' },
+          { value: 'AL', text: 'Albania' },
+          { value: 'DZ', text: 'Algeria' },
+          { value: 'AS', text: 'American Samoa' },
+          { value: 'AD', text: 'Andorra' },
+          { value: 'AO', text: 'Angola' }
+        ]
+      },
+      {
+        type: 'text',
+        name: 'importerEmailAddress',
+        label: 'Email address'
+      }
+    ]
+  },
+  {
+    url: '/add-placeOfDestination',
+    title: 'Add place of destination',
+    nextPage: '/traders',
+    components: [
+      {
+        type: 'text',
+        name: 'placeOfDestinationName',
+        label: 'Place of destination name'
+      },
+      {
+        type: 'text',
+        name: 'placeOfDestinationAddressLine1',
+        label: 'Address line 1'
+      },
+      {
+        type: 'text',
+        name: 'placeOfDestinationAddressLine2',
+        label: 'Address line 2 (optional)'
+      },
+      {
+        type: 'text',
+        name: 'placeOfDestinationAddressLine3',
+        label: 'Address line 3 (optional)'
+      },
+      {
+        type: 'text',
+        name: 'placeOfDestinationCity',
+        label: 'City or town'
+      },
+      {
+        type: 'text',
+        name: 'placeOfDestinationPostcode',
+        label: 'Postcode or ZIP code'
+      },
+      {
+        type: 'text',
+        name: 'placeOfDestinationTelephoneNumber',
+        label: 'Telephone number'
+      },
+      {
+        type: 'select',
+        name: 'placeOfDestinationCountry',
+        label: 'Country',
+        items: [
+          { value: '', text: 'Select a country', default: true },
+          { value: 'AF', text: 'Afghanistan' },
+          { value: 'AX', text: 'Aland Islands' },
+          { value: 'AL', text: 'Albania' },
+          { value: 'DZ', text: 'Algeria' },
+          { value: 'AS', text: 'American Samoa' },
+          { value: 'AD', text: 'Andorra' },
+          { value: 'AO', text: 'Angola' }
+        ]
+      },
+      {
+        type: 'text',
+        name: 'placeOfDestinationEmailAddress',
+        label: 'Email address'
       }
     ]
   },
@@ -516,7 +698,9 @@ const pages = [
 
 // Add your routes here
 router.get('/', (req, res) => {
-  const pageLinks = pages.map(page => ({
+  const pageLinks = pages
+  .filter(page => !['/add-consignor', '/add-consignee', '/add-importer', '/add-placeOfDestination'].includes(page.url))
+  .map(page => ({
     title: { text: shouldShow(page, req.session.data) ? page.title : `${page.title} (Hidden for ${req.session.data.certificateType})` },
     href: shouldShow(page, req.session.data) ? page.url : null
   }))
@@ -551,13 +735,25 @@ pages.filter(page => page.url).forEach(page => {
 })
 
 function enrichComponents(components, req, res) {
+  const data = req.session.data
   return components
-  .filter(component => shouldShow(component, req.session.data))
-  .map(component => ({
-    ...component,
-    value: getValue(component, req.session.data),
-    items: getItems(component, req, res)
-  }))
+  .filter(component => shouldShow(component, data))
+  .map(component => {
+    const enriched = {
+      ...component,
+      value: getValue(component, data),
+      items: getItems(component, req, res)
+    }
+    if (component.type === 'trader') {
+      enriched.isTraderEntered = data[`${component.name}Name`]?.length > 0
+      enriched.value = {
+        name: data[`${component.name}Name`],
+        address: data[`${component.name}AddressLine1`],
+        country: data[`${component.name}Country`]
+      }
+    }
+    return enriched
+  })
 }
 
 function shouldShow (component, data) {

@@ -2,12 +2,8 @@ const Joi = require("joi")
 const _ = require("lodash")
 
 const check = (body, components) => {
-    const enrichedBody = enrichBody(body)
     const schema = Joi.object(createSchema(components)).options({ allowUnknown: true })
-    return schema.validate(enrichedBody, { abortEarly: false })
-}
-const enrichBody = body => {
-    return {...body, date: body['date-day'] + '-' + body['date-month'] + '-' + body['date-year'] }
+    return schema.validate(body, { abortEarly: false })
 }
 
 const createSchema = components => {
@@ -25,12 +21,6 @@ const createJoi = validation => {
     let joi = createJoiBaseType(validation.data)
     joi = updateJoiForDataConstraints(joi, validation.types)
     return overrideMessage(joi, validation.message)
-}
-
-const overrideMessage = (joi, message) => {
-    if (message) {
-        return joi.message(message)
-    }
 }
 
 const createJoiBaseType = data => {
@@ -64,6 +54,10 @@ const updateJoiForDataConstraints = (joi, types) => {
         }
     })
     return val
+}
+
+const overrideMessage = (joi, message) => {
+    return message ? joi.message(message) : joi
 }
 
 module.exports = {

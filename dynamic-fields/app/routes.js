@@ -690,12 +690,6 @@ const pages = [
         name: 'date',
         label: 'Date and time of departure',
         hint: 'For example, 15 8 2020',
-        validation: {
-          data: 'date',
-          types: [{
-            greater: '1-1-2023'
-          }]
-        }
       },
       {
         type: 'time',
@@ -710,14 +704,6 @@ const pages = [
             text: 'Minutes',
             value: ''
           }],
-        validation: {
-          data: 'number',
-          types: [{
-            min: 3
-          }, {
-            max: 10
-          }]
-        }
       }
     ]
   },

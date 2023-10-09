@@ -11,5 +11,6 @@
   },
   id: component.name,
   name: component.name,
-  value: component.value
+  value: component.value,
+  errorMessage: { text: errors[component.name].description } if errors[component.name]
 }) }}

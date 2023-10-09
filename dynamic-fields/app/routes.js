@@ -2,9 +2,13 @@
 // For guidance on how to create routes see:
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
+const Joi = require('joi')
+const _ = require('lodash')
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+
+const validation = require('./validation')
 
 const pages = [
   {
@@ -640,6 +644,7 @@ const pages = [
       {
         type: 'select',
         label: 'Means of transport after the BCP',
+        name: 'means-of-transport',
         items: [{
               text: 'Select means of transport after the BCP',
               default: true
@@ -655,21 +660,46 @@ const pages = [
       },
       {
         type: 'text',
+        name: 'identification',
         label: 'Identification',
         hint: 'Flight number, vessel name or vehicle registration',
+        validation: {
+          data: 'string',
+          types: [{
+            min: 3
+          },{
+            max: 10
+          }]
+        }
       },
       {
         type: 'text',
+        name: 'document',
         label: 'Document',
         hint: 'Air Waybill, Bill of lading or ship manifest',
+        validation: {
+          data: 'regex',
+          types: [{
+            regex: '^[\\w\\s]+$'
+          }],
+          message: 'This is a regex failure'
+        }
       },
       {
         type: 'date',
+        name: 'date',
         label: 'Date and time of departure',
         hint: 'For example, 15 8 2020',
+        validation: {
+          data: 'date',
+          types: [{
+            greater: '1-1-2023'
+          }]
+        }
       },
       {
         type: 'time',
+        name: 'time',
         hint: '24 hour format',
         items: [
           {
@@ -679,7 +709,15 @@ const pages = [
           {
             text: 'Minutes',
             value: ''
+          }],
+        validation: {
+          data: 'number',
+          types: [{
+            min: 3
+          }, {
+            max: 10
           }]
+        }
       }
     ]
   },
@@ -724,6 +762,16 @@ pages.filter(page => page.url).forEach(page => {
     const action = req.session.data.action
     delete req.session.data.action
     if (action === "continue") {
+      const result = validation.check(req.body, page.components)
+      if(result.error) {
+        const context = {
+          pageName: page.title,
+          components: enrichComponents(page.components, req, res),
+          errors: errors(result)
+        }
+        return res.render('questionPage', context)
+      }
+
       const nextPage = typeof page.nextPage === 'string'
         ? page.nextPage
         : page.nextPage.find(option => shouldShow(option, req.session.data)).url
@@ -781,4 +829,13 @@ function renderComponents (res, components) {
   return {
     html: nunjucks.render('components/renderer.njk', { nested: true, components })
   }
+}
+
+const errors = result => {
+  const errors = result.error?.details.map(detail => ({
+    field: detail.path,
+    description: detail.message
+  }))
+  return errors.reduce(
+      (obj, item) => Object.assign(obj, { [item.field]: {'description' : item.description }}), {});
 }

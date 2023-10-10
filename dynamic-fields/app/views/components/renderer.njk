@@ -15,5 +15,7 @@
     {%- include 'components/time' -%}
   {% elseif component.type === 'trader' %}
     {%- include 'components/trader' -%}
+  {% elseif component.type === 'checkbox' %}
+    {%- include 'components/checkboxes' -%}
   {% endif %}
 {% endfor %}

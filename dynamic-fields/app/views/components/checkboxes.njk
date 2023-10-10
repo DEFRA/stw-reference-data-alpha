@@ -1,0 +1,16 @@
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: component.name,
+  fieldset: {
+    legend: {
+      text: component.label,
+      isPageHeading: not nested and components.length === 1,
+      classes: 'govuk-fieldset__legend--s' if nested else ('govuk-fieldset__legend--xl' if components.length === 1 else 'govuk-fieldset__legend--m')
+    }
+  },
+  hint: {
+    text: component.hint
+  },
+  items: component.items
+}) }}

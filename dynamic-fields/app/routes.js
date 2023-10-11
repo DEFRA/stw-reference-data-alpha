@@ -14,6 +14,7 @@ const pages = [
   {
     url: '/what-are-you-importing',
     title: 'What are you importing',
+    secondaryTitle: 'About the consignment',
     nextPage: '/country-of-origin',
     components: [
       {
@@ -44,6 +45,7 @@ const pages = [
   {
     url: '/country-of-origin',
     title: 'Origin of the animal or product',
+    secondaryTitle: 'About the consignment',
     nextPage: '/origin-of-the-import',
     components: [
       {
@@ -66,6 +68,7 @@ const pages = [
   {
     url: '/origin-of-the-import',
     title: 'Origin of the import',
+    secondaryTitle: 'About the consignment',
     nextPage: [
       {
         conditions: {
@@ -298,6 +301,7 @@ const pages = [
   {
     url: '/purpose',
     title: 'About the consignment (purpose)',
+    secondaryTitle: 'Purpose of the consignment',
     components: [
       {
         type: 'radio',
@@ -371,8 +375,111 @@ const pages = [
   },
   { title: 'Commodity details' },
   { title: 'Commodity details bulk' },
-  { title: 'Additional details' },
-  { title: 'Transport to the BCP' },
+  {
+    url: '/additional-details',
+    title: 'Additional details',
+    secondaryTitle: 'Description of the goods',
+    nextPage: '/transport-to-bcp',
+    components: [
+      {
+        type: 'totals',
+        name: 'animalsTotals',
+        label: 'Total',
+        items: [
+          {
+            text: 'Number of animals'
+          },
+          {
+            text: 'Number of packages'
+          }
+        ]
+      },
+      {
+        type: 'radio',
+        name: 'animalsCertifiedFor',
+        label: 'What are the animals certified for?',
+        items: [
+          {
+            value: 'approved',
+            text: 'Approved bodies'
+          },
+          {
+            value: 'breeding',
+            text: 'Breeding and/or production'
+          },
+          {
+            value: 'pets',
+            text: 'Pets'
+          },
+          {
+            value: 'registeredEquidae',
+            text: 'Registered equidae'
+          },
+          {
+            value: 'slaughter',
+            text: 'Slaughter'
+          },
+          {
+            value: 'other',
+            text: 'Other'
+          }
+        ]
+      },
+      {
+        type: 'radio',
+        name: 'animalsUnweaned',
+        label: 'Does the consignment contain any unweaned animals?',
+        items: [{
+          text: 'Yes',
+          value: 'yes'
+        },
+          {
+            text: 'No',
+            value: 'no'
+          }]
+      },
+      {
+        type: 'radio',
+        name: 'animalsShippingContainers',
+        label: 'Will your goods be imported in shipping containers or road trailers?',
+        items: [{
+          text: 'Yes',
+          value: 'yes',
+          components: [{
+            type: 'text',
+            label: 'Container or trailer number',
+            name: 'containerNumber',
+            hint: 'Enter the container\'s identification number, or the trailer\'s registration number or number plate.'
+          },
+            {
+              type: 'text',
+              label: 'Seal number',
+              name: 'sealNumber',
+            },
+            {
+              type: 'checkbox',
+              label: 'Official seal',
+              name: 'officialSeal',
+              items: [{
+                text: ' ',
+                value: 'officialSeal'
+              }]
+            }]
+        },
+          {
+            text: 'No',
+            value: 'no'
+          }]
+      }
+    ],
+    conditions: {
+      certificateType: ['CHEDA']
+    }
+  },
+  {
+    url: '/transport-to-bcp',
+    title: 'Transport to the BCP'
+  },
   {
     url: '/contact-details',
     title: 'Contact details',
@@ -785,6 +892,7 @@ pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
     const context = {
       pageName: page.title,
+      secondaryTitle: page.secondaryTitle,
       components: enrichComponents(page.components, req, res)
     }
     res.render('questionPage', context)
@@ -832,7 +940,19 @@ function enrichComponents(components, req, res) {
         country: data[`${component.name}Country`]
       }
     }
+    if (component.type === 'totals') {
+      enriched.items = getRows(enriched.items)
+    }
     return enriched
+  })
+}
+
+const getRows = items => {
+  return items.map(item => {
+    return [
+      { text: item.text},
+      { text: item.value ? item.value : '' }
+    ]
   })
 }
 

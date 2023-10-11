@@ -1,0 +1,16 @@
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: component.name,
+  fieldset: {
+    legend: {
+      text: component.label,
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: component.hint
+  },
+  items: component.items
+}) }}

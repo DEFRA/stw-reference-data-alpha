@@ -1,5 +1,6 @@
 package org.defra.orchestration.service;
 
+import java.time.LocalDateTime;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
@@ -197,11 +198,23 @@ public class MdmService {
         .filter(Objects::nonNull)
         .distinct()
         .map(species -> {
-          Commodity parent = commodities.stream()
-              .filter(commodity -> commodity.getSpecies() == species)
-              .findFirst()
-              .orElseThrow();
-          return speciesMapper.map(species, parent);
+          LocalDateTime effectiveFrom = LocalDateTime.MAX;
+          LocalDateTime effectiveTo = LocalDateTime.MIN;
+          for (Commodity commodity : commodities.stream()
+              .filter(commodity -> Objects.equals(commodity.getSpecies(), species))
+              .toList()) {
+            // Get the earliest effective from
+            if (commodity.getEffectiveFrom().isBefore(effectiveFrom)) {
+              effectiveFrom = commodity.getEffectiveFrom();
+            }
+            // Get latest effective to (null is latest)
+            if (commodity.getEffectiveTo() == null) {
+              effectiveTo = null;
+            } else if (commodity.getEffectiveTo().isAfter(effectiveTo)) {
+              effectiveTo = commodity.getEffectiveTo();
+            }
+          }
+          return speciesMapper.map(species, effectiveFrom, effectiveTo);
         })
         .toList();
     return buildResponse(data);

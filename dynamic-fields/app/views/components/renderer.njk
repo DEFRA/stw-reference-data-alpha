@@ -19,5 +19,7 @@
     {%- include 'components/totals' -%}
   {% elseif component.type === 'checkbox' %}
     {%- include 'components/checkbox' -%}
+  {% elseif component.type === 'details' %}
+    {%- include 'components/details' -%}
   {% endif %}
 {% endfor %}

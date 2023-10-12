@@ -1,0 +1,6 @@
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{{ govukDetails({
+  summaryText: component.label,
+  html: component.hint
+}) }}

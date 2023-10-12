@@ -15,12 +15,12 @@ const {
 // Add your routes here
 router.get('/', (req, res) => {
   const pageLinks = pages
-  .filter(page => !['/add-consignor', '/add-consignee', '/add-importer', '/add-placeOfDestination'].includes(page.url))
-  .map(page => ({
-    title: { text: shouldShow(page, req.session.data) ? page.title : `${page.title} (Hidden for ${req.session.data.certificateType})` },
-    href: shouldShow(page, req.session.data) ? page.url : null
-  }))
-  res.render('index', { pageLinks })
+    .filter(page => !['/add-consignor', '/add-consignee', '/add-importer', '/add-placeOfDestination'].includes(page.url))
+    .map(page => ({
+      title: {text: shouldShow(page, req.session.data) ? page.title : `${page.title} (Hidden for ${req.session.data.certificateType})`},
+      href: shouldShow(page, req.session.data) ? page.url : null
+    }))
+  res.render('index', {pageLinks})
 })
 
 router.post('/', (req, res) => {
@@ -42,7 +42,7 @@ pages.filter(page => page.url).forEach(page => {
     delete req.session.data.action
     if (action === "continue") {
       const result = validation.check(req.body, page.components)
-      if(result.error) {
+      if (result.error) {
         const context = {
           pageName: page.title,
           components: enrichComponents(page.components, req, res),
@@ -64,47 +64,47 @@ pages.filter(page => page.url).forEach(page => {
 function enrichComponents(components, req, res) {
   const data = req.session.data
   return components
-  .filter(component => shouldShow(component, data))
-  .map(component => {
-    const enriched = {
-      ...component,
-      value: getValue(component, data),
-      items: getItems(component, req, res)
-    }
-    if (component.type === 'trader') {
-      enriched.isTraderEntered = data[`${component.name}Name`]?.length > 0
-      enriched.value = {
-        name: data[`${component.name}Name`],
-        address: data[`${component.name}AddressLine1`],
-        country: data[`${component.name}Country`]
+    .filter(component => shouldShow(component, data))
+    .map(component => {
+      const enriched = {
+        ...component,
+        value: getValue(component, data),
+        items: getItems(component, req, res)
       }
-    }
-    if (component.type === 'totals') {
-      enriched.items = getRows(enriched.items)
-    }
-    return enriched
-  })
+      if (component.type === 'trader') {
+        enriched.isTraderEntered = data[`${component.name}Name`]?.length > 0
+        enriched.value = {
+          name: data[`${component.name}Name`],
+          address: data[`${component.name}AddressLine1`],
+          country: data[`${component.name}Country`]
+        }
+      }
+      if (component.type === 'totals') {
+        enriched.items = getRows(enriched.items)
+      }
+      return enriched
+    })
 }
 
 const getRows = items => {
   return items.map(item => {
     return [
-      { text: item.text},
-      { text: item.value ? item.value : '' }
+      {text: item.text},
+      {text: item.value ? item.value : ''}
     ]
   })
 }
 
-function shouldShow (component, data) {
+function shouldShow(component, data) {
   return !component.conditions ||
     Object.entries(component.conditions).every(([key, values]) => values.includes(data[key]))
 }
 
-function getValue (component, data) {
+function getValue(component, data) {
   return data[component.name] ?? component.items?.find(item => item.default)?.value?.toString()
 }
 
-function getItems (component, req, res) {
+function getItems(component, req, res) {
   return component.items?.map(item => ({
     ...item,
     value: item.value?.toString(),
@@ -115,10 +115,10 @@ function getItems (component, req, res) {
   }))
 }
 
-function renderComponents (res, components) {
+function renderComponents(res, components) {
   const nunjucks = res.app.get('nunjucksEnv')
   return {
-    html: nunjucks.render('components/renderer.njk', { nested: true, components })
+    html: nunjucks.render('components/renderer.njk', {nested: true, components})
   }
 }
 
@@ -128,5 +128,5 @@ const errors = result => {
     description: detail.message
   }))
   return errors.reduce(
-      (obj, item) => Object.assign(obj, { [item.field]: {'description' : item.description }}), {});
+    (obj, item) => Object.assign(obj, {[item.field]: {'description': item.description}}), {});
 }

@@ -29,6 +29,6 @@ public class MapperUtils {
     if (commodityCode == null) {
       return null;
     }
-    return commodityCode.replaceAll("(00)*$", "");
+    return commodityCode.replaceAll("(00)*$", "").trim();
   }
 }

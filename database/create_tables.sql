@@ -73,7 +73,7 @@ CREATE TABLE hmi_marketing
     id                          INT PRIMARY KEY IDENTITY,
     commodity_code              NCHAR(10)    NOT NULL,
     eppo                        NCHAR(6)     NOT NULL,
-    variety                     NVARCHAR(50) NOT NULL,
+    variety                     NVARCHAR(50),
     certificate_validity_period int          NOT NULL,
     hmi_marketing_standard      nvarchar(50) NOT NULL,
     effective_from              DATETIME     NOT NULL,

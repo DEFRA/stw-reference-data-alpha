@@ -44,7 +44,7 @@ UPDATE commodity_code SET effective_to = '2023-09-18 16:52:27.000' WHERE id = 94
 UPDATE commodity SET effective_to = '2023-09-18 16:52:27.000' WHERE commodity_code = 94496;
 -- Make new row in the commodity_code table
 INSERT INTO reference_data.dbo.commodity_code (id, code, suffix, description, parent_id, effective_from, effective_to, source_name, source_id) VALUES
-                                                (9994496, N'0808400000', N'80', N'new quinces description', 31254, N'2023-09-18 16:52:27.000', null, N'CUSTOM', N'1');
+                                                (9994496, N'0808400000', N'80', N'New quinces description', 31254, N'2023-09-18 16:52:27.000', null, N'CUSTOM', N'1');
 -- Add new commodity
 INSERT INTO reference_data.dbo.commodity (certificate, commodity_code, species, effective_from, effective_to) VALUES
                                           (851, 9994496, 3060353, N'2023-09-18 16:55:31.000', null);

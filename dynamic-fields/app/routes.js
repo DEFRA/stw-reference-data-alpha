@@ -7,6 +7,7 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
 const validation = require('./validation')
+const {createVarietyAndClassSelectRow, renderComponents} = require("./utils")
 
 const {
   pages
@@ -82,6 +83,9 @@ function enrichComponents(components, req, res) {
       if (component.type === 'totals') {
         enriched.items = getRows(enriched.items)
       }
+      if (component.type === 'varietyAndClass') {
+        enriched.items = createVarietyAndClassSelectRow(component, req, res)
+      }
       return enriched
     })
 }
@@ -113,13 +117,6 @@ function getItems(component, req, res) {
     },
     conditional: item.components ? renderComponents(res, enrichComponents(item.components, req, res)) : null
   }))
-}
-
-function renderComponents(res, components) {
-  const nunjucks = res.app.get('nunjucksEnv')
-  return {
-    html: nunjucks.render('components/renderer.njk', {nested: true, components})
-  }
 }
 
 const errors = result => {

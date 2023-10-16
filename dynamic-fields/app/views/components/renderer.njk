@@ -21,5 +21,7 @@
     {%- include 'components/checkbox' -%}
   {% elseif component.type === 'details' %}
     {%- include 'components/details' -%}
+  {% elseif component.type === 'varietyAndClass' %}
+    {%- include 'components/varietyAndClass' -%}
   {% endif %}
 {% endfor %}

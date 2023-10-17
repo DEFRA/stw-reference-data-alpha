@@ -665,7 +665,55 @@ module.exports = Object.freeze({
       }
     },
     {title: 'Nominated contacts'},
-    {title: 'Accompanying documents'},
+    {
+      title: 'Accompanying documents',
+      secondaryTitle: 'Documents',
+      url: '/accompanying-documents',
+      components: [
+        {
+          type: 'documents',
+          name: 'documents',
+          label: 'Additional documents',
+          items: [
+            // This is to demonstrate data in the rows
+            [{
+              text: 'Veterinary health certificate'
+            },
+            {
+              text: '1234'
+            },
+            {
+              text: '23 April 2023'
+            },
+            {
+              html: '<a href="/">Remove</a>'
+            }
+            ],
+            //////////////////////////////////////////
+            {
+              components: [
+              {
+                type: 'text',
+                name: 'placeOfDestinationName',
+              },
+              {
+                type: 'text',
+                name: 'placeOfDestinationAddressLine1',
+              },
+              {
+                type: 'text',
+                name: 'placeOfDestinationAddressLine1',
+              },
+              {
+                type: 'text',
+                name: 'placeOfDestinationAddressLine1',
+              }
+            ]
+          }
+          ]
+        }
+      ]
+    },
     {title: 'Approved establishment of origin'},
     {title: 'Animal identification details'},
     {

@@ -7,7 +7,10 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
 const validation = require('./validation')
-const {createVarietyAndClassSelectRow, renderComponents} = require("./utils")
+const {
+  renderComponents,
+  cloneThenUpdateLastRow
+} = require("./utils")
 
 const {
   pages
@@ -41,6 +44,15 @@ pages.filter(page => page.url).forEach(page => {
   router.post(page.url, (req, res) => {
     const action = req.session.data.action
     delete req.session.data.action
+
+    req.session.data = {...req.session.data,
+      documents: [{
+        type: 'type',
+        reference: 'ref',
+        date: 'date',
+        attachments: 'attachment',
+      }]
+    }
     if (action === "continue") {
       const result = validation.check(req.body, page.components)
       if (result.error) {
@@ -84,7 +96,10 @@ function enrichComponents(components, req, res) {
         enriched.items = getRows(enriched.items)
       }
       if (component.type === 'varietyAndClass') {
-        enriched.items = createVarietyAndClassSelectRow(component, req, res)
+        enriched.items = cloneThenUpdateLastRow(component, req, res)
+      }
+      if (component.type === 'documents') {
+        enriched.items = cloneThenUpdateLastRow(component, req, res)
       }
       return enriched
     })

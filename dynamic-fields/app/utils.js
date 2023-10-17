@@ -1,13 +1,21 @@
-const createVarietyAndClassSelectRow = (component, req, res) => {
-  const lastItem = component.items[component.items.length - 1]
-  const selectVariety = renderComponents(res, [lastItem.components[0]])
-  const selectClass = renderComponents(res, [lastItem.components[1]])
-  const emptyCell = lastItem.components[2]
+const createHtmlRow = (component, req, res) => {
+  return component.items?.map(item => {
+    return item.components.map(component =>{
+      return renderComponents(res, [component])
+    })
+  })
+}
 
-  const modifiedItems = component.items.slice()
-  modifiedItems.pop()
-  modifiedItems.push([selectVariety, selectClass, emptyCell])
-  return modifiedItems
+const cloneThenUpdateLastRow = (component, req, res) => {
+  const lastRow = component.items[component.items.length - 1]
+  const renderedLastRow= lastRow.components.map(component =>{
+    return renderComponents(res, [component])
+  })
+
+  const clonedItems = component.items.slice()
+  clonedItems.pop()
+  clonedItems.push(renderedLastRow)
+  return clonedItems
 }
 
 function renderComponents(res, components) {
@@ -18,6 +26,7 @@ function renderComponents(res, components) {
 }
 
 module.exports = {
-  createVarietyAndClassSelectRow,
+  cloneThenUpdateLastRow,
+  createHtmlRow,
   renderComponents
 }

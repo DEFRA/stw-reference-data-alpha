@@ -23,5 +23,7 @@
     {%- include 'components/details' -%}
   {% elseif component.type === 'varietyAndClass' %}
     {%- include 'components/varietyAndClass' -%}
+  {% elseif component.type === 'documents' %}
+    {%- include 'components/documents' -%}
   {% endif %}
 {% endfor %}

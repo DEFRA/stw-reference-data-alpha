@@ -693,20 +693,27 @@ module.exports = Object.freeze({
             {
               components: [
               {
-                type: 'text',
-                name: 'placeOfDestinationName',
+                type: 'select',
+                name: 'documentType',
+                items: [
+                  {value: '', text: 'Select document type', default: true},
+                  {value: 'veterinaryHealthCertificate', text: 'Veterinary health certificate'},
+                  {value: 'airWaybill', text: 'Air waybill'},
+                  {value: 'importPermit', text: 'Import permit'}
+                ]
               },
               {
                 type: 'text',
-                name: 'placeOfDestinationAddressLine1',
+                name: 'documentReference',
               },
               {
-                type: 'text',
-                name: 'placeOfDestinationAddressLine1',
+                type: 'date',
+                name: 'date',
               },
               {
-                type: 'text',
-                name: 'placeOfDestinationAddressLine1',
+                type: 'link',
+                name: 'addAttachment',
+                label: 'Add attachment',
               }
             ]
           }

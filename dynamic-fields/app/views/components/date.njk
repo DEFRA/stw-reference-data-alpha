@@ -1,5 +1,6 @@
 {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
+
 {{ govukDateInput({
   id: component.name,
   namePrefix: component.name,
@@ -13,5 +14,19 @@
   hint: {
     text: component.hint
   },
-  errorMessage: { text: errors[component.name].description } if errors[component.name]
+  errorMessage: { text: errors[component.name].description } if errors[component.name],
+  items: [
+    {
+      classes: "govuk-grid-column-one-third",
+      value: "6"
+    },
+    {
+      classes: "govuk-grid-column-one-third",
+      value: "3"
+    },
+    {
+      classes: "govuk-grid-column-one-third",
+      value: "2076"
+    }
+  ]
 }) }}

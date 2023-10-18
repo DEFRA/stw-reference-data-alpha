@@ -54,14 +54,8 @@ pages.filter(page => page.url).forEach(page => {
     const action = req.session.data.action
     delete req.session.data.action
 
-    req.session.data = {...req.session.data,
-      documents: [{
-        type: 'type',
-        reference: 'ref',
-        date: 'date',
-        attachments: 'attachment',
-      }]
-    }
+    updateNotification(req)
+
     if (action === "continue") {
       const result = validation.check(req.body, page.components)
       if (result.error) {
@@ -82,6 +76,34 @@ pages.filter(page => page.url).forEach(page => {
     }
   })
 })
+
+// TODO - these need moving
+const updateNotification = req => {
+  const body = req.body
+  let data = req.session.data
+  if (!data.notification) {
+    data.notification = {}
+  }
+
+  data.notification.commodityCode = getCommodityCode(body)
+  const t = 0
+  // data = {...data,
+  //   documents: [{
+  //     type: 'type',
+  //     reference: 'ref',
+  //     date: 'date',
+  //     attachments: 'attachment',
+  //   }]
+  // }
+}
+
+const getCommodityCode = body => {
+  delete body.action
+  const largestKey= Object.keys(body).reduce((a, b) => {
+    return body[a].length > body[b].length ? a : b
+  })
+  return body[largestKey]
+}
 
 function enrichComponents(components, req, res) {
   const data = req.session.data

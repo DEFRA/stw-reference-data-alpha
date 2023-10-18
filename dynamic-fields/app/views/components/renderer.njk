@@ -25,5 +25,7 @@
     {%- include 'components/varietyAndClass' -%}
   {% elseif component.type === 'documents' %}
     {%- include 'components/documents' -%}
+  {% elseif component.type === 'commodityPicker' %}
+    {%- include 'components/commodityPicker' -%}
   {% endif %}
 {% endfor %}

@@ -237,7 +237,15 @@ module.exports = Object.freeze({
         }
       ]
     },
-    {title: 'Commodity picker'},
+    {
+      title: 'Commodity picker',
+      url: '/commodity-picker',
+      nextPage: '/commodity-species',
+      components: [{
+        type: 'commodityPicker',
+        name: 'commodity picker',
+      }]
+    },
     {
       url: '/commodity-species',
       title: 'Commodity species',

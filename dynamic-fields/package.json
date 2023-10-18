@@ -9,6 +9,7 @@
     "govuk-frontend": "4.7.0",
     "govuk-prototype-kit": "13.13.4",
     "joi": "^17.11.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "moment-timezone": "^0.5.43"
   }
 }

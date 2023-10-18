@@ -1138,6 +1138,10 @@ module.exports = Object.freeze({
     {title: 'When are you planning to import the animal or product'},
     {title: 'What is the reason for the movement of this animal or product'},
     {title: 'County parish holding number'},
-    {title: 'Transport details'}
+    {title: 'Transport details'},
+    {
+      title: 'Declaration',
+      url: '/declaration',
+    }
   ]
 })

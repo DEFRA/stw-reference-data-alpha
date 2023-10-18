@@ -1,3 +1,5 @@
+const moment = require("moment-timezone")
+
 const createHtmlRow = (component, req, res) => {
   return component.items?.map(item => {
     return item.components.map(component =>{
@@ -25,8 +27,13 @@ function renderComponents(res, components) {
   }
 }
 
+const submissionDate = () => {
+  return moment(new Date(), 'YYYY-M-D').format('D MMMM YYYY')
+}
+
 module.exports = {
   cloneThenUpdateLastRow,
   createHtmlRow,
-  renderComponents
+  renderComponents,
+  submissionDate
 }

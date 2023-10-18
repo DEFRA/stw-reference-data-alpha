@@ -9,7 +9,8 @@ const router = govukPrototypeKit.requests.setupRouter()
 const validation = require('./validation')
 const {
   renderComponents,
-  cloneThenUpdateLastRow
+  cloneThenUpdateLastRow,
+  submissionDate
 } = require("./utils")
 
 const {
@@ -33,6 +34,14 @@ router.post('/', (req, res) => {
 
 pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
+    if (page.url === '/declaration') {
+      const context = {
+        pageName: page.title,
+        submissionDate: submissionDate()
+      }
+      return res.render('pages/declaration', context)
+    }
+
     const context = {
       pageName: page.title,
       secondaryTitle: page.secondaryTitle,

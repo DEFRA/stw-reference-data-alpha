@@ -20,7 +20,7 @@ const {
 // Add your routes here
 router.get('/', (req, res) => {
   const pageLinks = pages
-    .filter(page => !['/add-consignor', '/add-consignee', '/add-importer', '/add-placeOfDestination'].includes(page.url))
+    .filter(page => !['/add-consignor', '/add-consignee', '/add-importer', '/add-placeOfDestination', '/declaration'].includes(page.url))
     .map(page => ({
       title: {text: shouldShow(page, req.session.data) ? page.title : `${page.title} (Hidden for ${req.session.data.certificateType})`},
       href: shouldShow(page, req.session.data) ? page.url : null

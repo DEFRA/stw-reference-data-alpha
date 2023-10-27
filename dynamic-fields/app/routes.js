@@ -3,6 +3,8 @@
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
 
+const _ = require('lodash')
+
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
@@ -117,7 +119,7 @@ const getRows = items => {
 
 function shouldShow(component, data) {
   return !component.conditions ||
-    Object.entries(component.conditions).every(([key, values]) => values.includes(data[key]))
+    Object.entries(component.conditions).every(([key, values]) => values.includes(_.get(data, key)))
 }
 
 function getValue(component, data) {
@@ -125,7 +127,9 @@ function getValue(component, data) {
 }
 
 function getItems(component, req, res) {
-  return component.items?.map(item => ({
+  return component.items
+  ?.filter(item => shouldShow(item, req.session.data))
+  .map(item => ({
     ...item,
     value: item.value?.toString(),
     hint: {

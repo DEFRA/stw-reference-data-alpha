@@ -655,9 +655,21 @@ module.exports = Object.freeze({
           name: 'temperature',
           label: 'Temperature',
           items: [
-            { text: 'Ambient', value: 'ambient' },
-            { text: 'Chilled', value: 'chilled' },
-            { text: 'Frozen', value: 'frozen' }
+            {
+              text: 'Ambient',
+              value: 'ambient',
+              conditions: {
+                'notification.commodityCode': ['07011000']
+              }
+            },
+            {
+              text: 'Chilled',
+              value: 'chilled'
+            },
+            {
+              text: 'Frozen',
+              value: 'frozen'
+            }
           ],
           conditions: {
             certificateType: ['CHEDP', 'CHEDD']

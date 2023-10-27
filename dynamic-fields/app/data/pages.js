@@ -42,14 +42,14 @@ module.exports = Object.freeze({
           name: 'countryOfOrigin',
           label: 'Country of origin',
           items: [
-            {value: '', text: 'Select a country', default: true},
-            {value: 'AF', text: 'Afghanistan'},
-            {value: 'AX', text: 'Aland Islands'},
-            {value: 'AL', text: 'Albania'},
-            {value: 'DZ', text: 'Algeria'},
-            {value: 'AS', text: 'American Samoa'},
-            {value: 'AD', text: 'Andorra'},
-            {value: 'AO', text: 'Angola'}
+            { value: '', text: 'Select a country', default: true },
+            { value: 'AF', text: 'Afghanistan' },
+            { value: 'AX', text: 'Aland Islands' },
+            { value: 'AL', text: 'Albania' },
+            { value: 'DZ', text: 'Algeria' },
+            { value: 'AS', text: 'American Samoa' },
+            { value: 'AD', text: 'Andorra' },
+            { value: 'AO', text: 'Angola' }
           ]
         }
       ]
@@ -75,14 +75,14 @@ module.exports = Object.freeze({
           name: 'countryOfOrigin',
           label: 'Country of origin',
           items: [
-            {value: '', text: 'Select a country', default: true},
-            {value: 'AF', text: 'Afghanistan'},
-            {value: 'AX', text: 'Aland Islands'},
-            {value: 'AL', text: 'Albania'},
-            {value: 'DZ', text: 'Algeria'},
-            {value: 'AS', text: 'American Samoa'},
-            {value: 'AD', text: 'Andorra'},
-            {value: 'AO', text: 'Angola'}
+            { value: '', text: 'Select a country', default: true },
+            { value: 'AF', text: 'Afghanistan' },
+            { value: 'AX', text: 'Aland Islands' },
+            { value: 'AL', text: 'Albania' },
+            { value: 'DZ', text: 'Algeria' },
+            { value: 'AS', text: 'American Samoa' },
+            { value: 'AD', text: 'Andorra' },
+            { value: 'AO', text: 'Angola' }
           ]
         },
         {
@@ -143,14 +143,14 @@ module.exports = Object.freeze({
           name: 'consignmentCountry',
           label: 'Country from where consigned',
           items: [
-            {value: '', text: 'Select a country', default: true},
-            {value: 'AF', text: 'Afghanistan'},
-            {value: 'AX', text: 'Aland Islands'},
-            {value: 'AL', text: 'Albania'},
-            {value: 'DZ', text: 'Algeria'},
-            {value: 'AS', text: 'American Samoa'},
-            {value: 'AD', text: 'Andorra'},
-            {value: 'AO', text: 'Angola'}
+            { value: '', text: 'Select a country', default: true },
+            { value: 'AF', text: 'Afghanistan' },
+            { value: 'AX', text: 'Aland Islands' },
+            { value: 'AL', text: 'Albania' },
+            { value: 'DZ', text: 'Algeria' },
+            { value: 'AS', text: 'American Samoa' },
+            { value: 'AD', text: 'Andorra' },
+            { value: 'AO', text: 'Angola' }
           ],
           conditions: {
             certificateType: ['CHEDP', 'CHEDD', 'CHEDPP']
@@ -249,7 +249,7 @@ module.exports = Object.freeze({
         items: [
           {
             value: '05',
-            html: '<b>05</b> - PRODUCTS OF ANIMAL ORIGIN, NOT ELSEWHERE SPECIFIED OR INCLUDED',
+            html: '<b>05</b> - PRODUCTS OF ANIMAL ORIGIN, NOT ELSEWHERE SPECIFIED OR INCLUDED'
           },
           {
             value: '07',
@@ -294,10 +294,10 @@ module.exports = Object.freeze({
                     ]
                   }]
                 },
-                {
-                  value: '07020000',
-                  html: '<b>07 02 00 00</b> - Tomatoes, fresh or chilled <b>(or select)</b>'
-                }]
+                  {
+                    value: '07020000',
+                    html: '<b>07 02 00 00</b> - Tomatoes, fresh or chilled <b>(or select)</b>'
+                  }]
               }
             ]
           }
@@ -324,9 +324,9 @@ module.exports = Object.freeze({
           name: 'typeOfCommodity',
           label: 'Type of commodity',
           items: [ // We'd want this to be driven from reference data, not static
-            {value: 'domestic', text: 'Domestic'},
-            {value: 'farmed', text: 'Farmed game'},
-            {value: 'wild', text: 'Wild game'}
+            { value: 'domestic', text: 'Domestic' },
+            { value: 'farmed', text: 'Farmed game' },
+            { value: 'wild', text: 'Wild game' }
           ]
         },
         {
@@ -335,9 +335,9 @@ module.exports = Object.freeze({
           label: 'Select species of commodity',
           hint: 'Select all that apply',
           items: [
-            {value: 'Bison bison', text: 'Bison bison'},
-            {value: 'Bos taurus', text: 'Bos taurus'},
-            {value: 'Bubalus bubalis', text: 'Bubalus bubalis'}
+            { value: 'Bison bison', text: 'Bison bison' },
+            { value: 'Bos taurus', text: 'Bos taurus' },
+            { value: 'Bubalus bubalis', text: 'Bubalus bubalis' }
           ]
         },
         {
@@ -345,8 +345,8 @@ module.exports = Object.freeze({
           name: 'addAnother',
           label: 'Do you want to add another commodity?',
           items: [
-            {value: 'yes', text: 'Yes'},
-            {value: 'no', text: 'No'}
+            { value: 'yes', text: 'Yes' },
+            { value: 'no', text: 'No' }
           ]
         }
       ]
@@ -363,74 +363,74 @@ module.exports = Object.freeze({
           [{
             text: 'Altess'
           },
-          {
-            text: 'Class I'
-          },
-          {
-            html: '<a href="/">Remove</a>'
-          }
+            {
+              text: 'Class I'
+            },
+            {
+              html: '<a href="/">Remove</a>'
+            }
           ],
           [{
             text: 'Aporo'
           },
-          {
-            text: 'Class I'
-          },
-          {
-            html: '<a href="/">Remove</a>'
-          }],
+            {
+              text: 'Class I'
+            },
+            {
+              html: '<a href="/">Remove</a>'
+            }],
           //////////////////////////////////////////
           {
             components: [
-            {
-              type: 'select',
-              name: 'variety',
-              items: [{
-                text: 'Select variety',
-                default: true
+              {
+                type: 'select',
+                name: 'variety',
+                items: [{
+                  text: 'Select variety',
+                  default: true
+                },
+                  {
+                    text: 'Altess',
+                    value: 'Altess'
+                  },
+                  {
+                    text: 'Aporo',
+                    value: 'Aporo'
+                  },
+                  {
+                    text: 'Braeburn',
+                    value: 'Aporo'
+                  }]
               },
               {
-                text: 'Altess',
-                value: 'Altess'
+                type: 'select',
+                name: 'class',
+                items: [{
+                  text: 'Select class',
+                  default: true
+                },
+                  {
+                    text: 'Class I',
+                    value: 'Class I'
+                  },
+                  {
+                    text: 'Class II',
+                    value: 'Class II'
+                  },
+                  {
+                    text: 'Extra Class',
+                    value: 'Extra Class'
+                  }]
               },
               {
-                text: 'Aporo',
-                value: 'Aporo'
-              },
-              {
-                text: 'Braeburn',
-                value: 'Aporo'
-              }]
-            },
-            {
-              type: 'select',
-              name: 'class',
-              items: [{
-                text: 'Select class',
-                default: true
-              },
-              {
-                text: 'Class I',
-                value: 'Class I'
-              },
-              {
-                text: 'Class II',
-                value: 'Class II'
-              },
-              {
-                text: 'Extra Class',
-                value: 'Extra Class'
-              }]
-            },
-            {
-              text:''
-            }
+                text: ''
+              }
             ]
           }
         ]
       }]
     },
-    {title: 'Commodity summary'},
+    { title: 'Commodity summary' },
     {
       url: '/purpose',
       title: 'About the consignment (purpose)',
@@ -456,14 +456,14 @@ module.exports = Object.freeze({
                     text: 'Select border control post',
                     default: true
                   },
-                  {
-                    text: 'Belfast Pharmaceuticals - TESTY',
-                    value: 'TESTY'
-                  },
-                  {
-                    text: 'Edinburgh Airport (animals) - GBEDI4',
-                    value: 'GBEDI4'
-                  }]
+                    {
+                      text: 'Belfast Pharmaceuticals - TESTY',
+                      value: 'TESTY'
+                    },
+                    {
+                      text: 'Edinburgh Airport (animals) - GBEDI4',
+                      value: 'GBEDI4'
+                    }]
                 },
                 {
                   type: 'select',
@@ -505,8 +505,8 @@ module.exports = Object.freeze({
         }
       ]
     },
-    {title: 'Commodity details'},
-    {title: 'Commodity details bulk'},
+    { title: 'Commodity details' },
+    { title: 'Commodity details bulk' },
     {
       url: '/additional-details',
       title: 'Additional details',
@@ -524,7 +524,10 @@ module.exports = Object.freeze({
             {
               text: 'Number of packages'
             }
-          ]
+          ],
+          conditions: {
+            certificateType: ['CHEDA']
+          }
         },
         {
           type: 'radio',
@@ -555,20 +558,110 @@ module.exports = Object.freeze({
               value: 'other',
               text: 'Other'
             }
-          ]
+          ],
+          conditions: {
+            certificateType: ['CHEDA']
+          }
         },
         {
           type: 'radio',
           name: 'animalsUnweaned',
           label: 'Does the consignment contain any unweaned animals?',
-          items: [{
-            text: 'Yes',
-            value: 'yes'
-          },
+          items: [
+            {
+              text: 'Yes',
+              value: 'yes'
+            },
             {
               text: 'No',
               value: 'no'
-            }]
+            }
+          ],
+          conditions: {
+            certificateType: ['CHEDA']
+          }
+        },
+        {
+          type: 'totals',
+          name: 'plantTotals',
+          label: 'Total',
+          items: [
+            {
+              text: 'Net weight of the consignment (kg)'
+            },
+            {
+              text: 'Number of packages of the consignment'
+            }
+          ],
+          conditions: {
+            certificateType: ['CHEDPP']
+          }
+        },
+        {
+          type: 'text',
+          name: 'totalGrossWeight',
+          label: 'Total gross weight (kg/units)',
+          conditions: {
+            certificateType: ['CHEDP', 'CHEDD', 'CHEDPP']
+          }
+        },
+        {
+          type: 'text',
+          name: 'totalGrossVolume',
+          label: 'Total gross volume (optional)',
+          conditions: {
+            certificateType: ['CHEDPP']
+          }
+        },
+        {
+          type: 'select',
+          name: 'totalGrossVolumeUnit',
+          label: 'Unit',
+          items: [
+            { value: '', text: 'Select unit' },
+            { value: 'liters', text: 'Liters' },
+            { value: 'metersCubed', text: 'Meters cubed' }
+          ]
+        },
+        {
+          type: 'radio',
+          name: 'commodityIntendedFor',
+          label: 'Commodity intended for',
+          hint: 'find this on the health or phytosanitary certificate (also known as the \'official certificate\') if you have one.',
+          items: [
+            {
+              value: 'feedingStuff',
+              text: 'Feeding stuff'
+            },
+            {
+              value: 'furtherProcess',
+              text: 'Further process'
+            },
+            {
+              value: 'humanConsumption',
+              text: 'Human consumption'
+            },
+            {
+              value: 'other',
+              text: 'Other'
+            }
+          ],
+          conditions: {
+            certificateType: ['CHEDD']
+          }
+        },
+        {
+          type: 'radio',
+          name: 'temperature',
+          label: 'Temperature',
+          items: [
+            { text: 'Ambient', value: 'ambient' },
+            { text: 'Chilled', value: 'chilled' },
+            { text: 'Frozen', value: 'frozen' }
+          ],
+          conditions: {
+            certificateType: ['CHEDP', 'CHEDD']
+          }
         },
         {
           type: 'radio',
@@ -583,30 +676,27 @@ module.exports = Object.freeze({
               name: 'containerNumber',
               hint: 'Enter the container\'s identification number, or the trailer\'s registration number or number plate.'
             },
-            {
-              type: 'text',
-              label: 'Seal number',
-              name: 'sealNumber',
-            },
-            {
-              type: 'checkbox',
-              label: 'Official seal',
-              name: 'officialSeal',
-              items: [{
-                text: ' ',
-                value: 'officialSeal'
+              {
+                type: 'text',
+                label: 'Seal number',
+                name: 'sealNumber'
+              },
+              {
+                type: 'checkbox',
+                label: 'Official seal',
+                name: 'officialSeal',
+                items: [{
+                  text: ' ',
+                  value: 'officialSeal'
+                }]
               }]
-            }]
           },
-          {
-            text: 'No',
-            value: 'no'
-          }]
+            {
+              text: 'No',
+              value: 'no'
+            }]
         }
-      ],
-      conditions: {
-        certificateType: ['CHEDA']
-      }
+      ]
     },
     {
       url: '/means-to-transport',
@@ -682,7 +772,7 @@ module.exports = Object.freeze({
           type: 'date',
           name: 'date',
           label: 'Estimated arrival at BCP',
-          hint: 'For example, 27 3 2023',
+          hint: 'For example, 27 3 2023'
         },
         {
           type: 'time',
@@ -696,7 +786,7 @@ module.exports = Object.freeze({
             {
               text: 'Minutes',
               value: ''
-          }],
+            }]
         }
       ]
     },
@@ -729,7 +819,7 @@ module.exports = Object.freeze({
         certificateType: ['CHEDPP']
       }
     },
-    {title: 'Nominated contacts'},
+    { title: 'Nominated contacts' },
     {
       title: 'Accompanying documents',
       secondaryTitle: 'Documents',
@@ -744,50 +834,50 @@ module.exports = Object.freeze({
             [{
               text: 'Veterinary health certificate'
             },
-            {
-              text: '1234'
-            },
-            {
-              text: '23 April 2023'
-            },
-            {
-              html: '<a href="/">Remove</a>'
-            }
+              {
+                text: '1234'
+              },
+              {
+                text: '23 April 2023'
+              },
+              {
+                html: '<a href="/">Remove</a>'
+              }
             ],
             //////////////////////////////////////////
             {
               components: [
-              {
-                type: 'select',
-                name: 'documentType',
-                items: [
-                  {value: '', text: 'Select document type', default: true},
-                  {value: 'veterinaryHealthCertificate', text: 'Veterinary health certificate'},
-                  {value: 'airWaybill', text: 'Air waybill'},
-                  {value: 'importPermit', text: 'Import permit'}
-                ]
-              },
-              {
-                type: 'text',
-                name: 'documentReference',
-              },
-              {
-                type: 'date',
-                name: 'date',
-              },
-              {
-                type: 'link',
-                name: 'addAttachment',
-                label: 'Add attachment',
-              }
-            ]
-          }
+                {
+                  type: 'select',
+                  name: 'documentType',
+                  items: [
+                    { value: '', text: 'Select document type', default: true },
+                    { value: 'veterinaryHealthCertificate', text: 'Veterinary health certificate' },
+                    { value: 'airWaybill', text: 'Air waybill' },
+                    { value: 'importPermit', text: 'Import permit' }
+                  ]
+                },
+                {
+                  type: 'text',
+                  name: 'documentReference'
+                },
+                {
+                  type: 'date',
+                  name: 'date'
+                },
+                {
+                  type: 'link',
+                  name: 'addAttachment',
+                  label: 'Add attachment'
+                }
+              ]
+            }
           ]
         }
       ]
     },
-    {title: 'Approved establishment of origin'},
-    {title: 'Animal identification details'},
+    { title: 'Approved establishment of origin' },
+    { title: 'Animal identification details' },
     {
       url: '/traders',
       title: 'Consignor or exporter, consignee, importer and place of destination',
@@ -860,14 +950,14 @@ module.exports = Object.freeze({
           name: 'consignorCountry',
           label: 'Country',
           items: [
-            {value: '', text: 'Select a country', default: true},
-            {value: 'AF', text: 'Afghanistan'},
-            {value: 'AX', text: 'Aland Islands'},
-            {value: 'AL', text: 'Albania'},
-            {value: 'DZ', text: 'Algeria'},
-            {value: 'AS', text: 'American Samoa'},
-            {value: 'AD', text: 'Andorra'},
-            {value: 'AO', text: 'Angola'}
+            { value: '', text: 'Select a country', default: true },
+            { value: 'AF', text: 'Afghanistan' },
+            { value: 'AX', text: 'Aland Islands' },
+            { value: 'AL', text: 'Albania' },
+            { value: 'DZ', text: 'Algeria' },
+            { value: 'AS', text: 'American Samoa' },
+            { value: 'AD', text: 'Andorra' },
+            { value: 'AO', text: 'Angola' }
           ]
         },
         {
@@ -922,14 +1012,14 @@ module.exports = Object.freeze({
           name: 'consigneeCountry',
           label: 'Country',
           items: [
-            {value: '', text: 'Select a country', default: true},
-            {value: 'AF', text: 'Afghanistan'},
-            {value: 'AX', text: 'Aland Islands'},
-            {value: 'AL', text: 'Albania'},
-            {value: 'DZ', text: 'Algeria'},
-            {value: 'AS', text: 'American Samoa'},
-            {value: 'AD', text: 'Andorra'},
-            {value: 'AO', text: 'Angola'}
+            { value: '', text: 'Select a country', default: true },
+            { value: 'AF', text: 'Afghanistan' },
+            { value: 'AX', text: 'Aland Islands' },
+            { value: 'AL', text: 'Albania' },
+            { value: 'DZ', text: 'Algeria' },
+            { value: 'AS', text: 'American Samoa' },
+            { value: 'AD', text: 'Andorra' },
+            { value: 'AO', text: 'Angola' }
           ]
         },
         {
@@ -984,14 +1074,14 @@ module.exports = Object.freeze({
           name: 'importerCountry',
           label: 'Country',
           items: [
-            {value: '', text: 'Select a country', default: true},
-            {value: 'AF', text: 'Afghanistan'},
-            {value: 'AX', text: 'Aland Islands'},
-            {value: 'AL', text: 'Albania'},
-            {value: 'DZ', text: 'Algeria'},
-            {value: 'AS', text: 'American Samoa'},
-            {value: 'AD', text: 'Andorra'},
-            {value: 'AO', text: 'Angola'}
+            { value: '', text: 'Select a country', default: true },
+            { value: 'AF', text: 'Afghanistan' },
+            { value: 'AX', text: 'Aland Islands' },
+            { value: 'AL', text: 'Albania' },
+            { value: 'DZ', text: 'Algeria' },
+            { value: 'AS', text: 'American Samoa' },
+            { value: 'AD', text: 'Andorra' },
+            { value: 'AO', text: 'Angola' }
           ]
         },
         {
@@ -1046,14 +1136,14 @@ module.exports = Object.freeze({
           name: 'placeOfDestinationCountry',
           label: 'Country',
           items: [
-            {value: '', text: 'Select a country', default: true},
-            {value: 'AF', text: 'Afghanistan'},
-            {value: 'AX', text: 'Aland Islands'},
-            {value: 'AL', text: 'Albania'},
-            {value: 'DZ', text: 'Algeria'},
-            {value: 'AS', text: 'American Samoa'},
-            {value: 'AD', text: 'Andorra'},
-            {value: 'AO', text: 'Angola'}
+            { value: '', text: 'Select a country', default: true },
+            { value: 'AF', text: 'Afghanistan' },
+            { value: 'AX', text: 'Aland Islands' },
+            { value: 'AL', text: 'Albania' },
+            { value: 'DZ', text: 'Algeria' },
+            { value: 'AS', text: 'American Samoa' },
+            { value: 'AD', text: 'Andorra' },
+            { value: 'AO', text: 'Angola' }
           ]
         },
         {
@@ -1063,7 +1153,7 @@ module.exports = Object.freeze({
         }
       ]
     },
-    {title: 'Transporter'},
+    { title: 'Transporter' },
     {
       url: '/means-of-transport',
       title: 'Means of transport after Border Control Post (BCP)',
@@ -1117,7 +1207,7 @@ module.exports = Object.freeze({
           type: 'date',
           name: 'date',
           label: 'Date and time of departure',
-          hint: 'For example, 15 8 2020',
+          hint: 'For example, 15 8 2020'
         },
         {
           type: 'time',
@@ -1131,11 +1221,11 @@ module.exports = Object.freeze({
             {
               text: 'Minutes',
               value: ''
-            }],
+            }]
         }
       ]
     },
-    {title: 'Route'},
+    { title: 'Route' },
     {
       title: 'Organisation address',
       url: '/organisation-address',
@@ -1175,7 +1265,7 @@ module.exports = Object.freeze({
         }
       ]
     },
-    {title: 'Do you know the commodity code'},
+    { title: 'Do you know the commodity code' },
     {
       title: 'Which animal or product are you importing?',
       url: '/which-products-you-are-importing',
@@ -1183,30 +1273,30 @@ module.exports = Object.freeze({
         {
           type: 'details',
           label: 'What to do if your animal or product is not shown',
-          hint: 'If your animal or product does not appear on this list then you will need to use the commodity selector <a href="/">here</a> . There is IPAFFS guidance available if you need further assistance.',
+          hint: 'If your animal or product does not appear on this list then you will need to use the commodity selector <a href="/">here</a> . There is IPAFFS guidance available if you need further assistance.'
         },
         {
           type: 'select',
           name: 'productImporting',
           items: [
-            {value: '', text: 'Please choose', default: true},
-            {value: '61_188306', text: 'Bees – Bumble Bees'},
-            {value: '60_8433', text: 'Bees - Honey Bees'},
-            {value: '3_113311', text: 'Birds of Prey - Falcons'}
+            { value: '', text: 'Please choose', default: true },
+            { value: '61_188306', text: 'Bees – Bumble Bees' },
+            { value: '60_8433', text: 'Bees - Honey Bees' },
+            { value: '3_113311', text: 'Birds of Prey - Falcons' }
           ]
         }
       ]
     },
-    {title: 'How many animals or products are you importing?'},
-    {title: 'Commodity quantity'},
-    {title: 'Enter ant identification details you have for the animal or product'},
-    {title: 'When are you planning to import the animal or product'},
-    {title: 'What is the reason for the movement of this animal or product'},
-    {title: 'County parish holding number'},
-    {title: 'Transport details'},
+    { title: 'How many animals or products are you importing?' },
+    { title: 'Commodity quantity' },
+    { title: 'Enter ant identification details you have for the animal or product' },
+    { title: 'When are you planning to import the animal or product' },
+    { title: 'What is the reason for the movement of this animal or product' },
+    { title: 'County parish holding number' },
+    { title: 'Transport details' },
     {
       title: 'Declaration',
-      url: '/declaration',
+      url: '/declaration'
     }
   ]
 })

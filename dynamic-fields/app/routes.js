@@ -15,7 +15,7 @@ const {
   submissionDate
 } = require("./utils")
 const {pages} = require('./data/pages')
-const {updateNotification} = require("./data/notification");
+const {updateNotification} = require("./data/notification")
 
 // Add your routes here
 router.get('/', (req, res) => {

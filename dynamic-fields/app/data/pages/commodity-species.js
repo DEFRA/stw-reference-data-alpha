@@ -32,7 +32,10 @@ module.exports = Object.freeze({
         { value: 'Bison bison', text: 'Bison bison' },
         { value: 'Bos taurus', text: 'Bos taurus' },
         { value: 'Bubalus bubalis', text: 'Bubalus bubalis' }
-      ]
+      ],
+      conditions: {
+        certificateType: ['CHEDA']
+      }
     },
     {
       type: 'radio',
@@ -41,7 +44,27 @@ module.exports = Object.freeze({
       items: [
         { value: 'yes', text: 'Yes' },
         { value: 'no', text: 'No' }
-      ]
+      ],
+      conditions: {
+        certificateType: ['CHEDA']
+      }
+    },
+    {
+      type: 'commoditySpecies',
+      name: 'commodity',
+      label: 'Commodity',
+      items: [
+        // This is to demonstrate data in the rows
+        {
+          text: '05010000'
+        },
+        {
+          text: 'Human hair, unworked, whether or not washed or scoured; waste of human hair'
+        }
+      ],
+      conditions: {
+        certificateType: ['CHEDD']
+      }
     }
   ]
 })

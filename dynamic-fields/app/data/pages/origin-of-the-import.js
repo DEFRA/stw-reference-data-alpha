@@ -10,7 +10,7 @@ module.exports = Object.freeze({
       url: '/input-method'
     },
     { // No conditions means default option
-      url: '/purpose'
+      url: '/commodity-picker'
     }
   ],
   components: [

@@ -29,5 +29,7 @@
     {%- include 'pages/commodityPicker' -%}
   {% elseif component.type === 'array' %}
     {{ component.html | safe }}
+  {% elseif component.type === 'commoditySpecies' %}
+    {%- include 'pages/commodity-species' -%}
   {% endif %}
 {% endfor %}

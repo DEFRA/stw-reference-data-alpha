@@ -87,22 +87,34 @@ function enrichComponents(components, req, res) {
         value: getValue(component, data),
         items: getItems(component, req, res)
       }
-      if (component.type === 'trader') {
-        enriched.isTraderEntered = data[`${component.name}Name`]?.length > 0
-        enriched.value = {
-          name: data[`${component.name}Name`],
-          address: data[`${component.name}AddressLine1`],
-          country: data[`${component.name}Country`]
-        }
-      }
-      if (component.type === 'totals') {
-        enriched.items = getRows(enriched.items)
-      }
-      if (component.type === 'varietyAndClass') {
-        enriched.items = cloneThenUpdateLastRow(component, req, res)
-      }
-      if (component.type === 'documents') {
-        enriched.items = cloneThenUpdateLastRow(component, req, res)
+      switch (component.type) {
+        case 'trader':
+          enriched.isTraderEntered = data[`${component.name}Name`]?.length > 0
+          enriched.value = {
+            name: data[`${component.name}Name`],
+            address: data[`${component.name}AddressLine1`],
+            country: data[`${component.name}Country`]
+          }
+          break
+        case 'totals':
+          enriched.items = getRows(enriched.items)
+          break
+        case 'varietyAndClass':
+          enriched.items = cloneThenUpdateLastRow(component, req, res)
+          break
+        case 'documents':
+          enriched.items = cloneThenUpdateLastRow(component, req, res)
+          break
+        case 'array':
+          enriched.html = ''
+          const testData = ['0101', '0102']
+          testData.forEach(item => {
+            const nunjucks = res.app.get('nunjucksEnv')
+            enriched.html += nunjucks.render('components/array.njk', {
+              arrayItemTitle: item,
+              components: enrichComponents(component.components, req, res)
+            })
+          })
       }
       return enriched
     })

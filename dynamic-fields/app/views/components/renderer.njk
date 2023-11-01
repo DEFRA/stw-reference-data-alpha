@@ -27,5 +27,7 @@
     {%- include 'pages/documents' -%}
   {% elseif component.type === 'commodityPicker' %}
     {%- include 'pages/commodityPicker' -%}
+  {% elseif component.type === 'array' %}
+    {{ component.html | safe }}
   {% endif %}
 {% endfor %}

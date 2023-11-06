@@ -21,7 +21,10 @@ module.exports = Object.freeze({
         { value: 'domestic', text: 'Domestic' },
         { value: 'farmed', text: 'Farmed game' },
         { value: 'wild', text: 'Wild game' }
-      ]
+      ],
+      conditions: {
+        certificateType: ['CHEDA']
+      }
     },
     {
       type: 'checkbox',
@@ -53,15 +56,8 @@ module.exports = Object.freeze({
       type: 'commoditySpecies',
       name: 'commodity',
       label: 'Commodity',
-      items: [
-        // This is to demonstrate data in the rows
-        {
-          text: '05010000'
-        },
-        {
-          text: 'Human hair, unworked, whether or not washed or scoured; waste of human hair'
-        }
-      ],
+      // Data is populated from the notification data
+      items: [],
       conditions: {
         certificateType: ['CHEDD']
       }

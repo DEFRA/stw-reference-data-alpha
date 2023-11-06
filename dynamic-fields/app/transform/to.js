@@ -2,7 +2,7 @@ const certTypeMap = new Map([
   ['CHEDD', 'CED']
 ])
 
-const updateNotification = req => {
+const notification = req => {
   const body = req.body
   let data = req.session.data
   let notification = data.notification
@@ -107,5 +107,5 @@ const getSelectedCommodity = body => {
 }
 
 module.exports = {
-  updateNotification
+  notification
 }

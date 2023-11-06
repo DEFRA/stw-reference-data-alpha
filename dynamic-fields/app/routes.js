@@ -15,7 +15,8 @@ const {
   submissionDate
 } = require("./utils")
 const {pages} = require('./data/pages')
-const {updateNotification} = require("./data/notification")
+const to = require('./transform/to')
+const from = require('./transform/from')
 
 // Add your routes here
 router.get('/', (req, res) => {
@@ -53,9 +54,7 @@ pages.filter(page => page.url).forEach(page => {
   router.post(page.url, (req, res) => {
     const action = req.session.data.action
     delete req.session.data.action
-
-    updateNotification(req)
-
+    to.notification(req)
     if (action === "continue") {
       const result = validation.check(req.body, page.components)
       if (result.error) {
@@ -100,14 +99,7 @@ function enrichComponents(components, req, res) {
           enriched.items = getRows(enriched.items)
           break
         case 'commoditySpecies':
-          // TODO - need to do this for the other cases
-          // TODO - put this in its own function and file
-          enriched.items = data.notification?.partOne?.commodities?.commodityComplement.map(complement => {
-            return [
-              {text: complement.commodityID},
-              {text: complement.commodityDescription}
-            ]
-          })
+          enriched.items = from.notification(req).commoditySpecies
           break
         case 'varietyAndClass':
           enriched.items = cloneThenUpdateLastRow(component, req, res)

@@ -99,6 +99,16 @@ function enrichComponents(components, req, res) {
         case 'totals':
           enriched.items = getRows(enriched.items)
           break
+        case 'commoditySpecies':
+          // TODO - need to do this for the other cases
+          // TODO - put this in its own function and file
+          enriched.items = data.notification?.commodities?.commodityComplement.map(complement => {
+            return [
+              {text: complement.commodityID},
+              {text: complement.commodityDescription}
+            ]
+          })
+          break
         case 'varietyAndClass':
           enriched.items = cloneThenUpdateLastRow(component, req, res)
           break

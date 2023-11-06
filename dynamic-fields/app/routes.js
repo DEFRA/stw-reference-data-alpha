@@ -102,7 +102,7 @@ function enrichComponents(components, req, res) {
         case 'commoditySpecies':
           // TODO - need to do this for the other cases
           // TODO - put this in its own function and file
-          enriched.items = data.notification?.commodities?.commodityComplement.map(complement => {
+          enriched.items = data.notification?.partOne?.commodities?.commodityComplement.map(complement => {
             return [
               {text: complement.commodityID},
               {text: complement.commodityDescription}

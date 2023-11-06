@@ -1,3 +1,7 @@
+const certTypeMap = new Map([
+  ['CHEDD', 'CED']
+])
+
 const updateNotification = req => {
   const body = req.body
   let data = req.session.data
@@ -9,7 +13,7 @@ const updateNotification = req => {
 
   switch(req.url) {
     case '/what-are-you-importing':
-      notification.type = body.certificateType
+      notification.type = certTypeMap.get(body.certificateType)
       break
     case '/country-of-origin':
       notification.partOne = {
@@ -29,8 +33,8 @@ const updateNotification = req => {
       }
       break
     case '/commodity-picker':
-      notification = {
-        ...notification,
+      notification.partOne = {
+        ...notification.partOne,
         commodities: getCommodities(body)
       }
       break
@@ -48,6 +52,8 @@ const init = () => {
       displayName: 'Mark Admin-Tester',
       userId: '79f6dc68-2144-e911-a96a-000d3a29ba60'
     },
+    status: 'DRAFT',
+    isHighRiskEuImport: false,
     partOne: {
       personResponsible: {
         name: 'Mark Admin-Tester',
@@ -78,9 +84,7 @@ const getCommodities = body => {
         keyDataPair: [
           {}
         ]
-    }],
-    countryOfOrigin: 'KH',
-    consignedCountry: 'ES-CN'
+    }]
   }
 }
 

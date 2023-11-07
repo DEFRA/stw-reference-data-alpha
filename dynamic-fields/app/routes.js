@@ -34,20 +34,36 @@ router.post('/', (req, res) => {
 
 pages.filter(page => page.url).forEach(page => {
   router.get(page.url, (req, res) => {
-    if (page.url === '/declaration') {
-      const context = {
-        pageName: page.title,
-        submissionDate: submissionDate()
-      }
-      return res.render('pages/declaration', context)
-    }
+    switch (page.url) {
+      case '/declaration':
+        return res.render('pages/declaration', {
+          pageName: page.title,
+          submissionDate: submissionDate()
+        })
+      case '/commodity-details':
+        return res.render('pages/commodityDetails', {
+          pageName: page.title,
+          commodityRows: [
+            [
+              { text: '0101' },
+              { text: 'Live horses, asses, mules and hinnies' },
+              { html: '<a href="#" class="govuk-link">Remove</a>' }
+            ],
+            [
+              { text: '0102' },
+              { text: 'Live bovine animals' },
+              { html: '<a href="#" class="govuk-link">Remove</a>' }
+            ]
+          ],
 
-    const context = {
-      pageName: page.title,
-      secondaryTitle: page.secondaryTitle,
-      components: enrichComponents(page.components, req, res)
+        })
+      default:
+        return res.render('questionPage', {
+          pageName: page.title,
+          secondaryTitle: page.secondaryTitle,
+          components: enrichComponents(page.components, req, res)
+        })
     }
-    res.render('questionPage', context)
   })
 
   router.post(page.url, (req, res) => {

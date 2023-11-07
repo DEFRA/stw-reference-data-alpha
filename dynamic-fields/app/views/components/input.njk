@@ -4,13 +4,16 @@
   label: {
     text: component.label,
     isPageHeading: not nested and components.length === 1,
-    classes: 'govuk-label--s' if nested else ('govuk-label--xl' if components.length === 1 else 'govuk-label--m')
+    classes: 'govuk-visually-hidden' if component.labelHidden else ('govuk-label--s' if nested else ('govuk-label--xl' if components.length === 1 else 'govuk-label--m'))
   },
   hint: {
     text: component.hint
-  },
+  } if component.hint,
   id: component.name,
   name: component.name,
   value: component.value,
-  errorMessage: { text: errors[component.name].description } if errors[component.name]
+  errorMessage: { text: errors[component.name].description } if errors[component.name],
+  formGroup: {
+    classes: component.formGroupClasses
+  }
 }) }}

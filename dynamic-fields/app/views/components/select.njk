@@ -5,11 +5,14 @@
   label: {
     text: component.label,
     isPageHeading: not nested and components.length === 1,
-    classes: 'govuk-label--s' if nested else ('govuk-label--xl' if components.length === 1 else 'govuk-label--m')
+    classes: 'govuk-visually-hidden' if component.labelHidden else ('govuk-label--s' if nested else ('govuk-label--xl' if components.length === 1 else 'govuk-label--m'))
   },
   hint: {
     text: component.hint
-  },
+  } if component.hint,
   value: component.value,
-  items: component.items
+  items: component.items,
+  formGroup: {
+    classes: component.formGroupClasses
+  }
 }) }}

@@ -41,21 +41,104 @@ pages.filter(page => page.url).forEach(page => {
           submissionDate: submissionDate()
         })
       case '/commodity-details':
+        // The commodities data would come from the notification
+        const chedaCommodities = [
+          {
+            code: '0101',
+            description: 'Live horses, asses, mules and hinnies',
+            species: ['Equus asinus']
+          },
+          {
+            code: '0102',
+            description: 'Live bovine animals',
+            species: ['Bison bison, Domestic', 'Bos taurus, Domestic']
+          }
+        ]
+        const chedpCommodities = [
+          {
+            code: '020130',
+            description: 'Boneless',
+            species: ['Bison bison, Domestic', 'Bos taurus, Domestic']
+          },
+          {
+            code: '02041000',
+            description: ' \tCarcases and half-carcases of lamb, fresh or chilled',
+            species: ['Ovis aries, Domestic']
+          }
+        ]
+        // The components are the metadata part
+        const chedaComponents = [
+          {
+            type: 'text',
+            name: 'numberOfAnimals',
+            label: 'Number of animals'
+          },
+          {
+            type: 'text',
+            name: 'numberOfPackages',
+            label: 'Number of packages'
+          }
+        ]
+        const chedpComponents = [
+          {
+            type: 'text',
+            name: 'netWeight',
+            label: 'Net weight (kg/units)'
+          },
+          {
+            type: 'text',
+            name: 'numberOfPackages',
+            label: 'Number of packages'
+          },
+          {
+            type: 'select',
+            name: 'typeOfPackage',
+            label: 'Type of package',
+            items: [
+              { value: '', text: 'Select type of package' },
+              { value: 'bag', text: 'Bag' },
+              { value: 'bale', text: 'Bale' },
+              { value: 'balloonProtected', text: 'Baloon protected' },
+              { value: 'block', text: 'Block' },
+              { value: 'box', text: 'Box' },
+              { value: 'can', text: 'Can' },
+              { value: 'carton', text: 'Carton' }
+            ]
+          }
+        ]
+
+        const commodities = req.session.data.certificateType === 'CHEDA' ? chedaCommodities : chedpCommodities
+
+        // This represents calling some service to get the correct components for current
+        // notification state
+        const components = req.session.data.certificateType === 'CHEDA' ? chedaComponents : chedpComponents
+
         return res.render('pages/commodityDetails', {
           pageName: page.title,
-          commodityRows: [
-            [
-              { text: '0101' },
-              { text: 'Live horses, asses, mules and hinnies' },
-              { html: '<a href="#" class="govuk-link">Remove</a>' }
+          commodityRows: commodities.map(commodity => ([
+            { text: commodity.code },
+            { text: commodity.description },
+            { html: '<a href="#" class="govuk-link">Remove</a>' }
+          ])),
+          commodityTables: commodities.map(commodity => ({
+            caption: commodity.description,
+            head: [
+              { text: 'Species, type, class and family' },
+              ...components.map(({ label }) => ({ text: label }))
             ],
-            [
-              { text: '0102' },
-              { text: 'Live bovine animals' },
-              { html: '<a href="#" class="govuk-link">Remove</a>' }
-            ]
-          ],
-
+            rows: commodity.species.map(species => ([
+              { text: species },
+              ...components.map(component => ({
+                html: res.app.get('nunjucksEnv').render('components/renderer', {
+                  components: [{
+                    labelHidden: true,
+                    formGroupClasses: 'govuk-!-margin-bottom-0',
+                    ...component
+                  }]
+                })
+              }))
+            ]))
+          }))
         })
       default:
         return res.render('questionPage', {

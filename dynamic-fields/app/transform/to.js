@@ -38,6 +38,12 @@ const notification = req => {
         commodities: getCommodities(body)
       }
       break
+    case '/purpose':
+      notification = {
+        ...notification,
+        purpose: getPurpose(body)
+      }
+      break
   }
   data.notification = notification
 }
@@ -85,6 +91,18 @@ const getCommodities = body => {
           {}
         ]
     }]
+  }
+}
+
+const getPurpose = body => {
+  if (body.transfer) {
+    return {
+      purposeGroup: body.purpose,
+      finalBIP: body.transfer
+    }
+  }
+  return {
+    purposeGroup: body.purpose
   }
 }
 

@@ -2,10 +2,11 @@ module.exports = Object.freeze({
   url: '/purpose',
   title: 'About the consignment (purpose)',
   secondaryTitle: 'Purpose of the consignment',
+  nextPage: '/',
   components: [
     {
       type: 'radio',
-      name: 'top-level',
+      name: 'purpose',
       label: 'What is the purpose of the consignment?',
       items: [
         {
@@ -68,7 +69,47 @@ module.exports = Object.freeze({
           text: 'For import re-conformity check',
           value: 'import-re-conformity-check'
         }
-      ]
+      ],
+      conditions: {
+        certificateType: ['CHEDP', 'CHEDA', 'CHEDPP']
+      }
+    },
+    {
+      type: 'radio',
+      name: 'purpose',
+      label: 'What is the purpose of the consignment?',
+      items: [
+        {
+          text: 'For internal market',
+          value: 'For import'
+        },
+        {
+          text: 'For transfer to',
+          value: 'For Transhipment to',
+          components: [
+          {
+              type: 'select',
+              name: 'transfer',
+              label: 'Exit Border Control Post',
+              items: [{
+                text: 'Select Border Control Post',
+                default: true
+              },
+              {
+                text: 'Belfast Pharmaceuticals - TESTY',
+                value: 'TESTY'
+              },
+              {
+                text: 'Edinburgh Airport (animals) - GBEDI4',
+                value: 'GBEDI4'
+              }]
+            }
+          ]
+        }
+      ],
+      conditions: {
+        certificateType: ['CHEDD']
+      }
     }
   ]
 })
